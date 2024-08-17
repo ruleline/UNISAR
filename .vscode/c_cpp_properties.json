@@ -1,0 +1,30 @@
+{
+        "configurations": [
+                {
+                "name": "architechture",
+                "includePath": [
+                        "${workspaceFolder}/**",
+                        "${workspaceFolder}/source/required/**",
+                        "${workspaceFolder}/source/required/application/**",
+                        "${workspaceFolder}/source/required/middleware/**",
+                        "${workspaceFolder}/source/required/database/**",
+                        "${workspaceFolder}/source/required/utility/**",
+
+                        "${workspaceFolder}/source/optional/**",
+                        "${workspaceFolder}/source/optional/bsp/**",
+                        "${workspaceFolder}/source/optional/hal/**",
+                        "${workspaceFolder}/source/optional/sdk/**",
+                        "${workspaceFolder}/source/optional/os/**",
+                        "${workspaceFolder}/source/optional/open/**",
+                        "${workspaceFolder}/source/optional/shell/**",
+                        "${workspaceFolder}/source/optional/test/**"
+                ],
+                "defines": [],
+                "compilerPath": "C:/Program Files/mingw64/bin/gcc.exe",
+                "cStandard": "c99",
+                "cppStandard": "c++11",
+                "intelliSenseMode": "windows-gcc-x64"
+                }
+        ],
+        "version": 4
+}
