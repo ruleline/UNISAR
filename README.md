@@ -1,4 +1,4 @@
-# ARCH
+# ARCHITECTURE
 
 打造一款适用于嵌入式汽车电子 MCU 方面的通用架构。
 
