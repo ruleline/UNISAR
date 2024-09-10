@@ -18,5 +18,7 @@ UNISAR (UNIversal Software ARchitecture), 一款适用于嵌入式汽车电子 M
 | bsp  | board support package       | 板级支持包   |
 | gcc  | gnu compiler collection     | gnu编译器集  |
 | hal  | hardware abstraction layer | 硬件抽象层   |
+| impl | implements                  | 实现类       |
+| intf | interface                   | 接口类       |
 | os   | operating system           | 操作系统     |
 | sdk  | software development kit    | 软件开发套件 |
