@@ -1,0 +1,72 @@
+{
+        // 参考: https://code.visualstudio.com/docs/editor/userdefinedsnippets
+
+        // 路径: C:\Users\用户名\AppData\Roaming\Code\User\snippets
+
+        "c文件":
+        {
+                "prefix": "uuc",
+                "body":
+                [
+                "/**",
+                " * @file ${TM_FILENAME}",
+                " * @brief ${TM_FILENAME_BASE}",
+                " * @author ruleline (ruleline@outlook.com)",
+                " * @since ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+                " * ",
+                " * @authors ruleline (ruleline@outlook.com)",
+                " * @date ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+                " * @version 0.00.001",
+                " * ",
+                " * @copyright ©${CURRENT_YEAR} UNISAR",
+                " * ",
+                " * @details",
+                " * -------------------------------------------------------------------------------------------------",
+                " *    version   |    date    |       by       |                       comments",
+                " * ------------ | ---------- | -------------- | ----------------------------------------------------",
+                " *   0.00.001   | ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} |    ruleline    | 初版",
+                " * -------------------------------------------------------------------------------------------------",
+                " */",
+                "",
+                "#include \"${TM_FILENAME_BASE}.h\"",
+                "",
+                ],
+                "description": "c文件"
+        },
+
+        "头文件":
+        {
+                "prefix": "uuh",
+                "body":
+                [
+                "/**",
+                " * @file ${TM_FILENAME}",
+                " * @brief ${TM_FILENAME_BASE}",
+                " * @author ruleline (ruleline@outlook.com)",
+                " * @since ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+                " * ",
+                " * @authors ruleline (ruleline@outlook.com)",
+                " * @date ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+                " * @version 0.00.001",
+                " * ",
+                " * @copyright ©${CURRENT_YEAR} UNISAR",
+                " * ",
+                " * @details",
+                " * -----------------------------------------------------------------------------",
+                " *    version   |    date    |     author     |             comments",
+                " * ------------ | ---------- | -------------- | --------------------------------",
+                " *   0.00.001   | ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} |    ruleline    | 初版",
+                " * -----------------------------------------------------------------------------",
+                " */",
+                "",
+                "#if !defined ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H",
+                "#define ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H",
+                "",
+                "",
+                "",
+                "#endif /* !defined ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H */",
+                ""
+                ],
+                "description": "头文件"
+        },
+}
