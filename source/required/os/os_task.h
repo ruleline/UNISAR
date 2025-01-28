@@ -47,7 +47,7 @@ struct TASK {
  * @return 结果
  * @retval 0 成功
  */
-static inline int task_create_(struct TASK *task)
+static inline long task_create_(struct TASK *task)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         BaseType_t xReturn = pdPASS;
