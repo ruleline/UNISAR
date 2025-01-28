@@ -21,6 +21,13 @@
 #if !defined CONFIG_H
 #define CONFIG_H
 
-
+#define FREERTOS
+#define FREERTOS_TASK
+#define FREERTOS_QUEUE
+#define FREERTOS_SEMAPHORE
+#define FREERTOS_TIMER
+#define FREERTOS_EVENT_GROUPS
+#define FREERTOS_STREAM_BUFFER
+#define FREERTOS_MESSAGE_BUFFER
 
 #endif /* !defined CONFIG_H */
