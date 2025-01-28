@@ -53,4 +53,19 @@ static inline long queue_create_(struct QUEUE *queue)
         return (0);
 }
 
+/**
+ * @brief 删除队列
+ *
+ * @param[in,out] queue 队列
+ * @return 结果
+ * @retval 0 成功
+ */
+static inline long queue_delete_(struct QUEUE *queue)
+{
+        #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
+        vQueueDelete(queue->handle);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
+        return (0);
+}
+
 #endif /* !defined OS_QUEUE_H */
