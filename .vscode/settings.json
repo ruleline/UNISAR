@@ -1,6 +1,21 @@
 {
         "cSpell.words": [
+                "Bufferable",
+                "CBMC",
+                "croutine",
+                "ipsr",
+                "NVIC",
+                "optimisations",
+                "OPTIMISED",
+                "PENDSVSET",
+                "PICOLIBC",
+                "portmacro",
+                "ppuc",
+                "ppux",
+                "reent",
                 "ruleline",
-                "unisar"
+                "timeslice",
+                "unisar",
+                "visualisation"
         ]
 }
