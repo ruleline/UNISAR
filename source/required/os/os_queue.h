@@ -32,9 +32,9 @@
  *
  */
 struct QUEUE {
-        void *handle;
-        unsigned long length;
-        unsigned long item_size;
+        void *handle;                   /* 句柄 */
+        unsigned long length;           /* 长度 */
+        unsigned long item_size;        /* 对象大小 */
 };
 
 /**
