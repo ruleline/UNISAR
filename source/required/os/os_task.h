@@ -58,4 +58,19 @@ static inline long task_create_(struct TASK *task)
         return (0);
 }
 
+/**
+ * @brief 删除任务
+ *
+ * @param[in] task 任务
+ * @return 结果
+ * @retval 0 成功
+ */
+static inline long task_delete_(struct TASK *task)
+{
+        #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
+        vTaskDelete(task->handle);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
+        return (0);
+}
+
 #endif /* !defined OS_TASK_H */
