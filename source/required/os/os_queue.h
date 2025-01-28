@@ -50,6 +50,7 @@ static inline long queue_create_(struct QUEUE *queue)
         queue->handle = xQueueCreate(queue->length, queue->item_size);
         ASSERT(queue->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
+        return (0);
 }
 
 #endif /* !defined OS_QUEUE_H */
