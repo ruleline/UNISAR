@@ -21,36 +21,12 @@
 #if !defined OS_H
 #define OS_H
 
-#if defined FREERTOS
-#include "FreeRTOS.h"
-#endif /* defined FREERTOS */
-
-#if defined FREERTOS && defined FREERTOS_TASK
-#include "task.h"
-#endif /* defined FREERTOS && defined FREERTOS_TASK */
-
-#if defined FREERTOS && defined FREERTOS_QUEUE
-#include "queue.h"
-#endif /* defined FREERTOS && defined FREERTOS_QUEUE */
-
-#if defined FREERTOS && defined FREERTOS_SEMAPHORE
-#include "semphr.h"
-#endif /* defined FREERTOS && defined FREERTOS_SEMAPHORE */
-
-#if defined FREERTOS && defined FREERTOS_TIMER
-#include "timers.h"
-#endif /* defined FREERTOS && defined FREERTOS_TIMER */
-
-#if defined FREERTOS && defined FREERTOS_EVENT_GROUPS
-#include "event_groups.h"
-#endif /* defined FREERTOS && defined FREERTOS_EVENT_GROUPS */
-
-#if defined FREERTOS && defined FREERTOS_STREAM_BUFFER
-#include "stream_buffer.h"
-#endif /* defined FREERTOS && defined FREERTOS_STREAM_BUFFER */
-
-#if defined FREERTOS && defined FREERTOS_MESSAGE_BUFFER
-#include "message_buffer.h"
-#endif /* defined FREERTOS && defined FREERTOS_MESSAGE_BUFFER */
+#include "os_task.h"
+#include "os_queue.h"
+#include "os_semphr.h"
+#include "os_timers.h"
+#include "os_event_groups.h"
+#include "os_stream_buffer.h"
+#include "os_message_buffer.h"
 
 #endif /* !defined OS_H */
