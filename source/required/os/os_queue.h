@@ -44,7 +44,7 @@ struct QUEUE {
  * @return 结果
  * @retval 0 成功
  */
-static inline int queue_create_(struct QUEUE *queue)
+static inline long queue_create_(struct QUEUE *queue)
 {
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
         queue->handle = xQueueCreate(queue->length, queue->item_size);
