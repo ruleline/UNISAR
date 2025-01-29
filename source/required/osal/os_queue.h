@@ -84,4 +84,20 @@ static inline long queue_send_head_(struct QUEUE *queue, void *item)
         return (0);
 }
 
+/**
+ * @brief 入队尾
+ *
+ * @param[in] queue 队列
+ * @param[in] item 数据
+ * @return 结果
+ * @retval 0 成功
+ */
+static inline long queue_send_tail_(struct QUEUE *queue, void *item)
+{
+        #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
+        xQueueSendToBack(queue->handle, item, 0);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
+        return (0);
+}
+
 #endif /* !defined OS_QUEUE_H */
