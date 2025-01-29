@@ -130,6 +130,23 @@ static inline long task_state_(struct TASK *task)
 }
 
 /**
+ * @brief 获取任务优先级
+ *
+ * @param[in] task 任务
+ * @return 优先级
+ */
+static inline long task_priority_(struct TASK *task)
+{
+        long priority = 0;
+
+        #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
+        priority = uxTaskPriorityGet(task->handle);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
+
+        return (priority);
+}
+
+/**
  * @brief 发送任务通知
  *
  * @param[in] task 任务
