@@ -127,7 +127,7 @@ static inline long delay1_(unsigned long time)
  * @retval 0 成功
  * @retval -1 失败
  */
-static inline long precise_delay_(unsigned long *start, unsigned long time)
+static inline long delay2_(unsigned long *start, unsigned long time)
 {
         _Bool is_delay = 0;
 
