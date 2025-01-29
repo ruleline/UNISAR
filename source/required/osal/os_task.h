@@ -190,7 +190,7 @@ static inline long scheduler_stop_(void)
  * @return 结果
  * @retval 0 成功
  */
-static inline long suspend_scheduler_(void)
+static inline long scheduler_suspend_(void)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskSuspendAll();
