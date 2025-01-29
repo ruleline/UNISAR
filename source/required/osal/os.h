@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-01-28
+ * @date 2025-01-29
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -22,6 +22,8 @@
 #define OS_H
 
 #include "os_task.h"
+#include "os_delay.h"
+#include "os_scheduler.h"
 #include "os_queue.h"
 #include "os_semphr.h"
 #include "os_timers.h"
