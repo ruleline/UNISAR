@@ -117,7 +117,7 @@ static inline long task_notify_give_(struct TASK *task)
 
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         is_notify = xTaskNotifyGive(task->handle);
-        is_notify = (is_notify == pdTRUE);
+        is_notify = (is_notify == pdPASS);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
 
         if (is_notify) {
