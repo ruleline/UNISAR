@@ -104,7 +104,7 @@ static inline long task_resume_(struct TASK *task)
 }
 
 /**
- * @brief 通知任务
+ * @brief 发送任务通知
  *
  * @param[in] task 任务
  * @return 结果
@@ -117,6 +117,31 @@ static inline long task_notify_give_(struct TASK *task)
 
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         is_notify = xTaskNotifyGive(task->handle);
+        is_notify = (is_notify == pdPASS);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
+
+        if (is_notify) {
+                return (0);
+        } else {
+                return (-1);
+        }
+}
+
+/**
+ * @brief 获取任务通知
+ *
+ * @param[in] task 任务
+ * @param[in] wait 等待时间(单位:ms)
+ * @return 结果
+ * @retval 0 成功
+ * @retval -1 失败
+ */
+static inline long task_notify_take_(struct TASK *task, unsigned long wait)
+{
+        _Bool is_notify = 0;
+
+        #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
+        is_notify = ulTaskNotifyTake(task->handle, pdTRUE, pdMS_TO_TICKS(wait));
         is_notify = (is_notify == pdPASS);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
 
