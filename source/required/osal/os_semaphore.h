@@ -105,6 +105,21 @@ static inline long recursive_mutex_create_(
 }
 
 /**
+ * @brief 删除信号量
+ *
+ * @param[in,out] semaphore 信号量
+ * @return 结果
+ * @retval 0 成功
+ */
+static inline long semaphore_delete_(struct SEMAPHORE *semaphore)
+{
+        #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
+        vSemaphoreDelete(semaphore->handle);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
+        return (0);
+}
+
+/**
  * @brief 上锁
  *
  * @param[in] semaphore 信号量
