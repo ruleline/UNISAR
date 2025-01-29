@@ -162,7 +162,7 @@ static inline long scheduler_start_(void)
  * @return 结果
  * @retval 0 成功
  */
-static inline long resume_scheduler_(void)
+static inline long scheduler_resume_(void)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         xTaskResumeAll();
