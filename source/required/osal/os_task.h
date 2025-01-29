@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-01-28
+ * @date 2025-01-29
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -69,6 +69,21 @@ static inline long task_delete_(struct TASK *task)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskDelete(task->handle);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
+        return (0);
+}
+
+/**
+ * @brief 任务延时
+ *
+ * @param[in] time 时间(单位:ms)
+ * @return 结果
+ * @retval 0 成功
+ */
+static inline long task_delay_(unsigned long time)
+{
+        #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
+        vTaskDelay(pdMS_TO_TICKS(time));
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
         return (0);
 }
