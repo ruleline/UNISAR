@@ -65,7 +65,7 @@ static inline long timer_create(struct TIMER *timer)
  * @retval 0 运行
  * @retval -1 休眠
  */
-static inline long timer_state_(struct TIMER *timer)
+static inline long timer_state_get_(struct TIMER *timer)
 {
         _Bool is_running = 0;
 
