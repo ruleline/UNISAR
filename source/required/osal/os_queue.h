@@ -125,6 +125,7 @@ static inline long queue_send_head_(struct QUEUE *queue, void *item)
  * @param[in] item 数据
  * @return 结果
  * @retval 0 成功
+ * @retval -1 失败
  */
 static inline long queue_send_tail_(struct QUEUE *queue, void *item)
 {
@@ -135,7 +136,11 @@ static inline long queue_send_tail_(struct QUEUE *queue, void *item)
         is_send = (is_send == pdTRUE);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
 
-        return (0);
+        if (is_send) {
+                return (0);
+        } else {
+                return (-1);
+        }
 }
 
 #endif /* !defined OS_QUEUE_H */
