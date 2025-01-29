@@ -135,7 +135,7 @@ static inline long task_state_get_(struct TASK *task)
  * @param[in] task 任务
  * @return 优先级
  */
-static inline long task_priority_(struct TASK *task)
+static inline long task_priority_get_(struct TASK *task)
 {
         long priority = 0;
 
