@@ -130,6 +130,17 @@ static inline long task_state_get_(struct TASK *task)
 }
 
 /**
+ * @brief 获取任务优先级
+ *
+ * @param[in] task 任务
+ * @return 优先级
+ */
+static inline long task_priority_get_(struct TASK *task)
+{
+        return (task->priority);
+}
+
+/**
  * @brief 设置任务优先级
  *
  * @param[in] task 任务
