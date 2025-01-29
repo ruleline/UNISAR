@@ -104,7 +104,7 @@ static inline long task_resume_(struct TASK *task)
 }
 
 /**
- * @brief 任务状态
+ * @brief 获取任务状态
  *
  * @param[in] task 任务
  * @return 状态
@@ -115,7 +115,7 @@ static inline long task_resume_(struct TASK *task)
  * @retval 3 挂起
  * @retval 4 删除
  */
-static inline long task_state_(struct TASK *task)
+static inline long task_state_get_(struct TASK *task)
 {
         long state = 0;
 
