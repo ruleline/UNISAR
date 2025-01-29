@@ -42,20 +42,6 @@ static inline long scheduler_start_(void)
 }
 
 /**
- * @brief 恢复调度器
- *
- * @return 结果
- * @retval 0 成功
- */
-static inline long scheduler_resume_(void)
-{
-        #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
-        xTaskResumeAll();
-        #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
-        return (0);
-}
-
-/**
  * @brief 停止调度器
  *
  * @return 结果
@@ -65,6 +51,20 @@ static inline long scheduler_stop_(void)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskEndScheduler();
+        #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
+        return (0);
+}
+
+/**
+ * @brief 恢复调度器
+ *
+ * @return 结果
+ * @retval 0 成功
+ */
+static inline long scheduler_resume_(void)
+{
+        #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
+        xTaskResumeAll();
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
         return (0);
 }
