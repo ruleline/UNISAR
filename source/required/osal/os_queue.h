@@ -193,4 +193,28 @@ static inline long queue_peek_(struct QUEUE *queue, void *item)
         }
 }
 
+/**
+ * @brief 清空队列
+ *
+ * @param[in] queue 队列
+ * @return 结果
+ * @retval 0 成功
+ * @retval -1 失败
+ */
+static inline long queue_empty_(struct QUEUE *queue)
+{
+        _Bool is_succeed = 0;
+
+        #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
+        is_succeed = xQueueReset(queue->handle);
+        is_succeed = (is_succeed == pdPASS);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
+
+        if (is_succeed) {
+                return (0);
+        } else {
+                return (-1);
+        }
+}
+
 #endif /* !defined OS_QUEUE_H */
