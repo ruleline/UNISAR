@@ -69,6 +69,31 @@ static inline long queue_delete_(struct QUEUE *queue)
 }
 
 /**
+ * @brief 入队
+ *
+ * @param[in] queue 队列
+ * @param[in] item 数据
+ * @return 结果
+ * @retval 0 成功
+ * @retval -1 失败
+ */
+static inline long queue_send_(struct QUEUE *queue, void *item)
+{
+        _Bool is_send = 0;
+
+        #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
+        is_send = xQueueSend(queue->handle, item, 0);
+        is_send = (is_send == pdTRUE);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
+
+        if (is_send) {
+                return (0);
+        } else {
+                return (-1);
+        }
+}
+
+/**
  * @brief 入队头
  *
  * @param[in] queue 队列
