@@ -114,14 +114,14 @@ static inline long recursive_mutex_create_(
  */
 static inline long semaphore_lock_(struct SEMAPHORE *semaphore)
 {
-        _Bool is_give = 0;
+        _Bool is_lock = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
-        is_give = xSemaphoreGive(semaphore->handle);
-        is_give = (is_give == pdTRUE);
+        is_lock = xSemaphoreGive(semaphore->handle);
+        is_lock = (is_lock == pdTRUE);
         #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
 
-        if (is_give) {
+        if (is_lock) {
                 return (0);
         } else {
                 return (-1);
