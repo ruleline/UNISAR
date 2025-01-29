@@ -78,9 +78,13 @@ static inline long queue_delete_(struct QUEUE *queue)
  */
 static inline long queue_send_head_(struct QUEUE *queue, void *item)
 {
+        _Bool is_send = 0;
+
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
-        xQueueSendToFront(queue->handle, item, 0);
+        is_send = xQueueSendToFront(queue->handle, item, 0);
+        is_send = (is_send == pdTRUE);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
+
         return (0);
 }
 
