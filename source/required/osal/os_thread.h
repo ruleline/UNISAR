@@ -1,6 +1,6 @@
 /**
- * @file os_task.h
- * @brief os_task
+ * @file os_thread.h
+ * @brief os_thread
  * @author ruleline (ruleline@outlook.com)
  * @since 2025-01-28
  *
@@ -18,8 +18,8 @@
  * -----------------------------------------------------------------------------
  */
 
-#if !defined OS_TASK_H
-#define OS_TASK_H
+#if !defined OS_THREAD_H
+#define OS_THREAD_H
 
 #include "os_config.h"
 
@@ -28,10 +28,10 @@
 #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
 
 /**
- * @brief 任务
+ * @brief 线程
  *
  */
-struct TASK {
+struct THREAD {
         void *handle;                   /**< 句柄 */
         void *entry;                    /**< 入口 */
         char *name;                     /**< 名称 */
@@ -41,72 +41,72 @@ struct TASK {
 };
 
 /**
- * @brief 创建任务
+ * @brief 创建线程
  *
- * @param[in,out] task 任务
+ * @param[in,out] thread 线程
  * @return 结果
  * @retval 0 成功
  */
-static inline long task_create_(struct TASK *task)
+static inline long thread_create_(struct THREAD *thread)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         BaseType_t xReturn = pdPASS;
-        xReturn = xTaskCreate(task->entry, task->name, task->stack_depth,
-                        task->parameters, task->priority, &task->handle);
+        xReturn = xTaskCreate(thread->entry, thread->name, thread->stack_depth,
+                        thread->parameters, thread->priority, &thread->handle);
         ASSERT(xReturn == pdPASS);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
         return (0);
 }
 
 /**
- * @brief 删除任务
+ * @brief 删除线程
  *
- * @param[in] task 任务
+ * @param[in] thread 线程
  * @return 结果
  * @retval 0 成功
  */
-static inline long task_delete_(struct TASK *task)
+static inline long thread_delete_(struct THREAD *thread)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
-        vTaskDelete(task->handle);
+        vTaskDelete(thread->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
         return (0);
 }
 
 /**
- * @brief 挂起任务
+ * @brief 挂起线程
  *
- * @param[in] task 任务
+ * @param[in] thread 线程
  * @return 结果
  * @retval 0 成功
  */
-static inline long task_suspend_(struct TASK *task)
+static inline long thread_suspend_(struct THREAD *thread)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
-        vTaskSuspend(task->handle);
+        vTaskSuspend(thread->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
         return (0);
 }
 
 /**
- * @brief 恢复任务
+ * @brief 恢复线程
  *
- * @param[in] task 任务
+ * @param[in] thread 线程
  * @return 结果
  * @retval 0 成功
  */
-static inline long task_resume_(struct TASK *task)
+static inline long thread_resume_(struct THREAD *thread)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
-        vTaskResume(task->handle);
+        vTaskResume(thread->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
         return (0);
 }
 
 /**
- * @brief 获取任务状态
+ * @brief 获取线程状态
  *
- * @param[in] task 任务
+ * @param[in] thread 线程
  * @return 状态
  * @retval -1 无效
  * @retval 0 运行
@@ -115,12 +115,12 @@ static inline long task_resume_(struct TASK *task)
  * @retval 3 挂起
  * @retval 4 删除
  */
-static inline long task_state_get_(struct TASK *task)
+static inline long thread_state_get_(struct THREAD *thread)
 {
         long state = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
-        state = eTaskGetState(task->handle);
+        state = eTaskGetState(thread->handle);
         if (state >= eInvalid) {
                 state = -1;
         }
@@ -130,59 +130,60 @@ static inline long task_state_get_(struct TASK *task)
 }
 
 /**
- * @brief 获取任务名称
+ * @brief 获取线程名称
  *
- * @param[in] task 任务
+ * @param[in] thread 线程
  * @return 结果
  * @retval 0 成功
  */
-static inline long task_name_get_(struct TASK *task, char *name)
+static inline long thread_name_get_(struct THREAD *thread, char *name)
 {
-        strcpy(name, task->name);
+        strcpy(name, thread->name);
         return (0);
 }
 
 /**
- * @brief 获取任务优先级
+ * @brief 获取线程优先级
  *
- * @param[in] task 任务
+ * @param[in] thread 线程
  * @return 优先级
  */
-static inline long task_priority_get_(struct TASK *task)
+static inline long thread_priority_get_(struct THREAD *thread)
 {
-        return (task->priority);
+        return (thread->priority);
 }
 
 /**
- * @brief 设置任务优先级
+ * @brief 设置线程优先级
  *
- * @param[in] task 任务
+ * @param[in] thread 线程
  * @param[in] priority 优先级
  * @return 结果
  * @retval 0 成功
  */
-static inline long task_priority_set_(struct TASK *task, unsigned long priority)
+static inline long thread_priority_set_(struct THREAD *thread,
+                                        unsigned long priority)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
-        vTaskPrioritySet(task->handle, priority);
+        vTaskPrioritySet(thread->handle, priority);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
         return (0);
 }
 
 /**
- * @brief 发送任务通知
+ * @brief 发送线程通知
  *
- * @param[in] task 任务
+ * @param[in] thread 线程
  * @return 结果
  * @retval 0 成功
  * @retval -1 失败
  */
-static inline long task_notify_give_(struct TASK *task)
+static inline long thread_notify_give_(struct THREAD *thread)
 {
         _Bool is_notify = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
-        is_notify = xTaskNotifyGive(task->handle);
+        is_notify = xTaskNotifyGive(thread->handle);
         is_notify = (is_notify == pdPASS);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
 
@@ -194,20 +195,21 @@ static inline long task_notify_give_(struct TASK *task)
 }
 
 /**
- * @brief 获取任务通知
+ * @brief 获取线程通知
  *
- * @param[in] task 任务
+ * @param[in] thread 线程
  * @param[in] wait 等待时间(单位:ms)
  * @return 结果
  * @retval 0 成功
  * @retval -1 失败
  */
-static inline long task_notify_take_(struct TASK *task, unsigned long wait)
+static inline long thread_notify_take_(struct THREAD *thread,
+                                        unsigned long wait)
 {
         _Bool is_notify = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
-        is_notify = ulTaskNotifyTake(task->handle, pdTRUE, pdMS_TO_TICKS(wait));
+        is_notify = ulTaskNotifyTake(thread->handle, pdTRUE, pdMS_TO_TICKS(wait));
         is_notify = (is_notify == pdTRUE);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
 
@@ -218,4 +220,4 @@ static inline long task_notify_take_(struct TASK *task, unsigned long wait)
         }
 }
 
-#endif /* !defined OS_TASK_H */
+#endif /* !defined OS_THREAD_H */
