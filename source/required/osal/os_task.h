@@ -104,21 +104,6 @@ static inline long task_suspend_(struct TASK *task)
 }
 
 /**
- * @brief 挂起所有任务
- *
- * @param[in] task 任务
- * @return 结果
- * @retval 0 成功
- */
-static inline long task_suspend_all_(void)
-{
-        #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
-        vTaskSuspendAll();
-        #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
-        return (0);
-}
-
-/**
  * @brief 恢复任务
  *
  * @param[in] task 任务
@@ -129,21 +114,6 @@ static inline long task_resume_(struct TASK *task)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskResume(task->handle);
-        #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
-        return (0);
-}
-
-/**
- * @brief 恢复所有任务
- *
- * @param[in] task 任务
- * @return 结果
- * @retval 0 成功
- */
-static inline long task_resume_all_(void)
-{
-        #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
-        xTaskResumeAll();
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
         return (0);
 }
@@ -187,6 +157,20 @@ static inline long start_scheduler_(void)
 }
 
 /**
+ * @brief 恢复调度器
+ *
+ * @return 结果
+ * @retval 0 成功
+ */
+static inline long resume_scheduler_(void)
+{
+        #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
+        xTaskResumeAll();
+        #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
+        return (0);
+}
+
+/**
  * @brief 停止调度器
  *
  * @return 结果
@@ -196,6 +180,20 @@ static inline long stop_scheduler_(void)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskEndScheduler();
+        #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
+        return (0);
+}
+
+/**
+ * @brief 挂起调度器
+ *
+ * @return 结果
+ * @retval 0 成功
+ */
+static inline long suspend_scheduler_(void)
+{
+        #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
+        vTaskSuspendAll();
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
         return (0);
 }
