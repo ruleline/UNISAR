@@ -82,6 +82,30 @@ static inline long timer_start_(struct TIMER *timer)
 }
 
 /**
+ * @brief 停止定时器
+ *
+ * @param[in] timer 定时器
+ * @return 结果
+ * @retval 0 成功
+ * @retval -1 失败
+ */
+static inline long timer_stop_(struct TIMER *timer)
+{
+        _Bool is_stop = 0;
+
+        #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
+        is_stop = xTimerStop(timer->handle, 0);
+        is_stop = (is_stop == pdPASS);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_TIMER == 1)) */
+
+        if (is_stop) {
+                return (0);
+        } else {
+                return (-1);
+        }
+}
+
+/**
  * @brief 获取定时器状态
  *
  * @param[in] timer 定时器
