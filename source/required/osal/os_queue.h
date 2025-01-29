@@ -143,4 +143,29 @@ static inline long queue_send_tail_(struct QUEUE *queue, void *item)
         }
 }
 
+/**
+ * @brief 查看队头
+ *
+ * @param[in] queue 队列
+ * @param[out] item 数据
+ * @return 结果
+ * @retval 0 成功
+ * @retval -1 失败
+ */
+static inline long queue_peek_(struct QUEUE *queue, void *item)
+{
+        _Bool is_peek = 0;
+
+        #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
+        is_peek = xQueuePeek(queue->handle, item, 0);
+        is_peek = (is_peek == pdTRUE);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
+
+        if (is_peek) {
+                return (0);
+        } else {
+                return (-1);
+        }
+}
+
 #endif /* !defined OS_QUEUE_H */
