@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-01-28
+ * @date 2025-01-29
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -55,6 +55,30 @@ static inline long timer_create(struct TIMER *timer)
         ASSERT(timer->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TIMER == 1)) */
         return (0);
+}
+
+/**
+ * @brief 获取定时器状态
+ *
+ * @param[in] timer 定时器
+ * @return 状态
+ * @retval 0 运行
+ * @retval -1 休眠
+ */
+static inline long timer_state_(struct TIMER *timer)
+{
+        _Bool is_running = 0;
+
+        #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
+        is_running = xTimerIsTimerActive(timer->handle);
+        is_running = (is_running == pdTRUE);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_TIMER == 1)) */
+
+        if (is_running) {
+                return (0);
+        } else {
+                return (-1);
+        }
 }
 
 #endif /* !defined OS_TIMERS_H */
