@@ -89,6 +89,21 @@ static inline long general_delay_(unsigned long time)
 }
 
 /**
+ * @brief 挂起任务
+ *
+ * @param[in] task 任务
+ * @return 结果
+ * @retval 0 成功
+ */
+static inline long task_suspend_(struct TASK *task)
+{
+        #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
+        vTaskSuspend(task->handle);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
+        return (0);
+}
+
+/**
  * @brief 绝对延时
  *
  * @param[in,out] start 开始时间(单位:ms)
