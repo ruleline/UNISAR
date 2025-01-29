@@ -130,6 +130,17 @@ static inline long task_state_get_(struct TASK *task)
 }
 
 /**
+ * @brief 获取任务名称
+ *
+ * @param[in] task 任务
+ * @return 名称
+ */
+static inline long task_name_get_(struct TASK *task, char *name)
+{
+        strcpy(name, task->name);
+}
+
+/**
  * @brief 获取任务优先级
  *
  * @param[in] task 任务
