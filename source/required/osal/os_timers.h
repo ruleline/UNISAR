@@ -129,4 +129,29 @@ static inline long timer_state_get_(struct TIMER *timer)
         }
 }
 
+/**
+ * @brief 设置定时器周期
+ *
+ * @param[in] timer 定时器
+ * @param[in] period 周期
+ * @return 结果
+ * @retval 0 成功
+ * @retval -1 失败
+ */
+static inline long timer_period_set_(struct TIMER *timer, unsigned long period)
+{
+        _Bool is_set = 0;
+
+        #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
+        is_set = xTimerChangePeriod(timer->handle, period, 0);
+        is_set = (is_set == pdPASS);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_TIMER == 1)) */
+
+        if (is_set) {
+                return (0);
+        } else {
+                return (-1);
+        }
+}
+
 #endif /* !defined OS_TIMERS_H */
