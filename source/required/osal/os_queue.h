@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-01-28
+ * @date 2025-01-29
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -34,7 +34,7 @@
 struct QUEUE {
         void *handle;                   /* 句柄 */
         unsigned long length;           /* 长度 */
-        unsigned long item_size;        /* 对象大小 */
+        unsigned long item_size;        /* 数据大小 */
 };
 
 /**
@@ -64,6 +64,22 @@ static inline long queue_delete_(struct QUEUE *queue)
 {
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
         vQueueDelete(queue->handle);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
+        return (0);
+}
+
+/**
+ * @brief 入队头
+ *
+ * @param[in] queue 队列
+ * @param[in] item 数据
+ * @return 结果
+ * @retval 0 成功
+ */
+static inline long queue_send_head_(struct QUEUE *queue, void *item)
+{
+        #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
+        xQueueSendToFront(queue->handle, item, 0);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
         return (0);
 }
