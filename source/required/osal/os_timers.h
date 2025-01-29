@@ -58,6 +58,21 @@ static inline long timer_create_(struct TIMER *timer)
 }
 
 /**
+ * @brief 删除定时器
+ *
+ * @param[in,out] timer 定时器
+ * @return 结果
+ * @retval 0 成功
+ */
+static inline long timer_delete_(struct TIMER *timer)
+{
+        #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
+        vTimerDelete(timer->handle, 0);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_TIMER == 1)) */
+        return (0);
+}
+
+/**
  * @brief 启动定时器
  *
  * @param[in] timer 定时器
