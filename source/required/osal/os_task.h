@@ -103,4 +103,28 @@ static inline long task_resume_(struct TASK *task)
         return (0);
 }
 
+/**
+ * @brief 通知任务
+ *
+ * @param[in] task 任务
+ * @return 结果
+ * @retval 0 成功
+ * @retval -1 失败
+ */
+static inline long task_notify_give_(struct TASK *task)
+{
+        _Bool is_notify = 0;
+
+        #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
+        is_notify = xTaskNotifyGive(task->handle);
+        is_notify = (is_notify == pdTRUE);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
+
+        if (is_notify) {
+                return (0);
+        } else {
+                return (-1);
+        }
+}
+
 #endif /* !defined OS_TASK_H */
