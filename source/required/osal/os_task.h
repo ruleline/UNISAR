@@ -176,7 +176,7 @@ static inline long scheduler_resume_(void)
  * @return 结果
  * @retval 0 成功
  */
-static inline long stop_scheduler_(void)
+static inline long scheduler_stop_(void)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskEndScheduler();
