@@ -74,7 +74,7 @@ static inline long task_delete_(struct TASK *task)
 }
 
 /**
- * @brief 任务延时
+ * @brief 延时
  *
  * @param[in] time 时间(单位:ms)
  * @return 结果
