@@ -145,6 +145,17 @@ static inline long timer_state_get_(struct TIMER *timer)
 }
 
 /**
+ * @brief s
+ *
+ * @param[in] timer 定时器
+ * @return 周期
+ */
+static inline long timer_period_get_(struct TIMER *timer)
+{
+        return (timer->period);
+}
+
+/**
  * @brief 设置定时器周期
  *
  * @param[in] timer 定时器
