@@ -102,6 +102,41 @@ static inline long task_resume_(struct TASK *task)
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
         return (0);
 }
+typedef enum
+{
+    eRunning = 0, /* A task is querying the state of itself, so must be running. */
+    eReady,       /* The task being queried is in a ready or pending ready list. */
+    eBlocked,     /* The task being queried is in the Blocked state. */
+    eSuspended,   /* The task being queried is in the Suspended state, or is in the Blocked state with an infinite time out. */
+    eDeleted,     /* The task being queried has been deleted, but its TCB has not yet been freed. */
+    eInvalid      /* Used as an 'invalid state' value. */
+} eTaskState;
+
+/**
+ * @brief 任务状态
+ *
+ * @param[in] task 任务
+ * @return 状态
+ * @retval -1 无效
+ * @retval 0 运行
+ * @retval 1 就绪
+ * @retval 2 阻塞
+ * @retval 3 挂起
+ * @retval 4 删除
+ */
+static inline long task_state_(struct TASK *task)
+{
+        long state = 0;
+
+        #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
+        state = eTaskGetState(task->handle);
+        if (state >= eInvalid) {
+                state = -1;
+        }
+        #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
+
+        return (state);
+}
 
 /**
  * @brief 发送任务通知
