@@ -152,4 +152,28 @@ static inline long semaphore_unlock_(struct SEMAPHORE *semaphore)
         }
 }
 
+/**
+ * @brief 上递归锁
+ *
+ * @param[in] semaphore 信号量
+ * @return 结果
+ * @retval 0 成功
+ * @retval -1 失败
+ */
+static inline long semaphore_recursive_lock_(struct SEMAPHORE *semaphore)
+{
+        _Bool is_lock = 0;
+
+        #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
+        is_lock = xSemaphoreTakeRecursive(semaphore->handle, portMAX_DELAY);
+        is_lock = (is_lock == pdTRUE);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
+
+        if (is_lock) {
+                return (0);
+        } else {
+                return (-1);
+        }
+}
+
 #endif /* !defined OS_SEMAPHORE_H */
