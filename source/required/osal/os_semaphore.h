@@ -38,16 +38,15 @@ struct SEMAPHORE {
 /**
  * @brief 创建二值信号量
  *
- * @param[in,out] binary_semaphore 二值信号量
+ * @param[in,out] semaphore 二值信号量
  * @return 结果
  * @retval 0 成功
  */
-static inline long binary_semaphore_create_(
-                                struct SEMAPHORE *binary_semaphore)
+static inline long semaphore_binary_create_(struct SEMAPHORE *semaphore)
 {
         #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
-        binary_semaphore->handle = xSemaphoreCreateBinary();
-        ASSERT(binary_semaphore->handle);
+        semaphore->handle = xSemaphoreCreateBinary();
+        ASSERT(semaphore->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
         return (0);
 }
@@ -55,17 +54,16 @@ static inline long binary_semaphore_create_(
 /**
  * @brief 创建计数信号量
  *
- * @param[in,out] counting_semaphore 计数信号量
+ * @param[in,out] semaphore 计数信号量
  * @return 结果
  * @retval 0 成功
  */
-static inline long counting_semaphore_create_(
-                                struct SEMAPHORE *counting_semaphore)
+static inline long semaphore_counting_create_(struct SEMAPHORE *semaphore)
 {
         #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
-        counting_semaphore->handle = xSemaphoreCreateCounting(
+        semaphore->handle = xSemaphoreCreateCounting(
                                 configMAX_BINARY_SEMAPHORE_COUNT, 0);
-        ASSERT(counting_semaphore->handle);
+        ASSERT(semaphore->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
         return (0);
 }
@@ -73,16 +71,15 @@ static inline long counting_semaphore_create_(
 /**
  * @brief 创建互斥信号量
  *
- * @param[in,out] mutex_semaphore 互斥信号量
+ * @param[in,out] semaphore 互斥信号量
  * @return 结果
  * @retval 0 成功
  */
-static inline long mutex_semaphore_create_(
-                                struct SEMAPHORE *mutex_semaphore)
+static inline long semaphore_mutex_create_(struct SEMAPHORE *semaphore)
 {
         #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
-        mutex_semaphore->handle = xSemaphoreCreateMutex();
-        ASSERT(mutex_semaphore->handle);
+        semaphore->handle = xSemaphoreCreateMutex();
+        ASSERT(semaphore->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
         return (0);
 }
@@ -90,16 +87,15 @@ static inline long mutex_semaphore_create_(
 /**
  * @brief 创建递归互斥信号量
  *
- * @param[in,out] recursive_mutex_semaphore 递归互斥信号量
+ * @param[in,out] semaphore 递归互斥信号量
  * @return 结果
  * @retval 0 成功
  */
-static inline long recursive_mutex_create_(
-                                struct SEMAPHORE *recursive_mutex_semaphore)
+static inline long semaphore_recursive_mutex_create_(struct SEMAPHORE *semaphore)
 {
         #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
-        recursive_mutex_semaphore->handle = xSemaphoreCreateRecursiveMutex();
-        ASSERT(recursive_mutex_semaphore->handle);
+        semaphore->handle = xSemaphoreCreateRecursiveMutex();
+        ASSERT(semaphore->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
         return (0);
 }
