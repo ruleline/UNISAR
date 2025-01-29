@@ -21,6 +21,7 @@
 #if !defined OS_H
 #define OS_H
 
+#include "os_config.h"
 #include "os_thread.h"
 #include "os_delay.h"
 #include "os_scheduler.h"
