@@ -26,7 +26,7 @@
 #include "os_delay.h"
 #include "os_scheduler.h"
 #include "os_queue.h"
-#include "os_semphr.h"
+#include "os_semaphore.h"
 #include "os_timers.h"
 #include "os_event_groups.h"
 #include "os_stream_buffer.h"

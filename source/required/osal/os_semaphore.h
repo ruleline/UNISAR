@@ -1,11 +1,11 @@
 /**
- * @file os_semphr.h
- * @brief os_semphr
+ * @file os_semaphore.h
+ * @brief os_semaphore
  * @author ruleline (ruleline@outlook.com)
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-01-28
+ * @date 2025-01-29
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -18,8 +18,8 @@
  * -----------------------------------------------------------------------------
  */
 
-#if !defined OS_SEMPHR_H
-#define OS_SEMPHR_H
+#if !defined OS_SEMAPHORE_H
+#define OS_SEMAPHORE_H
 
 #include "os_config.h"
 
@@ -104,4 +104,4 @@ static inline long recursive_mutex_create_(
         return (0);
 }
 
-#endif /* !defined OS_SEMPHR_H */
+#endif /* !defined OS_SEMAPHORE_H */
