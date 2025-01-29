@@ -142,7 +142,7 @@ static inline long task_notify_take_(struct TASK *task, unsigned long wait)
 
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         is_notify = ulTaskNotifyTake(task->handle, pdTRUE, pdMS_TO_TICKS(wait));
-        is_notify = (is_notify == pdPASS);
+        is_notify = (is_notify == pdTRUE);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
 
         if (is_notify) {
