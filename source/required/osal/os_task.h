@@ -133,11 +133,13 @@ static inline long task_state_get_(struct TASK *task)
  * @brief 获取任务名称
  *
  * @param[in] task 任务
- * @return 名称
+ * @return 结果
+ * @retval 0 成功
  */
 static inline long task_name_get_(struct TASK *task, char *name)
 {
         strcpy(name, task->name);
+        return (0);
 }
 
 /**
