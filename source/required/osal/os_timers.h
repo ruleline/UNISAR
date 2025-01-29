@@ -47,7 +47,7 @@ struct TIMER {
  * @return 结果
  * @retval 0 成功
  */
-static inline long timer_create(struct TIMER *timer)
+static inline long timer_create_(struct TIMER *timer)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
         timer->handle = xTimerCreate(timer->name, timer->period,
