@@ -147,6 +147,22 @@ static inline long task_priority_get_(struct TASK *task)
 }
 
 /**
+ * @brief 设置任务优先级
+ *
+ * @param[in] task 任务
+ * @param[in] priority 优先级
+ * @return 结果
+ * @retval 0 成功
+ */
+static inline long task_priority_set_(struct TASK *task, unsigned long priority)
+{
+        #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
+        vTaskPrioritySet(task->handle, priority);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
+        return (0);
+}
+
+/**
  * @brief 发送任务通知
  *
  * @param[in] task 任务
