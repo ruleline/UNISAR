@@ -148,7 +148,7 @@ static inline long precise_delay_(unsigned long *start, unsigned long time)
  * @return 结果
  * @retval 0 成功
  */
-static inline long start_scheduler_(void)
+static inline long scheduler_start_(void)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskStartScheduler();
