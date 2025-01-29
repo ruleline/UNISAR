@@ -104,4 +104,28 @@ static inline long recursive_mutex_create_(
         return (0);
 }
 
+/**
+ * @brief 上锁
+ *
+ * @param[in] semaphore 信号量
+ * @return 结果
+ * @retval 0 成功
+ * @retval -1 失败
+ */
+static inline long semaphore_lock_(struct SEMAPHORE *semaphore)
+{
+        _Bool is_give = 0;
+
+        #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
+        is_give = xSemaphoreGive(semaphore->handle);
+        is_give = (is_give == pdTRUE);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
+
+        if (is_give) {
+                return (0);
+        } else {
+                return (-1);
+        }
+}
+
 #endif /* !defined OS_SEMAPHORE_H */
