@@ -142,4 +142,18 @@ static inline long precise_delay_(unsigned long *start, unsigned long time)
         }
 }
 
+/**
+ * @brief 启动调度器
+ *
+ * @return 结果
+ * @retval 0 成功
+ */
+static inline long start_scheduler_(void)
+{
+        #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
+        vTaskStartScheduler();
+        #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
+        return (0);
+}
+
 #endif /* !defined OS_TASK_H */
