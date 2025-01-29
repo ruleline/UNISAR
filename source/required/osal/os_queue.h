@@ -144,6 +144,31 @@ static inline long queue_send_tail_(struct QUEUE *queue, void *item)
 }
 
 /**
+ * @brief 出队
+ *
+ * @param[in] queue 队列
+ * @param[out] item 数据
+ * @return 结果
+ * @retval 0 成功
+ * @retval -1 失败
+ */
+static inline long queue_receive_(struct QUEUE *queue, void *item)
+{
+        _Bool is_receive = 0;
+
+        #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
+        is_receive = xQueueReceive(queue->handle, item, 0);
+        is_receive = (is_receive == pdTRUE);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
+
+        if (is_receive) {
+                return (0);
+        } else {
+                return (-1);
+        }
+}
+
+/**
  * @brief 查看队头
  *
  * @param[in] queue 队列
