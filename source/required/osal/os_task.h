@@ -104,6 +104,21 @@ static inline long task_suspend_(struct TASK *task)
 }
 
 /**
+ * @brief 挂起所有任务
+ *
+ * @param[in] task 任务
+ * @return 结果
+ * @retval 0 成功
+ */
+static inline long task_suspend_all_(void)
+{
+        #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
+        vTaskSuspendAll();
+        #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
+        return (0);
+}
+
+/**
  * @brief 恢复任务
  *
  * @param[in] task 任务
