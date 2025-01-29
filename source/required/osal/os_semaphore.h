@@ -128,4 +128,28 @@ static inline long semaphore_lock_(struct SEMAPHORE *semaphore)
         }
 }
 
+/**
+ * @brief 解锁
+ *
+ * @param[in] semaphore 信号量
+ * @return 结果
+ * @retval 0 成功
+ * @retval -1 失败
+ */
+static inline long semaphore_unlock_(struct SEMAPHORE *semaphore)
+{
+        _Bool is_unlock = 0;
+
+        #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
+        is_unlock = xSemaphoreTake(semaphore->handle, portMAX_DELAY);
+        is_unlock = (is_unlock == pdTRUE);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
+
+        if (is_unlock) {
+                return (0);
+        } else {
+                return (-1);
+        }
+}
+
 #endif /* !defined OS_SEMAPHORE_H */
