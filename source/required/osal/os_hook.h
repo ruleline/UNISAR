@@ -1,8 +1,8 @@
 /**
- * @file os.h
- * @brief os
+ * @file os_hook.h
+ * @brief os_hook
  * @author ruleline (ruleline@outlook.com)
- * @since 2025-01-28
+ * @since 2025-01-30
  *
  * @authors ruleline (ruleline@outlook.com)
  * @date 2025-01-30
@@ -14,23 +14,13 @@
  * -----------------------------------------------------------------------------
  *    version   |    date    |     author     |             comments
  * ------------ | ---------- | -------------- | --------------------------------
- *   0.00.001   | 2025-01-28 |    ruleline    | 初版
+ *   0.00.001   | 2025-01-30 |    ruleline    | 初版
  * -----------------------------------------------------------------------------
  */
 
-#if !defined OS_H
-#define OS_H
+#if !defined OS_HOOK_H
+#define OS_HOOK_H
 
-#include "os_config.h"
-#include "os_thread.h"
-#include "os_delay.h"
-#include "os_kernel.h"
-#include "os_queue.h"
-#include "os_semaphore.h"
-#include "os_timers.h"
-#include "os_event_groups.h"
-#include "os_stream_buffer.h"
-#include "os_message_buffer.h"
-#include "os_hook.h"
 
-#endif /* !defined OS_H */
+
+#endif /* !defined OS_HOOK_H */
