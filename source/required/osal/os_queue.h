@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-01-29
+ * @date 2025-01-30
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -34,7 +34,7 @@
 struct QUEUE {
         void *handle;                   /* 句柄 */
         unsigned long length;           /* 长度 */
-        unsigned long item_size;        /* 数据大小 */
+        unsigned long item_size;        /* 元素大小 */
 };
 
 /**
@@ -72,7 +72,7 @@ static inline long queue_delete_(struct QUEUE *queue)
  * @brief 入队
  *
  * @param[in] queue 队列
- * @param[in] item 数据
+ * @param[in] item 元素
  * @return 结果
  * @retval 0 成功
  * @retval -1 失败
@@ -97,7 +97,7 @@ static inline long queue_send_(struct QUEUE *queue, void *item)
  * @brief 入队头
  *
  * @param[in] queue 队列
- * @param[in] item 数据
+ * @param[in] item 元素
  * @return 结果
  * @retval 0 成功
  * @retval -1 失败
@@ -122,7 +122,7 @@ static inline long queue_send_head_(struct QUEUE *queue, void *item)
  * @brief 入队尾
  *
  * @param[in] queue 队列
- * @param[in] item 数据
+ * @param[in] item 元素
  * @return 结果
  * @retval 0 成功
  * @retval -1 失败
@@ -147,7 +147,7 @@ static inline long queue_send_tail_(struct QUEUE *queue, void *item)
  * @brief 出队
  *
  * @param[in] queue 队列
- * @param[out] item 数据
+ * @param[out] item 元素
  * @return 结果
  * @retval 0 成功
  * @retval -1 失败
@@ -172,7 +172,7 @@ static inline long queue_receive_(struct QUEUE *queue, void *item)
  * @brief 查看队头
  *
  * @param[in] queue 队列
- * @param[out] item 数据
+ * @param[out] item 元素
  * @return 结果
  * @retval 0 成功
  * @retval -1 失败
