@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-01-28
+ * @date 2025-01-30
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -22,6 +22,8 @@
 #define CONFIG_H
 
 #define FREERTOS (1)
+
+#define LINE_BREAK "\r\n"
 
 #if !defined ASSERT
 #define ASSERT(x)               \
