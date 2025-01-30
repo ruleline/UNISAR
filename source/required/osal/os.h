@@ -31,6 +31,5 @@
 #include "os_event_groups.h"
 #include "os_stream_buffer.h"
 #include "os_message_buffer.h"
-#include "os_hook.h"
 
 #endif /* !defined OS_H */
