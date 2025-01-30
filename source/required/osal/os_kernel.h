@@ -1,11 +1,11 @@
 /**
- * @file os_scheduler.h
- * @brief os_scheduler
+ * @file os_kernel.h
+ * @brief os_kernel
  * @author ruleline (ruleline@outlook.com)
  * @since 2025-01-29
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-01-29
+ * @date 2025-01-30
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -18,8 +18,8 @@
  * -----------------------------------------------------------------------------
  */
 
-#if !defined OS_SCHEDULER_H
-#define OS_SCHEDULER_H
+#if !defined OS_KERNEL_H
+#define OS_KERNEL_H
 
 #include "os_config.h"
 
@@ -28,12 +28,12 @@
 #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
 
 /**
- * @brief 启动调度器
+ * @brief 启动内核
  *
  * @return 结果
  * @retval 0 成功
  */
-static inline long scheduler_start_(void)
+static inline long kernel_start_(void)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskStartScheduler();
@@ -42,12 +42,12 @@ static inline long scheduler_start_(void)
 }
 
 /**
- * @brief 停止调度器
+ * @brief 停止内核
  *
  * @return 结果
  * @retval 0 成功
  */
-static inline long scheduler_stop_(void)
+static inline long kernel_stop_(void)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskEndScheduler();
@@ -56,12 +56,12 @@ static inline long scheduler_stop_(void)
 }
 
 /**
- * @brief 恢复调度器
+ * @brief 恢复内核
  *
  * @return 结果
  * @retval 0 成功
  */
-static inline long scheduler_resume_(void)
+static inline long kernel_resume_(void)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         xTaskResumeAll();
@@ -70,12 +70,12 @@ static inline long scheduler_resume_(void)
 }
 
 /**
- * @brief 挂起调度器
+ * @brief 挂起内核
  *
  * @return 结果
  * @retval 0 成功
  */
-static inline long scheduler_suspend_(void)
+static inline long kernel_suspend_(void)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskSuspendAll();
@@ -83,4 +83,4 @@ static inline long scheduler_suspend_(void)
         return (0);
 }
 
-#endif /* !defined OS_SCHEDULER_H */
+#endif /* !defined OS_KERNEL_H */

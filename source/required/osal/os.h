@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-01-29
+ * @date 2025-01-30
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -24,7 +24,7 @@
 #include "os_config.h"
 #include "os_thread.h"
 #include "os_delay.h"
-#include "os_scheduler.h"
+#include "os_kernel.h"
 #include "os_queue.h"
 #include "os_semaphore.h"
 #include "os_timers.h"

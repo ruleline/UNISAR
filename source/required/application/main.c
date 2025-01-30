@@ -5,7 +5,7 @@
  * @since 2024-04-02
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-01-28
+ * @date 2025-01-30
  * @version 0.00.001
  *
  * @copyright ©2024 UNISAR
@@ -18,6 +18,8 @@
  * -----------------------------------------------------------------------------
  */
 
+#include "unisar.h"
+
 /**
  * @brief main
  *
@@ -26,5 +28,6 @@
  */
 int main(void)
 {
+        kernel_start_();
         return (0);
 }
