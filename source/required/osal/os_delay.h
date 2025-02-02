@@ -53,13 +53,13 @@ static inline long delay1_(unsigned long time)
  */
 static inline long delay2_(unsigned long *start, unsigned long time)
 {
-        _Bool is_delay = 0;
+        _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
-        is_delay = xTaskDelayUntil(pdMS_TO_TICKS(start), pdMS_TO_TICKS(time));
+        is_done = xTaskDelayUntil(pdMS_TO_TICKS(start), pdMS_TO_TICKS(time));
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
 
-        if (is_delay) {
+        if (is_done) {
                 return 0;
         } else {
                 return -1;
