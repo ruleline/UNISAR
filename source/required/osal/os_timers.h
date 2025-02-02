@@ -82,13 +82,13 @@ static inline long timer_delete_(struct TIMER *timer)
  */
 static inline long timer_start_(struct TIMER *timer)
 {
-        _Bool is_start = 0;
+        _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
-        is_start = xTimerStart(timer->handle, 0);
+        is_done = xTimerStart(timer->handle, 0);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TIMER == 1)) */
 
-        if (is_start) {
+        if (is_done) {
                 return (0);
         } else {
                 return (-1);
@@ -105,13 +105,13 @@ static inline long timer_start_(struct TIMER *timer)
  */
 static inline long timer_stop_(struct TIMER *timer)
 {
-        _Bool is_stop = 0;
+        _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
-        is_stop = xTimerStop(timer->handle, 0);
+        is_done = xTimerStop(timer->handle, 0);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TIMER == 1)) */
 
-        if (is_stop) {
+        if (is_done) {
                 return (0);
         } else {
                 return (-1);
@@ -128,13 +128,13 @@ static inline long timer_stop_(struct TIMER *timer)
  */
 static inline long timer_state_get_(struct TIMER *timer)
 {
-        _Bool is_running = 0;
+        _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
-        is_running = xTimerIsTimerActive(timer->handle);
+        is_done = xTimerIsTimerActive(timer->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TIMER == 1)) */
 
-        if (is_running) {
+        if (is_done) {
                 return (0);
         } else {
                 return (-1);
@@ -163,13 +163,13 @@ static inline long timer_period_get_(struct TIMER *timer)
  */
 static inline long timer_period_set_(struct TIMER *timer, unsigned long period)
 {
-        _Bool is_set = 0;
+        _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
-        is_set = xTimerChangePeriod(timer->handle, period, 0);
+        is_done = xTimerChangePeriod(timer->handle, period, 0);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TIMER == 1)) */
 
-        if (is_set) {
+        if (is_done) {
                 return (0);
         } else {
                 return (-1);
