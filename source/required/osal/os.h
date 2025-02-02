@@ -5,10 +5,13 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-01-30
+ * @date 2025-02-02
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
+ *
+ * @ref 1. 韦东山freeRTOS系列教程
+ *         https://blog.csdn.net/thisway_diy/article/details/121399484
  *
  * @details
  * -----------------------------------------------------------------------------
