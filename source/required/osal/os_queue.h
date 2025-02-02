@@ -79,13 +79,13 @@ static inline long queue_delete_(struct QUEUE *queue)
  */
 static inline long queue_write_(struct QUEUE *queue, void *item)
 {
-        _Bool is_write = 0;
+        _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
-        is_write = xQueueSend(queue->handle, item, 0);
+        is_done = xQueueSend(queue->handle, item, 0);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
 
-        if (is_write) {
+        if (is_done) {
                 return (0);
         } else {
                 return (-1);
@@ -103,13 +103,13 @@ static inline long queue_write_(struct QUEUE *queue, void *item)
  */
 static inline long queue_write_head_(struct QUEUE *queue, void *item)
 {
-        _Bool is_write = 0;
+        _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
-        is_write = xQueueSendToFront(queue->handle, item, 0);
+        is_done = xQueueSendToFront(queue->handle, item, 0);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
 
-        if (is_write) {
+        if (is_done) {
                 return (0);
         } else {
                 return (-1);
@@ -127,13 +127,13 @@ static inline long queue_write_head_(struct QUEUE *queue, void *item)
  */
 static inline long queue_write_tail_(struct QUEUE *queue, void *item)
 {
-        _Bool is_write = 0;
+        _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
-        is_write = xQueueSendToBack(queue->handle, item, 0);
+        is_done = xQueueSendToBack(queue->handle, item, 0);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
 
-        if (is_write) {
+        if (is_done) {
                 return (0);
         } else {
                 return (-1);
@@ -151,13 +151,13 @@ static inline long queue_write_tail_(struct QUEUE *queue, void *item)
  */
 static inline long queue_overwrite_(struct QUEUE *queue, void *item)
 {
-        _Bool is_write = 0;
+        _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
-        is_write = xQueueOverwrite(queue->handle, item);
+        is_done = xQueueOverwrite(queue->handle, item);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
 
-        if (is_write) {
+        if (is_done) {
                 return (0);
         } else {
                 return (-1);
@@ -175,13 +175,13 @@ static inline long queue_overwrite_(struct QUEUE *queue, void *item)
  */
 static inline long queue_read_(struct QUEUE *queue, void *item)
 {
-        _Bool is_read = 0;
+        _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
-        is_read = xQueueReceive(queue->handle, item, 0);
+        is_done = xQueueReceive(queue->handle, item, 0);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
 
-        if (is_read) {
+        if (is_done) {
                 return (0);
         } else {
                 return (-1);
@@ -199,13 +199,13 @@ static inline long queue_read_(struct QUEUE *queue, void *item)
  */
 static inline long queue_peek_(struct QUEUE *queue, void *item)
 {
-        _Bool is_peek = 0;
+        _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
-        is_peek = xQueuePeek(queue->handle, item, 0);
+        is_done = xQueuePeek(queue->handle, item, 0);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
 
-        if (is_peek) {
+        if (is_done) {
                 return (0);
         } else {
                 return (-1);
@@ -222,13 +222,13 @@ static inline long queue_peek_(struct QUEUE *queue, void *item)
  */
 static inline long queue_empty_(struct QUEUE *queue)
 {
-        _Bool is_emptied = 0;
+        _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
-        is_emptied = xQueueReset(queue->handle);
+        is_done = xQueueReset(queue->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
 
-        if (is_emptied) {
+        if (is_done) {
                 return (0);
         } else {
                 return (-1);
