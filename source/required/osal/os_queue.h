@@ -141,6 +141,30 @@ static inline long queue_write_tail_(struct QUEUE *queue, void *item)
 }
 
 /**
+ * @brief 覆盖入队
+ *
+ * @param[in] queue 队列
+ * @param[in] item 元素
+ * @return 结果
+ * @retval 0 成功
+ * @retval -1 失败
+ */
+static inline long queue_overwrite_(struct QUEUE *queue, void *item)
+{
+        _Bool is_write = 0;
+
+        #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
+        is_write = xQueueOverwrite(queue->handle, item);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
+
+        if (is_write) {
+                return (0);
+        } else {
+                return (-1);
+        }
+}
+
+/**
  * @brief 出队
  *
  * @param[in] queue 队列
