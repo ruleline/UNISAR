@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-01-29
+ * @date 2025-02-02
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -86,7 +86,6 @@ static inline long timer_start_(struct TIMER *timer)
 
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
         is_start = xTimerStart(timer->handle, 0);
-        is_start = (is_start == pdPASS);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TIMER == 1)) */
 
         if (is_start) {
@@ -110,7 +109,6 @@ static inline long timer_stop_(struct TIMER *timer)
 
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
         is_stop = xTimerStop(timer->handle, 0);
-        is_stop = (is_stop == pdPASS);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TIMER == 1)) */
 
         if (is_stop) {
@@ -134,7 +132,6 @@ static inline long timer_state_get_(struct TIMER *timer)
 
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
         is_running = xTimerIsTimerActive(timer->handle);
-        is_running = (is_running == pdTRUE);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TIMER == 1)) */
 
         if (is_running) {
@@ -170,7 +167,6 @@ static inline long timer_period_set_(struct TIMER *timer, unsigned long period)
 
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
         is_set = xTimerChangePeriod(timer->handle, period, 0);
-        is_set = (is_set == pdPASS);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TIMER == 1)) */
 
         if (is_set) {
