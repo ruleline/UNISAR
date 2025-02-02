@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-01-30
+ * @date 2025-02-02
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -83,7 +83,6 @@ static inline long queue_send_(struct QUEUE *queue, void *item)
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
         is_send = xQueueSend(queue->handle, item, 0);
-        is_send = (is_send == pdTRUE);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
 
         if (is_send) {
@@ -108,7 +107,6 @@ static inline long queue_send_head_(struct QUEUE *queue, void *item)
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
         is_send = xQueueSendToFront(queue->handle, item, 0);
-        is_send = (is_send == pdTRUE);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
 
         if (is_send) {
@@ -133,7 +131,6 @@ static inline long queue_send_tail_(struct QUEUE *queue, void *item)
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
         is_send = xQueueSendToBack(queue->handle, item, 0);
-        is_send = (is_send == pdTRUE);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
 
         if (is_send) {
@@ -158,7 +155,6 @@ static inline long queue_receive_(struct QUEUE *queue, void *item)
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
         is_receive = xQueueReceive(queue->handle, item, 0);
-        is_receive = (is_receive == pdTRUE);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
 
         if (is_receive) {
@@ -183,7 +179,6 @@ static inline long queue_peek_(struct QUEUE *queue, void *item)
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
         is_peek = xQueuePeek(queue->handle, item, 0);
-        is_peek = (is_peek == pdTRUE);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
 
         if (is_peek) {
@@ -207,7 +202,6 @@ static inline long queue_empty_(struct QUEUE *queue)
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
         is_succeed = xQueueReset(queue->handle);
-        is_succeed = (is_succeed == pdPASS);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
 
         if (is_succeed) {
