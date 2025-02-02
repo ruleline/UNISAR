@@ -176,13 +176,16 @@ static inline long semaphore_release_(struct SEMAPHORE *semaphore)
  * @return 结果
  * @retval 0 成功
  * @retval -1 失败
+ *
+ * @note 1. 适用于互斥信号量
+ *       2. 与 semaphore_unlock_() 配合使用
  */
 static inline long semaphore_lock_(struct SEMAPHORE *semaphore)
 {
         _Bool is_lock = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
-        is_lock = xSemaphoreGive(semaphore->handle);
+        is_lock = xSemaphoreTake(semaphore->handle, portMAX_DELAY);
         #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
 
         if (is_lock) {
@@ -199,13 +202,16 @@ static inline long semaphore_lock_(struct SEMAPHORE *semaphore)
  * @return 结果
  * @retval 0 成功
  * @retval -1 失败
+ *
+ * @note 1. 适用于互斥信号量
+ *       2. 与 semaphore_lock_() 配合使用
  */
 static inline long semaphore_unlock_(struct SEMAPHORE *semaphore)
 {
         _Bool is_unlock = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
-        is_unlock = xSemaphoreTake(semaphore->handle, portMAX_DELAY);
+        is_unlock = xSemaphoreGive(semaphore->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
 
         if (is_unlock) {
@@ -222,6 +228,9 @@ static inline long semaphore_unlock_(struct SEMAPHORE *semaphore)
  * @return 结果
  * @retval 0 成功
  * @retval -1 失败
+ *
+ * @note 1. 适用于递归互斥信号量
+ *       2. 与 semaphore_recursive_unlock_() 配合使用
  */
 static inline long semaphore_recursive_lock_(struct SEMAPHORE *semaphore)
 {
@@ -245,6 +254,9 @@ static inline long semaphore_recursive_lock_(struct SEMAPHORE *semaphore)
  * @return 结果
  * @retval 0 成功
  * @retval -1 失败
+ *
+ * @note 1. 适用于递归互斥信号量
+ *       2. 与 semaphore_recursive_lock_() 配合使用
  */
 static inline long semaphore_recursive_unlock_(struct SEMAPHORE *semaphore)
 {
