@@ -58,11 +58,11 @@ static inline long semaphore_binary_create_(struct SEMAPHORE *semaphore)
  * @return 结果
  * @retval 0 成功
  */
-static inline long semaphore_counting_create_(struct SEMAPHORE *semaphore)
+static inline long semaphore_counting_create_(struct SEMAPHORE *semaphore,
+                        unsigned long max_count, unsigned long init_count)
 {
         #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
-        semaphore->handle = xSemaphoreCreateCounting(
-                                configMAX_BINARY_SEMAPHORE_COUNT, 0);
+        semaphore->handle = xSemaphoreCreateCounting(max_count, init_count);
         ASSERT(semaphore->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
         return (0);
