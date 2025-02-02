@@ -5,7 +5,7 @@
  * @since 2025-01-29
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-01-29
+ * @date 2025-02-02
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -57,7 +57,6 @@ static inline long delay2_(unsigned long *start, unsigned long time)
 
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         is_delay = xTaskDelayUntil(pdMS_TO_TICKS(start), pdMS_TO_TICKS(time));
-        is_delay = (is_delay == pdTRUE);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
 
         if (is_delay) {
