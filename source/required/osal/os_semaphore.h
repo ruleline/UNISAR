@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-01-29
+ * @date 2025-02-02
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -129,7 +129,6 @@ static inline long semaphore_lock_(struct SEMAPHORE *semaphore)
 
         #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
         is_lock = xSemaphoreGive(semaphore->handle);
-        is_lock = (is_lock == pdTRUE);
         #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
 
         if (is_lock) {
@@ -153,7 +152,6 @@ static inline long semaphore_unlock_(struct SEMAPHORE *semaphore)
 
         #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
         is_unlock = xSemaphoreTake(semaphore->handle, portMAX_DELAY);
-        is_unlock = (is_unlock == pdTRUE);
         #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
 
         if (is_unlock) {
@@ -177,7 +175,6 @@ static inline long semaphore_recursive_lock_(struct SEMAPHORE *semaphore)
 
         #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
         is_lock = xSemaphoreTakeRecursive(semaphore->handle, portMAX_DELAY);
-        is_lock = (is_lock == pdTRUE);
         #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
 
         if (is_lock) {
@@ -201,7 +198,6 @@ static inline long semaphore_recursive_unlock_(struct SEMAPHORE *semaphore)
 
         #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
         is_unlock = xSemaphoreGiveRecursive(semaphore->handle);
-        is_unlock = (is_unlock == pdTRUE);
         #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
 
         if (is_unlock) {
