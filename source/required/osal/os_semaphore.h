@@ -116,6 +116,60 @@ static inline long semaphore_delete_(struct SEMAPHORE *semaphore)
 }
 
 /**
+ * @brief 获取信号量
+ *
+ * @param[in] semaphore 信号量
+ * @return 结果
+ * @retval 0 成功
+ * @retval -1 失败
+ *
+ * @note 1. 适用于二值信号量
+ *       2. 适用于计数信号量
+ *       3. 与 semaphore_release_() 配合使用
+ */
+static inline long semaphore_acquire_(struct SEMAPHORE *semaphore)
+{
+        _Bool is_acquire = 0;
+
+        #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
+        is_acquire = xSemaphoreTake(semaphore->handle, portMAX_DELAY);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
+
+        if (is_acquire) {
+                return (0);
+        } else {
+                return (-1);
+        }
+}
+
+/**
+ * @brief 释放信号量
+ *
+ * @param[in] semaphore 信号量
+ * @return 结果
+ * @retval 0 成功
+ * @retval -1 失败
+ *
+ * @note 1. 适用于二值信号量
+ *       2. 适用于计数信号量
+ *       3. 与 semaphore_acquire_() 配合使用
+ */
+static inline long semaphore_release_(struct SEMAPHORE *semaphore)
+{
+        _Bool is_release = 0;
+
+        #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
+        is_release = xSemaphoreGive(semaphore->handle);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
+
+        if (is_release) {
+                return (0);
+        } else {
+                return (-1);
+        }
+}
+
+/**
  * @brief 上锁
  *
  * @param[in] semaphore 信号量
