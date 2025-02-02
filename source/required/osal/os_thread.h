@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-01-29
+ * @date 2025-02-02
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -184,7 +184,6 @@ static inline long thread_notify_give_(struct THREAD *thread)
 
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         is_notify = xTaskNotifyGive(thread->handle);
-        is_notify = (is_notify == pdPASS);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
 
         if (is_notify) {
@@ -203,14 +202,12 @@ static inline long thread_notify_give_(struct THREAD *thread)
  * @retval 0 成功
  * @retval -1 失败
  */
-static inline long thread_notify_take_(struct THREAD *thread,
-                                        unsigned long wait)
+static inline long thread_notify_take_(struct THREAD *thread, unsigned long wait)
 {
         _Bool is_notify = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         is_notify = ulTaskNotifyTake(thread->handle, pdTRUE, pdMS_TO_TICKS(wait));
-        is_notify = (is_notify == pdTRUE);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
 
         if (is_notify) {
