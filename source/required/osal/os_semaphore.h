@@ -129,13 +129,13 @@ static inline long semaphore_delete_(struct SEMAPHORE *semaphore)
  */
 static inline long semaphore_acquire_(struct SEMAPHORE *semaphore)
 {
-        _Bool is_acquire = 0;
+        _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
-        is_acquire = xSemaphoreTake(semaphore->handle, portMAX_DELAY);
+        is_done = xSemaphoreTake(semaphore->handle, portMAX_DELAY);
         #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
 
-        if (is_acquire) {
+        if (is_done) {
                 return (0);
         } else {
                 return (-1);
@@ -156,13 +156,13 @@ static inline long semaphore_acquire_(struct SEMAPHORE *semaphore)
  */
 static inline long semaphore_release_(struct SEMAPHORE *semaphore)
 {
-        _Bool is_release = 0;
+        _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
-        is_release = xSemaphoreGive(semaphore->handle);
+        is_done = xSemaphoreGive(semaphore->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
 
-        if (is_release) {
+        if (is_done) {
                 return (0);
         } else {
                 return (-1);
@@ -182,13 +182,13 @@ static inline long semaphore_release_(struct SEMAPHORE *semaphore)
  */
 static inline long semaphore_lock_(struct SEMAPHORE *semaphore)
 {
-        _Bool is_lock = 0;
+        _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
-        is_lock = xSemaphoreTake(semaphore->handle, portMAX_DELAY);
+        is_done = xSemaphoreTake(semaphore->handle, portMAX_DELAY);
         #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
 
-        if (is_lock) {
+        if (is_done) {
                 return (0);
         } else {
                 return (-1);
@@ -208,13 +208,13 @@ static inline long semaphore_lock_(struct SEMAPHORE *semaphore)
  */
 static inline long semaphore_unlock_(struct SEMAPHORE *semaphore)
 {
-        _Bool is_unlock = 0;
+        _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
-        is_unlock = xSemaphoreGive(semaphore->handle);
+        is_done = xSemaphoreGive(semaphore->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
 
-        if (is_unlock) {
+        if (is_done) {
                 return (0);
         } else {
                 return (-1);
@@ -234,13 +234,13 @@ static inline long semaphore_unlock_(struct SEMAPHORE *semaphore)
  */
 static inline long semaphore_recursive_lock_(struct SEMAPHORE *semaphore)
 {
-        _Bool is_lock = 0;
+        _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
-        is_lock = xSemaphoreTakeRecursive(semaphore->handle, portMAX_DELAY);
+        is_done = xSemaphoreTakeRecursive(semaphore->handle, portMAX_DELAY);
         #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
 
-        if (is_lock) {
+        if (is_done) {
                 return (0);
         } else {
                 return (-1);
@@ -260,13 +260,13 @@ static inline long semaphore_recursive_lock_(struct SEMAPHORE *semaphore)
  */
 static inline long semaphore_recursive_unlock_(struct SEMAPHORE *semaphore)
 {
-        _Bool is_unlock = 0;
+        _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
-        is_unlock = xSemaphoreGiveRecursive(semaphore->handle);
+        is_done = xSemaphoreGiveRecursive(semaphore->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
 
-        if (is_unlock) {
+        if (is_done) {
                 return (0);
         } else {
                 return (-1);
