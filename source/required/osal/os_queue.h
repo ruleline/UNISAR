@@ -77,15 +77,15 @@ static inline long queue_delete_(struct QUEUE *queue)
  * @retval 0 成功
  * @retval -1 失败
  */
-static inline long queue_send_(struct QUEUE *queue, void *item)
+static inline long queue_write_(struct QUEUE *queue, void *item)
 {
-        _Bool is_send = 0;
+        _Bool is_write = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
-        is_send = xQueueSend(queue->handle, item, 0);
+        is_write = xQueueSend(queue->handle, item, 0);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
 
-        if (is_send) {
+        if (is_write) {
                 return (0);
         } else {
                 return (-1);
@@ -101,15 +101,15 @@ static inline long queue_send_(struct QUEUE *queue, void *item)
  * @retval 0 成功
  * @retval -1 失败
  */
-static inline long queue_send_head_(struct QUEUE *queue, void *item)
+static inline long queue_write_head_(struct QUEUE *queue, void *item)
 {
-        _Bool is_send = 0;
+        _Bool is_write = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
-        is_send = xQueueSendToFront(queue->handle, item, 0);
+        is_write = xQueueSendToFront(queue->handle, item, 0);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
 
-        if (is_send) {
+        if (is_write) {
                 return (0);
         } else {
                 return (-1);
@@ -125,15 +125,15 @@ static inline long queue_send_head_(struct QUEUE *queue, void *item)
  * @retval 0 成功
  * @retval -1 失败
  */
-static inline long queue_send_tail_(struct QUEUE *queue, void *item)
+static inline long queue_write_tail_(struct QUEUE *queue, void *item)
 {
-        _Bool is_send = 0;
+        _Bool is_write = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
-        is_send = xQueueSendToBack(queue->handle, item, 0);
+        is_write = xQueueSendToBack(queue->handle, item, 0);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
 
-        if (is_send) {
+        if (is_write) {
                 return (0);
         } else {
                 return (-1);
@@ -149,15 +149,15 @@ static inline long queue_send_tail_(struct QUEUE *queue, void *item)
  * @retval 0 成功
  * @retval -1 失败
  */
-static inline long queue_receive_(struct QUEUE *queue, void *item)
+static inline long queue_read_(struct QUEUE *queue, void *item)
 {
-        _Bool is_receive = 0;
+        _Bool is_read = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
-        is_receive = xQueueReceive(queue->handle, item, 0);
+        is_read = xQueueReceive(queue->handle, item, 0);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
 
-        if (is_receive) {
+        if (is_read) {
                 return (0);
         } else {
                 return (-1);
@@ -198,13 +198,13 @@ static inline long queue_peek_(struct QUEUE *queue, void *item)
  */
 static inline long queue_empty_(struct QUEUE *queue)
 {
-        _Bool is_succeed = 0;
+        _Bool is_emptied = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
-        is_succeed = xQueueReset(queue->handle);
+        is_emptied = xQueueReset(queue->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
 
-        if (is_succeed) {
+        if (is_emptied) {
                 return (0);
         } else {
                 return (-1);
