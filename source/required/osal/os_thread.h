@@ -180,13 +180,13 @@ static inline long thread_priority_set_(struct THREAD *thread,
  */
 static inline long thread_notify_give_(struct THREAD *thread)
 {
-        _Bool is_notify = 0;
+        _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
-        is_notify = xTaskNotifyGive(thread->handle);
+        is_done = xTaskNotifyGive(thread->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
 
-        if (is_notify) {
+        if (is_done) {
                 return (0);
         } else {
                 return (-1);
@@ -204,13 +204,13 @@ static inline long thread_notify_give_(struct THREAD *thread)
  */
 static inline long thread_notify_take_(struct THREAD *thread, unsigned long wait)
 {
-        _Bool is_notify = 0;
+        _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
-        is_notify = ulTaskNotifyTake(thread->handle, pdTRUE, pdMS_TO_TICKS(wait));
+        is_done = ulTaskNotifyTake(thread->handle, pdTRUE, pdMS_TO_TICKS(wait));
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
 
-        if (is_notify) {
+        if (is_done) {
                 return (0);
         } else {
                 return (-1);
