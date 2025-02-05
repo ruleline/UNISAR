@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-02
+ * @date 2025-02-05
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -46,6 +46,10 @@ struct QUEUE {
  */
 static inline long queue_create_(struct QUEUE *queue)
 {
+        if (queue->handle) {
+                return (0);
+        }
+
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
         queue->handle = xQueueCreate(queue->length, queue->item_size);
         ASSERT(queue->handle);
