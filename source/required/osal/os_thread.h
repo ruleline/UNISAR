@@ -101,10 +101,14 @@ static inline long thread_suspend_(struct THREAD *thread)
  *
  * @param[in] thread 线程
  * @return 结果
+ * @retval -1 未创建
  * @retval 0 成功
  */
 static inline long thread_resume_(struct THREAD *thread)
 {
+        if (!thread->handle) {
+                return (-1);
+        }
         if (thread_state_get_(thread) == 0) {
                 return (0);
         }
@@ -120,6 +124,7 @@ static inline long thread_resume_(struct THREAD *thread)
  *
  * @param[in] thread 线程
  * @return 状态
+ * @retval -2 未创建
  * @retval -1 无效
  * @retval 0 运行
  * @retval 1 就绪
@@ -129,6 +134,10 @@ static inline long thread_resume_(struct THREAD *thread)
  */
 static inline long thread_state_get_(struct THREAD *thread)
 {
+        if (!thread->handle) {
+                return (-2);
+        }
+
         long state = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
@@ -191,11 +200,16 @@ static inline long thread_priority_set_(struct THREAD *thread,
  *
  * @param[in] thread 线程
  * @return 结果
- * @retval 0 成功
+ * @retval -2 未创建
  * @retval -1 失败
+ * @retval 0 成功
  */
 static inline long thread_notify_give_(struct THREAD *thread)
 {
+        if (!thread->handle) {
+                return (-2);
+        }
+
         _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
@@ -223,7 +237,7 @@ static inline long thread_notify_take_(struct THREAD *thread, unsigned long wait
         _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
-        is_done = ulTaskNotifyTake(thread->handle, pdMS_TO_TICKS(wait));
+        is_done = ulTaskNotifyTake(pdTRUE, pdMS_TO_TICKS(wait));
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
 
         if (is_done) {
