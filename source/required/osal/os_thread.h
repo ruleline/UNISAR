@@ -132,7 +132,7 @@ static inline long thread_resume_(struct THREAD *thread)
  * @retval 3 挂起
  * @retval 4 删除
  */
-static inline long thread_state_get_(struct THREAD *thread)
+static inline long thread_get_state_(struct THREAD *thread)
 {
         if (!thread->handle) {
                 return (-2);
@@ -157,7 +157,7 @@ static inline long thread_state_get_(struct THREAD *thread)
  * @return 结果
  * @retval 0 成功
  */
-static inline long thread_name_get_(struct THREAD *thread, char *name)
+static inline long thread_get_name_(struct THREAD *thread, char *name)
 {
         strcpy(name, thread->name);
         return (0);
@@ -169,7 +169,7 @@ static inline long thread_name_get_(struct THREAD *thread, char *name)
  * @param[in] thread 线程
  * @return 优先级
  */
-static inline long thread_priority_get_(struct THREAD *thread)
+static inline long thread_get_priority_(struct THREAD *thread)
 {
         return (thread->priority);
 }
@@ -182,7 +182,7 @@ static inline long thread_priority_get_(struct THREAD *thread)
  * @return 结果
  * @retval 0 成功
  */
-static inline long thread_priority_set_(struct THREAD *thread,
+static inline long thread_set_priority_(struct THREAD *thread,
                                         unsigned long priority)
 {
         if (thread_priority_get_(thread) == priority) {
@@ -204,7 +204,7 @@ static inline long thread_priority_set_(struct THREAD *thread,
  * @retval -1 失败
  * @retval 0 成功
  */
-static inline long thread_notify_give_(struct THREAD *thread)
+static inline long thread_give_notify_(struct THREAD *thread)
 {
         if (!thread->handle) {
                 return (-2);
@@ -232,7 +232,7 @@ static inline long thread_notify_give_(struct THREAD *thread)
  * @retval 0 成功
  * @retval -1 失败
  */
-static inline long thread_notify_take_(struct THREAD *thread, unsigned long wait)
+static inline long thread_take_notify_(struct THREAD *thread, unsigned long wait)
 {
         _Bool is_done = 0;
 
