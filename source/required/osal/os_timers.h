@@ -161,7 +161,7 @@ static inline long timer_stop_(struct TIMER *timer)
  * @retval -1 休眠
  * @retval 0 运行
  */
-static inline long timer_state_get_(struct TIMER *timer)
+static inline long timer_get_state_(struct TIMER *timer)
 {
         if (!timer->handle) {
                 return (-2);
@@ -181,12 +181,12 @@ static inline long timer_state_get_(struct TIMER *timer)
 }
 
 /**
- * @brief s
+ * @brief 获取定时器周期
  *
  * @param[in] timer 定时器
  * @return 周期
  */
-static inline long timer_period_get_(struct TIMER *timer)
+static inline long timer_get_period_(struct TIMER *timer)
 {
         return (timer->period);
 }
@@ -201,7 +201,7 @@ static inline long timer_period_get_(struct TIMER *timer)
  * @retval -1 失败
  * @retval 0 成功
  */
-static inline long timer_period_set_(struct TIMER *timer, unsigned long period)
+static inline long timer_set_period_(struct TIMER *timer, unsigned long period)
 {
         if (!timer->handle) {
                 return (-2);
