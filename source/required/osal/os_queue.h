@@ -66,6 +66,10 @@ static inline long queue_create_(struct QUEUE *queue)
  */
 static inline long queue_delete_(struct QUEUE *queue)
 {
+        if (!queue->handle) {
+                return (0);
+        }
+
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
         vQueueDelete(queue->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
