@@ -91,9 +91,13 @@ static inline long timer_delete_(struct TIMER *timer)
  * @return 结果
  * @retval 0 成功
  * @retval -1 失败
+ * @retval -2 未创建
  */
 static inline long timer_start_(struct TIMER *timer)
 {
+        if (!timer->handle) {
+                return (-2);
+        }
         if (timer_state_get_(timer) == 0) {
                 return (0);
         }
@@ -118,9 +122,13 @@ static inline long timer_start_(struct TIMER *timer)
  * @return 结果
  * @retval 0 成功
  * @retval -1 失败
+ * @retval -2 未创建
  */
 static inline long timer_stop_(struct TIMER *timer)
 {
+        if (!timer->handle) {
+                return (-2);
+        }
         if (timer_state_get_(timer) != 0) {
                 return (0);
         }
