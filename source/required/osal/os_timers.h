@@ -145,9 +145,14 @@ static inline long timer_stop_(struct TIMER *timer)
  * @return 状态
  * @retval 0 运行
  * @retval -1 休眠
+ * @retval -2 未创建
  */
 static inline long timer_state_get_(struct TIMER *timer)
 {
+        if (!timer->handle) {
+                return (-2);
+        }
+
         _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
