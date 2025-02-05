@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-02
+ * @date 2025-02-05
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -49,6 +49,10 @@ struct THREAD {
  */
 static inline long thread_create_(struct THREAD *thread)
 {
+        if (thread->handle) {
+                return (0);
+        }
+
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         BaseType_t xReturn = pdPASS;
         xReturn = xTaskCreate(thread->entry, thread->name, thread->stack_depth,
@@ -82,6 +86,10 @@ static inline long thread_delete_(struct THREAD *thread)
  */
 static inline long thread_suspend_(struct THREAD *thread)
 {
+        if (thread_state_get_(thread) == 3) {
+                return (0);
+        }
+
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskSuspend(thread->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
@@ -97,6 +105,10 @@ static inline long thread_suspend_(struct THREAD *thread)
  */
 static inline long thread_resume_(struct THREAD *thread)
 {
+        if (thread_state_get_(thread) == 0) {
+                return (0);
+        }
+
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskResume(thread->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
@@ -164,6 +176,10 @@ static inline long thread_priority_get_(struct THREAD *thread)
 static inline long thread_priority_set_(struct THREAD *thread,
                                         unsigned long priority)
 {
+        if (thread_priority_get_(thread) == priority) {
+                return (0);
+        }
+
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskPrioritySet(thread->handle, priority);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
@@ -207,7 +223,7 @@ static inline long thread_notify_take_(struct THREAD *thread, unsigned long wait
         _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
-        is_done = ulTaskNotifyTake(thread->handle, pdTRUE, pdMS_TO_TICKS(wait));
+        is_done = ulTaskNotifyTake(thread->handle, pdMS_TO_TICKS(wait));
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
 
         if (is_done) {
