@@ -49,6 +49,10 @@ struct TIMER {
  */
 static inline long timer_create_(struct TIMER *timer)
 {
+        if (timer->handle) {
+                return (0);
+        }
+
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
         timer->handle = xTimerCreate(timer->name, timer->period,
                         timer->is_reload, &timer->id, timer->callback);
@@ -66,10 +70,17 @@ static inline long timer_create_(struct TIMER *timer)
  */
 static inline long timer_delete_(struct TIMER *timer)
 {
+        _Bool is_done = 0;
+
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
-        vTimerDelete(timer->handle, 0);
+        is_done = xTimerDelete(timer->handle, 0);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TIMER == 1)) */
-        return (0);
+
+        if (is_done) {
+                return (0);
+        } else {
+                return (-1);
+        }
 }
 
 /**
