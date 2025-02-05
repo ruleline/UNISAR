@@ -54,8 +54,9 @@ static inline long timer_create_(struct TIMER *timer)
         }
 
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
-        timer->handle = xTimerCreate(timer->name, timer->period,
-                        timer->is_reload, &timer->id, timer->callback);
+        timer->handle = xTimerCreate(timer->name,
+                pdMS_TO_TICKS(timer->period), timer->is_reload,
+                &timer->id, timer->callback);
         ASSERT(timer->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TIMER == 1)) */
         return (0);
@@ -185,7 +186,8 @@ static inline long timer_period_set_(struct TIMER *timer, unsigned long period)
         _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
-        is_done = xTimerChangePeriod(timer->handle, period, 0);
+        is_done = xTimerChangePeriod(timer->handle,
+                                        pdMS_TO_TICKS(period), 0);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TIMER == 1)) */
 
         if (is_done) {
