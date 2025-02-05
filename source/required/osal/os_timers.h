@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-02
+ * @date 2025-02-05
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -35,7 +35,7 @@ struct TIMER {
         void *handle;           /**< 句柄 */
         char *name;             /**< 名称 */
         unsigned long period;   /**< 周期 */
-        _Bool is_periodic;      /**< 是否为周期性 */
+        _Bool is_reload;        /**< 是否重载 */
         unsigned long id;       /**< 标识符 */
         void *callback;         /**< 回调 */
 };
@@ -51,7 +51,7 @@ static inline long timer_create_(struct TIMER *timer)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
         timer->handle = xTimerCreate(timer->name, timer->period,
-                        timer->is_periodic, &timer->id, timer->callback);
+                        timer->is_reload, &timer->id, timer->callback);
         ASSERT(timer->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TIMER == 1)) */
         return (0);
