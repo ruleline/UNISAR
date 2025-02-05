@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-02
+ * @date 2025-02-05
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -44,6 +44,10 @@ struct SEMAPHORE {
  */
 static inline long semaphore_binary_create_(struct SEMAPHORE *semaphore)
 {
+        if (semaphore->handle) {
+                return (0);
+        }
+
         #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
         semaphore->handle = xSemaphoreCreateBinary();
         ASSERT(semaphore->handle);
@@ -61,6 +65,10 @@ static inline long semaphore_binary_create_(struct SEMAPHORE *semaphore)
 static inline long semaphore_counting_create_(struct SEMAPHORE *semaphore,
                         unsigned long max_count, unsigned long init_count)
 {
+        if (semaphore->handle) {
+                return (0);
+        }
+
         #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
         semaphore->handle = xSemaphoreCreateCounting(max_count, init_count);
         ASSERT(semaphore->handle);
@@ -77,6 +85,10 @@ static inline long semaphore_counting_create_(struct SEMAPHORE *semaphore,
  */
 static inline long semaphore_mutex_create_(struct SEMAPHORE *semaphore)
 {
+        if (semaphore->handle) {
+                return (0);
+        }
+
         #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
         semaphore->handle = xSemaphoreCreateMutex();
         ASSERT(semaphore->handle);
@@ -93,6 +105,10 @@ static inline long semaphore_mutex_create_(struct SEMAPHORE *semaphore)
  */
 static inline long semaphore_recursive_mutex_create_(struct SEMAPHORE *semaphore)
 {
+        if (semaphore->handle) {
+                return (0);
+        }
+
         #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
         semaphore->handle = xSemaphoreCreateRecursiveMutex();
         ASSERT(semaphore->handle);
@@ -109,6 +125,10 @@ static inline long semaphore_recursive_mutex_create_(struct SEMAPHORE *semaphore
  */
 static inline long semaphore_delete_(struct SEMAPHORE *semaphore)
 {
+        if (!semaphore->handle) {
+                return (0);
+        }
+
         #if ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1))
         vSemaphoreDelete(semaphore->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
