@@ -82,6 +82,10 @@ static inline long timer_delete_(struct TIMER *timer)
  */
 static inline long timer_start_(struct TIMER *timer)
 {
+        if (timer_state_get_(timer) == 0) {
+                return (0);
+        }
+
         _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
@@ -105,6 +109,10 @@ static inline long timer_start_(struct TIMER *timer)
  */
 static inline long timer_stop_(struct TIMER *timer)
 {
+        if (timer_state_get_(timer) != 0) {
+                return (0);
+        }
+
         _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
