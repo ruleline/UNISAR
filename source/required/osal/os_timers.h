@@ -67,9 +67,9 @@ static inline long timer_create_(struct TIMER *timer)
  *
  * @param[in,out] timer 定时器
  * @return 结果
- * @retval 0 成功
- * @retval -1 失败
  * @retval -2 未创建
+ * @retval -1 失败
+ * @retval 0 成功
  */
 static inline long timer_delete_(struct TIMER *timer)
 {
@@ -95,9 +95,9 @@ static inline long timer_delete_(struct TIMER *timer)
  *
  * @param[in] timer 定时器
  * @return 结果
- * @retval 0 成功
- * @retval -1 失败
  * @retval -2 未创建
+ * @retval -1 失败
+ * @retval 0 成功
  */
 static inline long timer_start_(struct TIMER *timer)
 {
@@ -126,9 +126,9 @@ static inline long timer_start_(struct TIMER *timer)
  *
  * @param[in] timer 定时器
  * @return 结果
- * @retval 0 成功
- * @retval -1 失败
  * @retval -2 未创建
+ * @retval -1 失败
+ * @retval 0 成功
  */
 static inline long timer_stop_(struct TIMER *timer)
 {
@@ -157,9 +157,9 @@ static inline long timer_stop_(struct TIMER *timer)
  *
  * @param[in] timer 定时器
  * @return 状态
- * @retval 0 运行
- * @retval -1 休眠
  * @retval -2 未创建
+ * @retval -1 休眠
+ * @retval 0 运行
  */
 static inline long timer_state_get_(struct TIMER *timer)
 {
@@ -197,9 +197,9 @@ static inline long timer_period_get_(struct TIMER *timer)
  * @param[in] timer 定时器
  * @param[in] period 周期
  * @return 结果
- * @retval 0 成功
- * @retval -1 失败
  * @retval -2 未创建
+ * @retval -1 失败
+ * @retval 0 成功
  */
 static inline long timer_period_set_(struct TIMER *timer, unsigned long period)
 {
