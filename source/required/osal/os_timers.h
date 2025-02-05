@@ -68,9 +68,15 @@ static inline long timer_create_(struct TIMER *timer)
  * @param[in,out] timer 定时器
  * @return 结果
  * @retval 0 成功
+ * @retval -1 失败
+ * @retval -2 未创建
  */
 static inline long timer_delete_(struct TIMER *timer)
 {
+        if (!timer->handle) {
+                return (-2);
+        }
+
         _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
@@ -193,9 +199,14 @@ static inline long timer_period_get_(struct TIMER *timer)
  * @return 结果
  * @retval 0 成功
  * @retval -1 失败
+ * @retval -2 未创建
  */
 static inline long timer_period_set_(struct TIMER *timer, unsigned long period)
 {
+        if (!timer->handle) {
+                return (-2);
+        }
+
         _Bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
