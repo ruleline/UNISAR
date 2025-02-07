@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-01-28
+ * @date 2025-02-08
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -22,7 +22,6 @@
 #define UNISAR_H
 
 #include "config.h"
-#include "standard.h"
 #include "os.h"
 
 #endif /* !defined UNISAR_H */
