@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-05
+ * @date 2025-02-08
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -59,6 +59,8 @@ static inline long semaphore_binary_create_(struct SEMAPHORE *semaphore)
  * @brief 创建计数信号量
  *
  * @param[in,out] semaphore 计数信号量
+ * @param[in] max_count 最大计数
+ * @param[in] init_count 初始计数
  * @return 结果
  * @retval 0 成功
  */
