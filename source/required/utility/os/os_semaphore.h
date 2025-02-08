@@ -142,8 +142,8 @@ static inline i32 semaphore_delete_(struct SEMAPHORE *semaphore)
  *
  * @param[in] semaphore 信号量
  * @return 结果
- * @retval 0 成功
  * @retval -1 失败
+ * @retval 0 成功
  *
  * @note 1. 适用于二值信号量
  *       2. 适用于计数信号量
@@ -169,8 +169,8 @@ static inline i32 semaphore_acquire_(struct SEMAPHORE *semaphore)
  *
  * @param[in] semaphore 信号量
  * @return 结果
- * @retval 0 成功
  * @retval -1 失败
+ * @retval 0 成功
  *
  * @note 1. 适用于二值信号量
  *       2. 适用于计数信号量
@@ -196,8 +196,8 @@ static inline i32 semaphore_release_(struct SEMAPHORE *semaphore)
  *
  * @param[in] semaphore 信号量
  * @return 结果
- * @retval 0 成功
  * @retval -1 失败
+ * @retval 0 成功
  *
  * @note 1. 适用于互斥信号量
  *       2. 与 semaphore_unlock_() 配合使用
@@ -222,8 +222,8 @@ static inline i32 semaphore_lock_(struct SEMAPHORE *semaphore)
  *
  * @param[in] semaphore 信号量
  * @return 结果
- * @retval 0 成功
  * @retval -1 失败
+ * @retval 0 成功
  *
  * @note 1. 适用于互斥信号量
  *       2. 与 semaphore_lock_() 配合使用
@@ -248,8 +248,8 @@ static inline i32 semaphore_unlock_(struct SEMAPHORE *semaphore)
  *
  * @param[in] semaphore 信号量
  * @return 结果
- * @retval 0 成功
  * @retval -1 失败
+ * @retval 0 成功
  *
  * @note 1. 适用于递归互斥信号量
  *       2. 与 semaphore_recursive_unlock_() 配合使用
@@ -274,8 +274,8 @@ static inline i32 semaphore_recursive_lock_(struct SEMAPHORE *semaphore)
  *
  * @param[in] semaphore 信号量
  * @return 结果
- * @retval 0 成功
  * @retval -1 失败
+ * @retval 0 成功
  *
  * @note 1. 适用于递归互斥信号量
  *       2. 与 semaphore_recursive_lock_() 配合使用
