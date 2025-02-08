@@ -82,8 +82,8 @@ static inline i32 queue_delete_(struct QUEUE *queue)
  * @param[in] queue 队列
  * @param[in] item 元素
  * @return 结果
- * @retval 0 成功
  * @retval -1 失败
+ * @retval 0 成功
  */
 static inline i32 queue_write_(struct QUEUE *queue, void *item)
 {
@@ -106,8 +106,8 @@ static inline i32 queue_write_(struct QUEUE *queue, void *item)
  * @param[in] queue 队列
  * @param[in] item 元素
  * @return 结果
- * @retval 0 成功
  * @retval -1 失败
+ * @retval 0 成功
  */
 static inline i32 queue_write_head_(struct QUEUE *queue, void *item)
 {
@@ -130,8 +130,8 @@ static inline i32 queue_write_head_(struct QUEUE *queue, void *item)
  * @param[in] queue 队列
  * @param[in] item 元素
  * @return 结果
- * @retval 0 成功
  * @retval -1 失败
+ * @retval 0 成功
  */
 static inline i32 queue_write_tail_(struct QUEUE *queue, void *item)
 {
@@ -154,8 +154,8 @@ static inline i32 queue_write_tail_(struct QUEUE *queue, void *item)
  * @param[in] queue 队列
  * @param[in] item 元素
  * @return 结果
- * @retval 0 成功
  * @retval -1 失败
+ * @retval 0 成功
  */
 static inline i32 queue_overwrite_(struct QUEUE *queue, void *item)
 {
@@ -178,8 +178,8 @@ static inline i32 queue_overwrite_(struct QUEUE *queue, void *item)
  * @param[in] queue 队列
  * @param[out] item 元素
  * @return 结果
- * @retval 0 成功
  * @retval -1 失败
+ * @retval 0 成功
  */
 static inline i32 queue_read_(struct QUEUE *queue, void *item)
 {
@@ -202,8 +202,8 @@ static inline i32 queue_read_(struct QUEUE *queue, void *item)
  * @param[in] queue 队列
  * @param[out] item 元素
  * @return 结果
- * @retval 0 成功
  * @retval -1 失败
+ * @retval 0 成功
  */
 static inline i32 queue_peek_(struct QUEUE *queue, void *item)
 {
@@ -225,8 +225,8 @@ static inline i32 queue_peek_(struct QUEUE *queue, void *item)
  *
  * @param[in] queue 队列
  * @return 结果
- * @retval 0 成功
  * @retval -1 失败
+ * @retval 0 成功
  */
 static inline i32 queue_empty_(struct QUEUE *queue)
 {
