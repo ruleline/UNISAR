@@ -48,8 +48,8 @@ static inline i32 delay1_(usize time)
  * @param[in,out] start 开始时间(单位:ms)
  * @param[in] time 时间(单位:ms)
  * @return 结果
- * @retval 0 成功
  * @retval -1 失败
+ * @retval 0 成功
  */
 static inline i32 delay2_(usize *start, usize time)
 {
