@@ -170,7 +170,7 @@ static inline i32 thread_get_name_(struct THREAD *thread, char *name)
  * @param[in] thread 线程
  * @return 优先级
  */
-static inline i32 thread_get_priority_(struct THREAD *thread)
+static inline usize thread_get_priority_(struct THREAD *thread)
 {
         return (thread->priority);
 }
