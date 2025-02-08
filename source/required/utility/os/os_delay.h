@@ -53,7 +53,7 @@ static inline i32 delay1_(usize time)
  */
 static inline i32 delay2_(usize *start, usize time)
 {
-        _Bool is_done = 0;
+        bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         is_done = xTaskDelayUntil(pdMS_TO_TICKS(start), pdMS_TO_TICKS(time));
