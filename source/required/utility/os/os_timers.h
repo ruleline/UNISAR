@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-05
+ * @date 2025-02-08
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -195,7 +195,7 @@ static inline long timer_get_period_(struct TIMER *timer)
  * @brief 设置定时器周期
  *
  * @param[in] timer 定时器
- * @param[in] period 周期
+ * @param[in] period 周期(单位:ms)
  * @return 结果
  * @retval -2 未创建
  * @retval -1 失败
