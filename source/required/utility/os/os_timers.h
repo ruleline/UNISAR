@@ -32,12 +32,12 @@
  *
  */
 struct TIMER {
-        void *handle;           /**< 句柄 */
-        char *name;             /**< 名称 */
-        unsigned long period;   /**< 周期 */
-        _Bool is_reload;        /**< 是否重载 */
-        unsigned long id;       /**< 标识符 */
-        void *callback;         /**< 回调 */
+        void *handle;   /**< 句柄 */
+        char *name;     /**< 名称 */
+        usize period;   /**< 周期 */
+        bool is_reload; /**< 是否重载 */
+        usize id;       /**< 标识符 */
+        void *callback; /**< 回调 */
 };
 
 /**
@@ -47,7 +47,7 @@ struct TIMER {
  * @return 结果
  * @retval 0 成功
  */
-static inline long timer_create_(struct TIMER *timer)
+static inline i32 timer_create_(struct TIMER *timer)
 {
         if (timer->handle) {
                 return (0);
@@ -71,13 +71,13 @@ static inline long timer_create_(struct TIMER *timer)
  * @retval -1 失败
  * @retval 0 成功
  */
-static inline long timer_delete_(struct TIMER *timer)
+static inline i32 timer_delete_(struct TIMER *timer)
 {
         if (!timer->handle) {
                 return (-2);
         }
 
-        _Bool is_done = 0;
+        bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
         is_done = xTimerDelete(timer->handle, 0);
@@ -99,7 +99,7 @@ static inline long timer_delete_(struct TIMER *timer)
  * @retval -1 失败
  * @retval 0 成功
  */
-static inline long timer_start_(struct TIMER *timer)
+static inline i32 timer_start_(struct TIMER *timer)
 {
         if (!timer->handle) {
                 return (-2);
@@ -108,7 +108,7 @@ static inline long timer_start_(struct TIMER *timer)
                 return (0);
         }
 
-        _Bool is_done = 0;
+        bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
         is_done = xTimerStart(timer->handle, 0);
@@ -130,7 +130,7 @@ static inline long timer_start_(struct TIMER *timer)
  * @retval -1 失败
  * @retval 0 成功
  */
-static inline long timer_stop_(struct TIMER *timer)
+static inline i32 timer_stop_(struct TIMER *timer)
 {
         if (!timer->handle) {
                 return (-2);
@@ -139,7 +139,7 @@ static inline long timer_stop_(struct TIMER *timer)
                 return (0);
         }
 
-        _Bool is_done = 0;
+        bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
         is_done = xTimerStop(timer->handle, 0);
@@ -161,13 +161,13 @@ static inline long timer_stop_(struct TIMER *timer)
  * @retval -1 休眠
  * @retval 0 运行
  */
-static inline long timer_get_state_(struct TIMER *timer)
+static inline i32 timer_get_state_(struct TIMER *timer)
 {
         if (!timer->handle) {
                 return (-2);
         }
 
-        _Bool is_done = 0;
+        bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
         is_done = xTimerIsTimerActive(timer->handle);
@@ -186,7 +186,7 @@ static inline long timer_get_state_(struct TIMER *timer)
  * @param[in] timer 定时器
  * @return 周期
  */
-static inline long timer_get_period_(struct TIMER *timer)
+static inline usize timer_get_period_(struct TIMER *timer)
 {
         return (timer->period);
 }
@@ -201,13 +201,13 @@ static inline long timer_get_period_(struct TIMER *timer)
  * @retval -1 失败
  * @retval 0 成功
  */
-static inline long timer_set_period_(struct TIMER *timer, unsigned long period)
+static inline i32 timer_set_period_(struct TIMER *timer, usize period)
 {
         if (!timer->handle) {
                 return (-2);
         }
 
-        _Bool is_done = 0;
+        bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
         is_done = xTimerChangePeriod(timer->handle,
