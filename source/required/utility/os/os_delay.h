@@ -5,7 +5,7 @@
  * @since 2025-01-29
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-02
+ * @date 2025-02-08
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -34,7 +34,7 @@
  * @return 结果
  * @retval 0 成功
  */
-static inline long delay1_(unsigned long time)
+static inline i32 delay1_(usize time)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskDelay(pdMS_TO_TICKS(time));
@@ -51,7 +51,7 @@ static inline long delay1_(unsigned long time)
  * @retval 0 成功
  * @retval -1 失败
  */
-static inline long delay2_(unsigned long *start, unsigned long time)
+static inline i32 delay2_(usize *start, usize time)
 {
         _Bool is_done = 0;
 
