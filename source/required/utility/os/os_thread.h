@@ -229,8 +229,8 @@ static inline i32 thread_give_notify_(struct THREAD *thread)
  * @param[in] thread 线程
  * @param[in] wait 等待时间(单位:ms)
  * @return 结果
- * @retval 0 成功
  * @retval -1 失败
+ * @retval 0 成功
  */
 static inline i32 thread_take_notify_(struct THREAD *thread, usize wait)
 {
