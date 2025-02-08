@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-05
+ * @date 2025-02-08
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -154,6 +154,7 @@ static inline long thread_get_state_(struct THREAD *thread)
  * @brief 获取线程名称
  *
  * @param[in] thread 线程
+ * @param[out] name 名称
  * @return 结果
  * @retval 0 成功
  */
