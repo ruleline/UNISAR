@@ -32,12 +32,12 @@
  *
  */
 struct THREAD {
-        void *handle;                   /**< 句柄 */
-        void *entry;                    /**< 入口 */
-        char *name;                     /**< 名称 */
-        unsigned long stack_depth;      /**< 栈深度(单位:字) */
-        void *parameters;               /**< 参数 */
-        unsigned long priority;         /**< 优先级 */
+        void *handle;           /**< 句柄 */
+        void *entry;            /**< 入口 */
+        char *name;             /**< 名称 */
+        usize stack_depth;      /**< 栈深度(单位:字) */
+        void *parameters;       /**< 参数 */
+        usize priority;         /**< 优先级 */
 };
 
 /**
@@ -47,7 +47,7 @@ struct THREAD {
  * @return 结果
  * @retval 0 成功
  */
-static inline long thread_create_(struct THREAD *thread)
+static inline i32 thread_create_(struct THREAD *thread)
 {
         if (thread->handle) {
                 return (0);
@@ -69,7 +69,7 @@ static inline long thread_create_(struct THREAD *thread)
  * @return 结果
  * @retval 0 成功
  */
-static inline long thread_delete_(struct THREAD *thread)
+static inline i32 thread_delete_(struct THREAD *thread)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskDelete(thread->handle);
@@ -84,7 +84,7 @@ static inline long thread_delete_(struct THREAD *thread)
  * @return 结果
  * @retval 0 成功
  */
-static inline long thread_suspend_(struct THREAD *thread)
+static inline i32 thread_suspend_(struct THREAD *thread)
 {
         if (thread_state_get_(thread) == 3) {
                 return (0);
@@ -104,7 +104,7 @@ static inline long thread_suspend_(struct THREAD *thread)
  * @retval -1 未创建
  * @retval 0 成功
  */
-static inline long thread_resume_(struct THREAD *thread)
+static inline i32 thread_resume_(struct THREAD *thread)
 {
         if (!thread->handle) {
                 return (-1);
@@ -132,13 +132,13 @@ static inline long thread_resume_(struct THREAD *thread)
  * @retval 3 挂起
  * @retval 4 删除
  */
-static inline long thread_get_state_(struct THREAD *thread)
+static inline i32 thread_get_state_(struct THREAD *thread)
 {
         if (!thread->handle) {
                 return (-2);
         }
 
-        long state = 0;
+        i8 state = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         state = eTaskGetState(thread->handle);
@@ -158,7 +158,7 @@ static inline long thread_get_state_(struct THREAD *thread)
  * @return 结果
  * @retval 0 成功
  */
-static inline long thread_get_name_(struct THREAD *thread, char *name)
+static inline i32 thread_get_name_(struct THREAD *thread, char *name)
 {
         strcpy(name, thread->name);
         return (0);
@@ -170,7 +170,7 @@ static inline long thread_get_name_(struct THREAD *thread, char *name)
  * @param[in] thread 线程
  * @return 优先级
  */
-static inline long thread_get_priority_(struct THREAD *thread)
+static inline i32 thread_get_priority_(struct THREAD *thread)
 {
         return (thread->priority);
 }
@@ -183,8 +183,7 @@ static inline long thread_get_priority_(struct THREAD *thread)
  * @return 结果
  * @retval 0 成功
  */
-static inline long thread_set_priority_(struct THREAD *thread,
-                                        unsigned long priority)
+static inline i32 thread_set_priority_(struct THREAD *thread, usize priority)
 {
         if (thread_priority_get_(thread) == priority) {
                 return (0);
@@ -205,13 +204,13 @@ static inline long thread_set_priority_(struct THREAD *thread,
  * @retval -1 失败
  * @retval 0 成功
  */
-static inline long thread_give_notify_(struct THREAD *thread)
+static inline i32 thread_give_notify_(struct THREAD *thread)
 {
         if (!thread->handle) {
                 return (-2);
         }
 
-        _Bool is_done = 0;
+        bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         is_done = xTaskNotifyGive(thread->handle);
@@ -233,9 +232,9 @@ static inline long thread_give_notify_(struct THREAD *thread)
  * @retval 0 成功
  * @retval -1 失败
  */
-static inline long thread_take_notify_(struct THREAD *thread, unsigned long wait)
+static inline i32 thread_take_notify_(struct THREAD *thread, usize wait)
 {
-        _Bool is_done = 0;
+        bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         is_done = ulTaskNotifyTake(pdTRUE, pdMS_TO_TICKS(wait));
