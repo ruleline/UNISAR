@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-05
+ * @date 2025-02-08
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -32,9 +32,9 @@
  *
  */
 struct QUEUE {
-        void *handle;                   /* 句柄 */
-        unsigned long length;           /* 长度 */
-        unsigned long item_size;        /* 元素大小 */
+        void *handle;           /* 句柄 */
+        usize length;           /* 长度 */
+        usize item_size;        /* 元素大小 */
 };
 
 /**
@@ -44,7 +44,7 @@ struct QUEUE {
  * @return 结果
  * @retval 0 成功
  */
-static inline long queue_create_(struct QUEUE *queue)
+static inline i32 queue_create_(struct QUEUE *queue)
 {
         if (queue->handle) {
                 return (0);
@@ -64,7 +64,7 @@ static inline long queue_create_(struct QUEUE *queue)
  * @return 结果
  * @retval 0 成功
  */
-static inline long queue_delete_(struct QUEUE *queue)
+static inline i32 queue_delete_(struct QUEUE *queue)
 {
         if (!queue->handle) {
                 return (0);
@@ -85,9 +85,9 @@ static inline long queue_delete_(struct QUEUE *queue)
  * @retval 0 成功
  * @retval -1 失败
  */
-static inline long queue_write_(struct QUEUE *queue, void *item)
+static inline i32 queue_write_(struct QUEUE *queue, void *item)
 {
-        _Bool is_done = 0;
+        bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
         is_done = xQueueSend(queue->handle, item, 0);
@@ -109,9 +109,9 @@ static inline long queue_write_(struct QUEUE *queue, void *item)
  * @retval 0 成功
  * @retval -1 失败
  */
-static inline long queue_write_head_(struct QUEUE *queue, void *item)
+static inline i32 queue_write_head_(struct QUEUE *queue, void *item)
 {
-        _Bool is_done = 0;
+        bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
         is_done = xQueueSendToFront(queue->handle, item, 0);
@@ -133,9 +133,9 @@ static inline long queue_write_head_(struct QUEUE *queue, void *item)
  * @retval 0 成功
  * @retval -1 失败
  */
-static inline long queue_write_tail_(struct QUEUE *queue, void *item)
+static inline i32 queue_write_tail_(struct QUEUE *queue, void *item)
 {
-        _Bool is_done = 0;
+        bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
         is_done = xQueueSendToBack(queue->handle, item, 0);
@@ -157,9 +157,9 @@ static inline long queue_write_tail_(struct QUEUE *queue, void *item)
  * @retval 0 成功
  * @retval -1 失败
  */
-static inline long queue_overwrite_(struct QUEUE *queue, void *item)
+static inline i32 queue_overwrite_(struct QUEUE *queue, void *item)
 {
-        _Bool is_done = 0;
+        bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
         is_done = xQueueOverwrite(queue->handle, item);
@@ -181,9 +181,9 @@ static inline long queue_overwrite_(struct QUEUE *queue, void *item)
  * @retval 0 成功
  * @retval -1 失败
  */
-static inline long queue_read_(struct QUEUE *queue, void *item)
+static inline i32 queue_read_(struct QUEUE *queue, void *item)
 {
-        _Bool is_done = 0;
+        bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
         is_done = xQueueReceive(queue->handle, item, 0);
@@ -205,9 +205,9 @@ static inline long queue_read_(struct QUEUE *queue, void *item)
  * @retval 0 成功
  * @retval -1 失败
  */
-static inline long queue_peek_(struct QUEUE *queue, void *item)
+static inline i32 queue_peek_(struct QUEUE *queue, void *item)
 {
-        _Bool is_done = 0;
+        bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
         is_done = xQueuePeek(queue->handle, item, 0);
@@ -228,9 +228,9 @@ static inline long queue_peek_(struct QUEUE *queue, void *item)
  * @retval 0 成功
  * @retval -1 失败
  */
-static inline long queue_empty_(struct QUEUE *queue)
+static inline i32 queue_empty_(struct QUEUE *queue)
 {
-        _Bool is_done = 0;
+        bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
         is_done = xQueueReset(queue->handle);
