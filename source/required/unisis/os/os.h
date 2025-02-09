@@ -31,7 +31,7 @@
 #include "os_queue.h"
 #include "os_semaphore.h"
 #include "os_timer.h"
-#include "os_event_groups.h"
+#include "os_event_group.h"
 #include "os_stream_buffer.h"
 #include "os_message_buffer.h"
 
