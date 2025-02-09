@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-08
+ * @date 2025-02-09
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -56,7 +56,8 @@ static inline i32 thread_create_(struct THREAD *thread)
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         BaseType_t xReturn = pdPASS;
         xReturn = xTaskCreate(thread->entry, thread->name, thread->stack_depth,
-                        thread->parameters, thread->priority, &thread->handle);
+                                thread->parameters, thread->priority,
+                                (struct tskTaskControlBlock **)&thread->handle);
         ASSERT(xReturn == pdPASS);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
         return (0);
@@ -73,48 +74,6 @@ static inline i32 thread_delete_(struct THREAD *thread)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskDelete(thread->handle);
-        #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
-        return (0);
-}
-
-/**
- * @brief 挂起线程
- *
- * @param[in] thread 线程
- * @return 结果
- * @retval 0 成功
- */
-static inline i32 thread_suspend_(struct THREAD *thread)
-{
-        if (thread_state_get_(thread) == 3) {
-                return (0);
-        }
-
-        #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
-        vTaskSuspend(thread->handle);
-        #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
-        return (0);
-}
-
-/**
- * @brief 恢复线程
- *
- * @param[in] thread 线程
- * @return 结果
- * @retval -1 未创建
- * @retval 0 成功
- */
-static inline i32 thread_resume_(struct THREAD *thread)
-{
-        if (!thread->handle) {
-                return (-1);
-        }
-        if (thread_state_get_(thread) == 0) {
-                return (0);
-        }
-
-        #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
-        vTaskResume(thread->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
         return (0);
 }
@@ -151,6 +110,48 @@ static inline i32 thread_get_state_(struct THREAD *thread)
 }
 
 /**
+ * @brief 挂起线程
+ *
+ * @param[in] thread 线程
+ * @return 结果
+ * @retval 0 成功
+ */
+static inline i32 thread_suspend_(struct THREAD *thread)
+{
+        if (thread_get_state_(thread) == 3) {
+                return (0);
+        }
+
+        #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
+        vTaskSuspend(thread->handle);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
+        return (0);
+}
+
+/**
+ * @brief 恢复线程
+ *
+ * @param[in] thread 线程
+ * @return 结果
+ * @retval -1 未创建
+ * @retval 0 成功
+ */
+static inline i32 thread_resume_(struct THREAD *thread)
+{
+        if (!thread->handle) {
+                return (-1);
+        }
+        if (thread_get_state_(thread) == 0) {
+                return (0);
+        }
+
+        #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
+        vTaskResume(thread->handle);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
+        return (0);
+}
+
+/**
  * @brief 获取线程名称
  *
  * @param[in] thread 线程
@@ -160,7 +161,7 @@ static inline i32 thread_get_state_(struct THREAD *thread)
  */
 static inline i32 thread_get_name_(struct THREAD *thread, char *name)
 {
-        strcpy(name, thread->name);
+        strncpy(name, thread->name, strlen(thread->name));
         return (0);
 }
 
@@ -185,7 +186,7 @@ static inline usize thread_get_priority_(struct THREAD *thread)
  */
 static inline i32 thread_set_priority_(struct THREAD *thread, usize priority)
 {
-        if (thread_priority_get_(thread) == priority) {
+        if (thread_get_priority_(thread) == priority) {
                 return (0);
         }
 
