@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-08
+ * @date 2025-02-09
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -91,6 +91,34 @@ static inline i32 timer_delete_(struct TIMER *timer)
 }
 
 /**
+ * @brief 获取定时器状态
+ *
+ * @param[in] timer 定时器
+ * @return 状态
+ * @retval -2 未创建
+ * @retval -1 休眠
+ * @retval 0 运行
+ */
+static inline i32 timer_get_state_(struct TIMER *timer)
+{
+        if (!timer->handle) {
+                return (-2);
+        }
+
+        bool is_done = 0;
+
+        #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
+        is_done = xTimerIsTimerActive(timer->handle);
+        #endif /* ((FREERTOS == 1) && (FREERTOS_TIMER == 1)) */
+
+        if (is_done) {
+                return (0);
+        } else {
+                return (-1);
+        }
+}
+
+/**
  * @brief 启动定时器
  *
  * @param[in] timer 定时器
@@ -104,7 +132,7 @@ static inline i32 timer_start_(struct TIMER *timer)
         if (!timer->handle) {
                 return (-2);
         }
-        if (timer_state_get_(timer) == 0) {
+        if (timer_get_state_(timer) == 0) {
                 return (0);
         }
 
@@ -135,7 +163,7 @@ static inline i32 timer_stop_(struct TIMER *timer)
         if (!timer->handle) {
                 return (-2);
         }
-        if (timer_state_get_(timer) != 0) {
+        if (timer_get_state_(timer) != 0) {
                 return (0);
         }
 
@@ -143,34 +171,6 @@ static inline i32 timer_stop_(struct TIMER *timer)
 
         #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
         is_done = xTimerStop(timer->handle, 0);
-        #endif /* ((FREERTOS == 1) && (FREERTOS_TIMER == 1)) */
-
-        if (is_done) {
-                return (0);
-        } else {
-                return (-1);
-        }
-}
-
-/**
- * @brief 获取定时器状态
- *
- * @param[in] timer 定时器
- * @return 状态
- * @retval -2 未创建
- * @retval -1 休眠
- * @retval 0 运行
- */
-static inline i32 timer_get_state_(struct TIMER *timer)
-{
-        if (!timer->handle) {
-                return (-2);
-        }
-
-        bool is_done = 0;
-
-        #if ((FREERTOS == 1) && (FREERTOS_TIMER == 1))
-        is_done = xTimerIsTimerActive(timer->handle);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TIMER == 1)) */
 
         if (is_done) {
