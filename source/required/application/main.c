@@ -29,5 +29,6 @@
 int main(void)
 {
         kernel_start_();
+        ASSERT(0);
         return (0);
 }
