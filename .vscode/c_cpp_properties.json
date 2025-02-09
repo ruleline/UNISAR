@@ -15,6 +15,7 @@
                                 "${workspaceFolder}/source/required/middleware/server/**",
                                 "${workspaceFolder}/source/required/platform/**",
                                 "${workspaceFolder}/source/required/unisis/**",
+                                "${workspaceFolder}/source/required/unisis/init/**",
                                 "${workspaceFolder}/source/required/unisis/os/**",
 
                                 "${workspaceFolder}/source/optional/**",
