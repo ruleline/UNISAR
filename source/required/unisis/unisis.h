@@ -21,7 +21,6 @@
 #if !defined UNISIS_H
 #define UNISIS_H
 
-#include "config.h"
 #include "os.h"
 
 #endif /* !defined UNISIS_H */
