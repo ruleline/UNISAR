@@ -1,11 +1,11 @@
 /**
  * @file os_kernel.h
- * @brief os_kernel
+ * @brief 内核
  * @author ruleline (ruleline@outlook.com)
  * @since 2025-01-29
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-08
+ * @date 2025-02-09
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
