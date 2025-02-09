@@ -1,6 +1,6 @@
 /**
  * @file os_thread.h
- * @brief os_thread
+ * @brief 线程
  * @author ruleline (ruleline@outlook.com)
  * @since 2025-01-28
  *
