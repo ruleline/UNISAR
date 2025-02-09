@@ -5,7 +5,7 @@
  * @since 2025-01-29
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-08
+ * @date 2025-02-09
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -37,7 +37,7 @@
 static inline i32 delay1_(usize time)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
-        vTaskDelay(pdMS_TO_TICKS(time));
+        vTaskDelay((TickType_t)pdMS_TO_TICKS(time));
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
         return (0);
 }
@@ -56,7 +56,9 @@ static inline i32 delay2_(usize *start, usize time)
         bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
-        is_done = xTaskDelayUntil(pdMS_TO_TICKS(start), pdMS_TO_TICKS(time));
+        *start = pdMS_TO_TICKS(*start);
+        is_done = xTaskDelayUntil((TickType_t *)start,
+                                        (TickType_t)pdMS_TO_TICKS(time));
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
 
         if (is_done) {
