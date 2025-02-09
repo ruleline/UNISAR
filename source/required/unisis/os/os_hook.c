@@ -1,6 +1,6 @@
 /**
  * @file os_hook.c
- * @brief os_hook
+ * @brief 钩子
  * @author ruleline (ruleline@outlook.com)
  * @since 2025-01-30
  *
