@@ -1,6 +1,6 @@
 /**
  * @file os_delay.h
- * @brief os_delay
+ * @brief 延时
  * @author ruleline (ruleline@outlook.com)
  * @since 2025-01-29
  *
