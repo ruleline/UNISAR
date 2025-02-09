@@ -1,11 +1,11 @@
 /**
  * @file os_stream_buffer.h
- * @brief os_stream_buffer
+ * @brief 流缓冲区
  * @author ruleline (ruleline@outlook.com)
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-01-28
+ * @date 2025-02-09
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
