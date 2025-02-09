@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-02
+ * @date 2025-02-09
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -30,7 +30,7 @@
 #include "os_kernel.h"
 #include "os_queue.h"
 #include "os_semaphore.h"
-#include "os_timers.h"
+#include "os_timer.h"
 #include "os_event_groups.h"
 #include "os_stream_buffer.h"
 #include "os_message_buffer.h"

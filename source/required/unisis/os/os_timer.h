@@ -1,6 +1,6 @@
 /**
- * @file os_timers.h
- * @brief os_timers
+ * @file os_timer.h
+ * @brief 定时器
  * @author ruleline (ruleline@outlook.com)
  * @since 2025-01-28
  *
@@ -18,8 +18,8 @@
  * -----------------------------------------------------------------------------
  */
 
-#if !defined OS_TIMERS_H
-#define OS_TIMERS_H
+#if !defined OS_TIMER_H
+#define OS_TIMER_H
 
 #include "os_config.h"
 
@@ -221,4 +221,4 @@ static inline i32 timer_set_period_(struct TIMER *timer, usize period)
         }
 }
 
-#endif /* !defined OS_TIMERS_H */
+#endif /* !defined OS_TIMER_H */
