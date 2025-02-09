@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-08
+ * @date 2025-02-09
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -51,7 +51,7 @@ typedef double                  f64;
 #if !defined ASSERT
 #define ASSERT(x)                       \
 do {                                    \
-        if (!x) {                       \
+        if (!(x)) {                     \
                 PRINT("[ASSERT]");      \
                 for (;;);               \
         }                               \
