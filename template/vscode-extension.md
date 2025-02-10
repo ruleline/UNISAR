@@ -10,10 +10,14 @@ code --list-extensions > extensions.txt
 
 # 3. 在另一台设备上安装这些插件
 
-```
-# 在 macOS/Linux 系统上
-cat extensions.txt | xargs -L 1 code --install-extension
+## 3.1. macOS/Linux
 
-# 在 Windows PowerShell 上
+```bash
+cat extensions.txt | xargs -L 1 code --install-extension
+```
+
+## 3.2. Windows PowerShell
+
+```
 Get-Content extensions.txt | ForEach-Object { code --install-extension $_ }
 ```
