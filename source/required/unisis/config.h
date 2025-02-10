@@ -55,12 +55,12 @@ typedef double                  f64;
 #define PRINT           printf /**< 立即打印, 需默认加上头(file&line)、尾(换行符) */
 
 #if !defined ASSERT
-#define ASSERT(x)                       \
-do {                                    \
-        if (!(x)) {                     \
-                PRINT("[ASSERT]");      \
-                for (;;);               \
-        }                               \
+#define ASSERT(x)                               \
+do {                                            \
+        if (!(x)) {                             \
+                PRINT("[ASSERT] %s", #x);       \
+                for (;;);                       \
+        }                                       \
 } while (0)
 #endif /* !defined ASSERT */
 
