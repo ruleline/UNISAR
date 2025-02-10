@@ -64,4 +64,8 @@ do {                                            \
 } while (0)
 #endif /* !defined ASSERT */
 
+#if !defined ARRAY_SIZE
+#define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))
+#endif /*!defined ARRAY_SIZE */
+
 #endif /* !defined CONFIG_H */
