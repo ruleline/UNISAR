@@ -1,0 +1,272 @@
+{
+        // path: C:\Users\用户名\AppData\Roaming\Code\User
+        // e.g.: C:\Users\duisi\AppData\Roaming\Code\User
+
+        /* 1.text editor */
+
+        "diffEditor.experimental.showMoves":true,
+        "diffEditor.hideUnchangedRegions.enabled": true,
+        "diffEditor.ignoreTrimWhitespace": false,
+        "diffEditor.renderSideBySide": false,
+        "diffEditor.useInlineViewWhenSpaceIsLimited": true,
+        "editor.accessibilitySupport": "on",
+        "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+        "editor.cursorBlinking": "smooth",
+        "editor.cursorSmoothCaretAnimation": "on",
+        "editor.detectIndentation": false,
+        "editor.fastScrollSensitivity": 10,
+        "editor.fontFamily": "SFMono Nerd Font",
+        // "editor.fontFamily": "Consolas-with-Yahei",
+        "editor.fontLigatures": true,
+        "editor.fontSize": 14,
+        "editor.fontWeight": "600",
+        "editor.guides.bracketPairs": "active",
+        "editor.inlineSuggest.showToolbar": "always",
+        "editor.minimap.enabled": false,
+        "editor.occurrencesHighlight": "multiFile",
+        "editor.rulers": [
+                {
+                        "column": 80,
+                        "color": "#ff0000"
+                },
+        ],
+        "editor.tabSize": 8,
+        "editor.scrollbar.horizontal": "hidden",
+        // "editor.scrollbar.vertical": "hidden",
+        "editor.smoothScrolling": true,
+        "editor.stickyScroll.enabled": true,
+        "editor.suggest.showStatusBar": true,
+        "editor.suggest.snippetsPreventQuickSuggestions": true,
+        "editor.tokenColorCustomizations": {
+                "comments": "#3CB371",
+                "textMateRules": [
+                        {
+                                "name": "italic bold font",
+                                "scope": [
+                                        "entity.name.function",
+                                        "entity.name.type",
+                                        "keyword",
+                                        "meta",
+                                        "source",
+                                        "storage",
+                                        "variable",
+                                        "variable.parameter"
+                                ],
+                                "settings": {
+                                        "fontStyle": "italic bold"
+                                }
+                        }
+                ],
+        },
+        "files.associations": {
+                "*.h": "c"
+        },
+        "files.autoSave": "onFocusChange",
+        "files.autoGuessEncoding": true,
+        "files.eol": "\n",
+        "files.insertFinalNewline": true,
+        "files.trimFinalNewlines": true,
+        "files.trimTrailingWhitespace": true,
+        "multiDiffEditor.experimental.enabled": true,
+
+        /* 2. workbench */
+
+        "workbench.activityBar.location": "bottom",
+        "workbench.colorCustomizations": {
+                "editorWhitespace.foreground": "#FFFFFF",
+        },
+        "workbench.colorTheme": "One Dark Darker",
+        "workbench.commandPalette.experimental.suggestCommands": true,
+        "workbench.editorAssociations": {
+                "*.copilotmd": "vscode.markdown.preview.editor",
+                "{git,gitlens,git-graph}:/**/*.{md,csv,svg}": "default",
+                "*.svg": "editor.excalidraw",
+        },
+        "workbench.editor.closeOnFileDelete": true,
+        "workbench.editor.pinnedTabsOnSeparateRow":true,
+        "workbench.editor.showTabs": "none",
+        "workbench.editorLargeFileConfirmation": 1,
+        "workbench.iconTheme": "material-icon-theme",
+        "workbench.list.smoothScrolling": true,
+        "workbench.sideBar.location": "right",
+        "workbench.startupEditor": "none",
+        "workbench.tree.enableStickyScroll": true,
+        "workbench.tree.indent": 30,
+
+        /* 3. window */
+
+        "window.commandCenter": true,
+        "window.density.editorTabHeight": "compact",
+        "window.title": "${rootName}${separator}${activeRepositoryName}${separator}${activeRepositoryBranchName}${separator}${activeEditorMedium}${separator}",
+
+        /* 4. feature */
+
+        "accessibility.signalOptions.volume": 0,
+        "chat.commandCenter.enabled": false,
+        "explorer.confirmDelete": false,
+        "explorer.confirmDragAndDrop": false,
+        "explorer.confirmPasteNative": false,
+        "explorer.confirmUndo": "light",
+        "explorer.excludeGitIgnore": true,
+        "explorer.copyRelativePathSeparator": "/",
+        "explorer.fileNesting.enabled": true,
+        "explorer.fileNesting.patterns": {
+                "*c": "${basename}.c, ${basename}.h"
+        },
+        "extensions.autoCheckUpdates": false,
+        "extensions.closeExtensionDetailsOnViewChange": true,
+        "notebook.lineNumbers": "on",
+        "notebook.outline.showCodeCells": true,
+        "notebook.stickyScroll.enabled": true,
+        "search.defaultViewMode": "tree",
+        "search.showLineNumbers": true,
+        "search.smartCase": true,
+        "terminal.integrated.copyOnSelection": true,
+        "terminal.integrated.cursorBlinking": true,
+        "terminal.integrated.cursorStyle": "line",
+        "terminal.integrated.defaultProfile.windows": "Command Prompt",
+        "terminal.integrated.cwd": "${fileDirname}",
+        "terminal.integrated.smoothScrolling": true,
+        "terminal.integrated.stickyScroll.enabled": true,
+        "terminal.integrated.tabStopWidth": 4,
+
+        /* 5. application */
+
+        "update.mode": "manual",
+        "update.showReleaseNotes": false,
+
+        /* 6. security */
+
+        "security.workspace.trust.enabled": false,
+
+        /* 7. extensions */
+
+        "Codegeex.CandidateNum": "3 (慢)",
+        "Codegeex.Comment.LanguagePreference": "中文",
+        "Codegeex.CompletionDelay": 0.1,
+        "Codegeex.CompletionModel": "CodeGeeX Pro[Beta]",
+
+        "codesnap.containerPadding": "1em",
+        "codesnap.transparentBackground": true,
+
+        "C_Cpp.errorSquiggles": "enabled",
+        "C_Cpp.loggingLevel": "Debug",
+
+        "doxdocgen.generic.linesToGet": 200,
+
+        "excalidraw.theme": "dark",
+        "excalidraw.image": {
+                "exportScale": 1,
+                "exportWithBackground": true,
+                "exportWithDarkMode": false
+        },
+
+        "fnMap.registrationCode": "qvJ7QFSiG9qtnlpAbY1MAmzW0iKuKgFo6kgRxFzSL+MuO6h1huD0GMu1XiuKp0CM7qINkGDl9FDv2tWaB5IgUyqy5bDVzRB06YKi/GU1Yyi4w0RFy2oRsG7dlsMevVdambh5bIQ2ZBrhIlmoydE4uf6yqxYPXrSbZSTZ9Z1Yp2pnHM8pyAuLkzr9uY/+CAl4pIjRI/datnkLHktqBaPgjutYNs/WE7u1lpX/zClQkzPjDlgUy8fRk5o833KQaANOAnDnSstARo8CVj+hJ2wbv+tiHpC4oWSjznqe637GSJ5273UfvRxOJNI6NO2IOoEkXLOHEBHF4MbCXZ62OORNxw==",
+        "fnMap.isShowSymbolDetail": true,
+
+        "git.autofetch": true,
+        "git.closeDiffOnOperation": true,
+        "git.confirmSync": false,
+        "git.enableSmartCommit": true,
+        "git.postCommitCommand": "push",
+        "git.repositoryScanMaxDepth": -1,
+        "git.showPushSuccessNotification": true,
+
+        "githd.logView.commitsCount": 1000,
+        "githd.logView.expressMode": true,
+        "githd.traceLevel": "verbose",
+
+        "github.copilot.chat.followUps": "always",
+
+        "git-graph.enhancedAccessibility": true,
+        "git-graph.maxDepthOfRepoSearch": 10,
+
+        "KeilAssistant.MDK.Uv4Path": "C:\\Keil_v5\\UV4\\UV4.exe",
+
+        "Lingma.cloudModelAutoTriggerGenerateLength": "long",
+        "Lingma.cloudModelManualTriggerGenerateLength": "long",
+        "Lingma.DisplayLanguage": "English",
+
+        "marscode.codeCompletionPro": {
+                "enableCodeCompletionPro": true
+        },
+
+        "psi-header.config":
+        {
+                "forceToTop": true,
+                "blankLinesAfter": 1,
+                "spacesBetweenYears": false,
+                "author": "ruleline",
+                "authorEmail": "ruleline@outlook.com",
+                "creationDateZero": "asIs"
+        },
+        "psi-header.changes-tracking":
+        {
+                "isActive": true,
+                "modAuthor": "@authors",
+                "modDate": "@date",
+                "modDateFormat": "YYYY-MM-DD",
+                "autoHeader": "off",
+                // "enforceHeader": true,
+                "exclude":
+                [
+                        "markdown",
+                        "json",
+                        "jsonc",
+                        "shellscript"
+                ],
+        },
+        "psi-header.lang-config":
+        [
+                {
+                        "language": "*",
+                        "begin": "/**",
+                        "prefix": " * ",
+                        "end": " */",
+                }
+        ],
+        "psi-header.templates":
+        [
+                {
+                        "language": "*",
+                        "template":
+                        [
+                                "@file <<filename>>",
+                                "@brief <<filenamebase!L>>",
+                                "@author <<author>> (<<authorEmail>>)",
+                                "@since <<filecreated('YYYY-MM-DD')>>",
+                                "",
+                                "@authors <<author>> (<<authorEmail>>)",
+                                "@date <<dateformat('YYYY-MM-DD')>>",
+                                "@version 0.00.001",
+                                "",
+                                "@copyright ©<<yeartoyear(fc, now)>> <<author>>",
+                                "",
+                                "@details",
+                                "-----------------------------------------------------------------------------",
+                                "   version   |    date    |       by       |              comments",
+                                "------------ | ---------- | -------------- | --------------------------------",
+                                "  0.00.001   | <<dateformat('YYYY-MM-DD')>> |    <<author>>    | 初版",
+                                "-----------------------------------------------------------------------------",
+                        ],
+                        "changeLogCaption": "@details",
+                        "changeLogHeaderLineCount": 2,
+                        "changeLogEntryTemplate":
+                        [
+                                "------------ | ---------- | -------------- | --------------------------------",
+                                "  0.00.001   | <<dateformat('YYYY-MM-DD')>> |    <<author>>    | ",
+                        ]
+                }
+        ],
+
+        "projectManager.any.maxDepthRecursion": 0,
+        "projectManager.confirmSwitchOnActiveWindow": "always",
+        "projectManager.git.maxDepthRecursion": 0,
+        "projectManager.hg.maxDepthRecursion": 0,
+        "projectManager.svn.maxDepthRecursion": 0,
+        "projectManager.vscode.maxDepthRecursion": 0,
+
+        "vscode-office.editorLanguage": "zh_CN",
+        "vscode-office.editorTheme": "Auto",
+        "vscode-office.openOutline": false,
+}

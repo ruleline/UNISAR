@@ -3,6 +3,7 @@
                 "Bufferable",
                 "CBMC",
                 "croutine",
+                "duisi",
                 "ipsr",
                 "NVIC",
                 "optimisations",
