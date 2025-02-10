@@ -18,6 +18,6 @@ cat extensions.txt | xargs -L 1 code --install-extension
 
 ## 3.2. Windows PowerShell
 
-```
+```bash
 Get-Content extensions.txt | ForEach-Object { code --install-extension $_ }
 ```
