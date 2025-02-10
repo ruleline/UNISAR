@@ -75,7 +75,7 @@
 
 /* configTICK_RATE_HZ sets frequency of the tick interrupt in Hz, normally
  * calculated from the configCPU_CLOCK_HZ value. */
-#define configTICK_RATE_HZ                         100
+#define configTICK_RATE_HZ                         1000
 
 /* Set configUSE_PREEMPTION to 1 to use pre-emptive scheduling.  Set
  * configUSE_PREEMPTION to 0 to use co-operative scheduling.
@@ -87,7 +87,7 @@
  * configUSE_TIME_SLICING to 0 to prevent the scheduler switching between Ready
  * state tasks just because there was a tick interrupt.  See
  * https://freertos.org/single-core-amp-smp-rtos-scheduling.html. */
-#define configUSE_TIME_SLICING                     0
+#define configUSE_TIME_SLICING                     1
 
 /* Set configUSE_PORT_OPTIMISED_TASK_SELECTION to 1 to select the next task to
  * run using an algorithm optimised to the instruction set of the target hardware -
@@ -95,7 +95,7 @@
  * the next task to run using a generic C algorithm that works for all FreeRTOS
  * ports.  Not all FreeRTOS ports have this option.  Defaults to 0 if left
  * undefined. */
-#define configUSE_PORT_OPTIMISED_TASK_SELECTION    0
+#define configUSE_PORT_OPTIMISED_TASK_SELECTION    1
 
 /* Set configUSE_TICKLESS_IDLE to 1 to use the low power tickless mode.  Set to
  * 0 to keep the tick interrupt running at all times.  Not all FreeRTOS ports
@@ -154,7 +154,7 @@
 /* Set configENABLE_BACKWARD_COMPATIBILITY to 1 to map function names and
  * datatypes from old version of FreeRTOS to their latest equivalent.  Defaults to
  * 1 if left undefined. */
-#define configENABLE_BACKWARD_COMPATIBILITY        0
+#define configENABLE_BACKWARD_COMPATIBILITY        1
 
 /* Each task has its own array of pointers that can be used as thread local
  * storage.  configNUM_THREAD_LOCAL_STORAGE_POINTERS set the number of indexes in
@@ -332,7 +332,7 @@
  * for any set to 1.  See https://www.freertos.org/a00016.html. */
 #define configUSE_IDLE_HOOK                   0
 #define configUSE_TICK_HOOK                   0
-#define configUSE_MALLOC_FAILED_HOOK          0
+#define configUSE_MALLOC_FAILED_HOOK          1
 #define configUSE_DAEMON_TASK_STARTUP_HOOK    0
 
 /* Set configUSE_SB_COMPLETED_CALLBACK to 1 to have send and receive completed
@@ -630,13 +630,13 @@
 #define INCLUDE_vTaskDelay                     1
 #define INCLUDE_xTaskGetSchedulerState         1
 #define INCLUDE_xTaskGetCurrentTaskHandle      1
-#define INCLUDE_uxTaskGetStackHighWaterMark    0
-#define INCLUDE_xTaskGetIdleTaskHandle         0
+#define INCLUDE_uxTaskGetStackHighWaterMark    1
+#define INCLUDE_xTaskGetIdleTaskHandle         1
 #define INCLUDE_eTaskGetState                  1
 #define INCLUDE_xEventGroupSetBitFromISR       1
-#define INCLUDE_xTimerPendFunctionCall         0
-#define INCLUDE_xTaskAbortDelay                0
-#define INCLUDE_xTaskGetHandle                 0
+#define INCLUDE_xTimerPendFunctionCall         1
+#define INCLUDE_xTaskAbortDelay                1
+#define INCLUDE_xTaskGetHandle                 1
 #define INCLUDE_xTaskResumeFromISR             1
 
 #endif /* FREERTOS_CONFIG_H */
