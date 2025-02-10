@@ -59,12 +59,13 @@ static inline i32 __init do_one_initcall(initcall_t fn)
 
 static inline i32 __init do_initcall_level(i32 level)
 {
-        for (initcall_t *fn = initcall_levels[level];
-                fn < initcall_levels[level+1]; fn++) {
+        for (initcall_t *fn = (initcall_t *)initcall_levels[level];
+                fn < (initcall_t *)initcall_levels[level+1]; fn++) {
                 if (*fn) {
                         do_one_initcall(*fn);
                 }
         }
+        return (0);
 }
 
 static inline i32 __init do_initcalls(void)
@@ -72,6 +73,7 @@ static inline i32 __init do_initcalls(void)
         for (i32 level = 0; level < ARRAY_SIZE(initcall_levels) - 1; level++) {
                 do_initcall_level(level);
         }
+        return (0);
 }
 
 i32 init_(void)
