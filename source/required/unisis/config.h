@@ -42,10 +42,10 @@ typedef unsigned long int       usize;
 typedef float                   f32;
 typedef double                  f64;
 
-#define __used __attribute__((__used__))
-#define __unused __attribute__((__unused__))
-#define __packed __attribute__((__packed__))
-#define __aligned(x) __attribute__((aligned(x)))
+#define __used          __attribute__((__used__))
+#define __unused        __attribute__((__unused__))
+#define __packed        __attribute__((__packed__))
+#define __aligned(x)    __attribute__((aligned(x)))
 #define __always_inline __attribute__((__always_inline__))
 
 #define FREERTOS (1)
