@@ -48,7 +48,9 @@ typedef double                  f64;
 #define __aligned(x)    __attribute__((aligned(x)))
 #define __always_inline __attribute__((__always_inline__))
 
-#define FREERTOS (1)
+#define FREERTOS        (1)
+#define ZEPHYR          (0)
+#define THREADX         (0)
 
 #define LINE_BREAK      "\r\n"
 #define PRINTF          printf /**< 常规打印, 需默认加上头(file&line)、尾(换行符) */

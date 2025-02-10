@@ -16,6 +16,7 @@
                 "reent",
                 "ruleline",
                 "SEMPHR",
+                "THREADX",
                 "timeslice",
                 "unisar",
                 "unisis",
