@@ -5,7 +5,7 @@
  * @since 2025-02-09
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-10
+ * @date 2025-02-11
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -45,11 +45,11 @@ SECTIONS {
 }
 #endif
 
-#define __init __attribute__((__section__(".init.text")))
+#define __init __section(".init.text")
 
 #define __define_initcall(func, id)                                     \
-        static initcall_t __initcall_##func##id __used                  \
-        __attribute__((__section__(".initcall." #id ".init"))) = func
+                static initcall_t __initcall_##func##id __used          \
+                __section(".initcall." #id ".init") = func
 
 typedef i32 (*initcall_t)(void);
 

@@ -5,7 +5,7 @@
  * @since 2025-01-29
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-10
+ * @date 2025-02-11
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -35,11 +35,11 @@
  */
 static inline i32 kernel_init_(void)
 {
-        extern i32 init_(void);
+        extern i32 init(void);
 
         i32 result = 0;
 
-        result = init_();
+        result = init();
         return (result);
 }
 

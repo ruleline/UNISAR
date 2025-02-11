@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-10
+ * @date 2025-02-11
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -47,6 +47,7 @@ typedef double                  f64;
 #define __packed        __attribute__((__packed__))
 #define __aligned(x)    __attribute__((aligned(x)))
 #define __always_inline __attribute__((__always_inline__))
+#define __section(x)    __attribute__((__section__(x)))
 
 #define FREERTOS        (1)
 #define ZEPHYR          (0)
