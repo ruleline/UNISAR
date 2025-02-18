@@ -4,6 +4,7 @@
                 "CBMC",
                 "croutine",
                 "duisi",
+                "eeprom",
                 "ipsr",
                 "NVIC",
                 "optimisations",
