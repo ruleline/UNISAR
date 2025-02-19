@@ -5,7 +5,7 @@
  * @since 2025-01-29
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-11
+ * @date 2025-02-19
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -26,22 +26,6 @@
 #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
 #include "task.h"
 #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
-
-/**
- * @brief 初始化内核
- *
- * @return 结果
- * @retval 0 成功
- */
-static inline i32 kernel_init_(void)
-{
-        extern i32 init(void);
-
-        i32 result = 0;
-
-        result = init();
-        return (result);
-}
 
 /**
  * @brief 启动内核
