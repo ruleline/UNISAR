@@ -67,6 +67,9 @@
  * @details 该枚举类型用于表示不同 item 的优先级.
  *          MINIMUM_UNREACHABLE_PRIORITY 和 MAXIMUM_UNREACHABLE_PRIORITY 作为边界值，
  *          分别代表最小和最大的不可达优先级，实际的接口优先级介于这两个值之间.
+ *          从 0 到 MINIMUM_UNREACHABLE_PRIORITY 为内部实现的特殊值,
+ *          在构造中, 优先级值越小越早执行.
+ *          在析构中, 优先级值越小越晚执行.
  */
 enum ITEM_PRIORITY {
         /**
