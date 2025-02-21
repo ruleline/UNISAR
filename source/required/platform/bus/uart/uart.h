@@ -40,12 +40,12 @@ struct UART {
         i32 (*receive)(struct UART *self, struct UART_PACKAGE *package);
 };
 
-static i32 uart_send(struct UART *self, struct UART_PACKAGE *package)
+static __force_inline i32 uart_send(struct UART *self, struct UART_PACKAGE *package)
 {
         return self->send(self, package);
 }
 
-static i32 uart_receive(struct UART *self, struct UART_PACKAGE *package)
+static __force_inline i32 uart_receive(struct UART *self, struct UART_PACKAGE *package)
 {
         return self->receive(self, package);
 }
