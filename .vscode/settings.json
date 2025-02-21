@@ -16,6 +16,7 @@
                 "portmacro",
                 "ppuc",
                 "ppux",
+                "QSPI",
                 "reent",
                 "ruleline",
                 "SEMPHR",
