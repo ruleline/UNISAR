@@ -169,22 +169,6 @@ static i32 send_classic_(struct CAN *self, struct CAN_PACKAGE *package)
 }
 
 /**
- * @brief 接收经典 CAN 报文
- * @param[in] self CAN 对象
- * @param[out] package 数据包
- * @return 结果
- * @retval 0 成功
- */
-static i32 receive_classic_(struct CAN *self, struct CAN_PACKAGE *package)
-{
-        ASSERT(package);
-        ASSERT(package->data);
-
-        /* TODO */
-        return 0;
-}
-
-/**
  * @brief 发送 CANFD 报文
  * @param[in] self CAN 对象
  * @param[in] package 数据包
@@ -204,6 +188,23 @@ static i32 send_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
 }
 
 /**
+ * @brief 接收经典 CAN 报文
+ * @param[in] self CAN 对象
+ * @param[out] package 数据包
+ * @return 结果
+ * @retval 0 成功
+ */
+static i32 receive_classic_(struct CAN *self, struct CAN_PACKAGE *package)
+{
+        ASSERT(self->type == CLASSIC_CAN);
+        ASSERT(package);
+        ASSERT(package->data);
+
+        /* TODO */
+        return 0;
+}
+
+/**
  * @brief 接收 CANFD 报文
  * @param[in] self CAN 对象
  * @param[out] package 数据包
@@ -212,6 +213,7 @@ static i32 send_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
  */
 static i32 receive_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
 {
+        ASSERT(self->type == FLEXIBLE_CAN);
         ASSERT(package);
         ASSERT(package->data);
 
@@ -236,7 +238,7 @@ i32 can_create(struct CAN *self, char *name, u8 type)
         ASSERT(name);
         ASSERT(strlen(name));
         ASSERT(strlen(name) < sizeof(self->name));
-        ASSERT(type < EXTENDED_CAN);
+        ASSERT((type == CLASSIC_CAN) || (type == FLEXIBLE_CAN));
 
         for (u8 i = 0; i < ARRAY_SIZE(can); i++) {
                 if (can[i].name[0]) {
