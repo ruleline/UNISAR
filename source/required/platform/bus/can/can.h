@@ -33,17 +33,17 @@ enum CAN_TYPE {
          * @brief 经典 CAN
          * @details 代表经典 CAN 协议, 具有基本的功能和数据传输能力.
          */
-        CLASSIC_CAN,
+        CAN_COM,
         /**
          * @brief CANFD
          * @details 这种类型的 CAN 具备更灵活的配置选项和更高的性能.
          */
-        FLEXIBLE_CAN,
+        CANFD_COM,
         /**
          * @brief CANXL
          * @details 扩展 CAN 通常支持更多的功能和更大的数据传输量.
          */
-        EXTENDED_CAN,
+        CANXL_COM,
 };
 
 /**

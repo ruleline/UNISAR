@@ -158,7 +158,7 @@ static __dtor(CAN5_PRIORITY) void deinit5(void)
  */
 static i32 send_classic_(struct CAN *self, struct CAN_PACKAGE *package)
 {
-        ASSERT(self->type == CLASSIC_CAN);
+        ASSERT(self->type == CAN_COM);
         ASSERT(package);
         ASSERT(package->length);
         ASSERT(package->length <= 8);
@@ -177,7 +177,7 @@ static i32 send_classic_(struct CAN *self, struct CAN_PACKAGE *package)
  */
 static i32 send_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
 {
-        ASSERT(self->type == FLEXIBLE_CAN);
+        ASSERT(self->type == CANFD_COM);
         ASSERT(package);
         ASSERT(package->length);
         ASSERT(package->length <= 64);
@@ -196,7 +196,7 @@ static i32 send_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
  */
 static i32 receive_classic_(struct CAN *self, struct CAN_PACKAGE *package)
 {
-        ASSERT(self->type == CLASSIC_CAN);
+        ASSERT(self->type == CAN_COM);
         ASSERT(package);
         ASSERT(package->data);
 
@@ -213,7 +213,7 @@ static i32 receive_classic_(struct CAN *self, struct CAN_PACKAGE *package)
  */
 static i32 receive_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
 {
-        ASSERT(self->type == FLEXIBLE_CAN);
+        ASSERT(self->type == CANFD_COM);
         ASSERT(package);
         ASSERT(package->data);
 
@@ -238,7 +238,7 @@ i32 can_create(struct CAN *self, char *name, u8 type)
         ASSERT(name);
         ASSERT(strlen(name));
         ASSERT(strlen(name) < sizeof(self->name));
-        ASSERT((type == CLASSIC_CAN) || (type == FLEXIBLE_CAN));
+        ASSERT((type == CAN_COM) || (type == CANFD_COM));
 
         for (u8 i = 0; i < ARRAY_SIZE(can); i++) {
                 if (can[i].name[0]) {
@@ -246,7 +246,7 @@ i32 can_create(struct CAN *self, char *name, u8 type)
                 }
                 strcpy(&can[i].name[0], name);
                 can[i].type = type;
-                if (type == CLASSIC_CAN) {
+                if (type == CAN_COM) {
                         can[i].send = send_classic_;
                         can[i].receive = receive_classic_;
                 } else {
