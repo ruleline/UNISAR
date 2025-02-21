@@ -1,8 +1,8 @@
 /**
- * @file fixed.h
- * @brief fixed
+ * @file fixed_preprocessor.h
+ * @brief fixed_preprocessor
  * @author ruleline (ruleline@outlook.com)
- * @since 2025-02-19
+ * @since 2025-02-21
  *
  * @authors ruleline (ruleline@outlook.com)
  * @date 2025-02-21
@@ -10,21 +10,22 @@
  *
  * @copyright ©2025 UNISAR
  *
+ * @ref 1. C/C++ 预处理器参考
+ *         https://learn.microsoft.com/zh-cn/cpp/preprocessor
+ *
  * @details
  * -----------------------------------------------------------------------------
  *    version   |    date    |     author     |             comments
  * ------------ | ---------- | -------------- | --------------------------------
- *   0.00.001   | 2025-02-19 |    ruleline    | 初版
+ *   0.00.001   | 2025-02-21 |    ruleline    | 初版
  * -----------------------------------------------------------------------------
  */
 
-#if !defined FIXED_H
-#define FIXED_H
+#if !defined FIXED_PREPROCESSOR_H
+#define FIXED_PREPROCESSOR_H
 
-#include "fixed_library.h"
-#include "fixed_type.h"
-#include "fixed_attribute.h"
-#include "fixed_macro.h"
-#include "fixed_preprocessor.h"
+#if __INTELLISENSE__
+#pragma diag_suppress 1094
+#endif /* __INTELLISENSE__ */
 
-#endif /* !defined FIXED_H */
+#endif /* !defined FIXED_PREPROCESSOR_H */
