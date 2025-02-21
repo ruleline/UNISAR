@@ -23,6 +23,7 @@
                 "timeslice",
                 "unisar",
                 "unisis",
+                "USART",
                 "visualisation"
         ]
 }
