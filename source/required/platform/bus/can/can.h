@@ -118,7 +118,7 @@ struct CAN {
  * @return 结果
  * @retval 0 成功
  */
-static inline i32 can_send(struct CAN *self, struct CAN_PACKAGE *package)
+static __force_inline i32 can_send(struct CAN *self, struct CAN_PACKAGE *package)
 {
         return self->send(self, package);
 }
@@ -130,7 +130,7 @@ static inline i32 can_send(struct CAN *self, struct CAN_PACKAGE *package)
  * @return 结果
  * @retval 0 成功
  */
-static inline i32 can_receive(struct CAN *self, struct CAN_PACKAGE *package)
+static __force_inline i32 can_receive(struct CAN *self, struct CAN_PACKAGE *package)
 {
         return self->receive(self, package);
 }
