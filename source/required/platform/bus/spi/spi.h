@@ -40,12 +40,12 @@ struct SPI {
         i32 (*receive)(struct SPI *self, struct SPI_PACKAGE *package);
 };
 
-static i32 spi_send(struct SPI *self, struct SPI_PACKAGE *package)
+static __force_inline i32 spi_send(struct SPI *self, struct SPI_PACKAGE *package)
 {
         return self->send(self, package);
 }
 
-static i32 spi_receive(struct SPI *self, struct SPI_PACKAGE *package)
+static __force_inline i32 spi_receive(struct SPI *self, struct SPI_PACKAGE *package)
 {
         return self->receive(self, package);
 }
