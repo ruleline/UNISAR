@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-21
+ * @date 2025-02-22
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -77,6 +77,16 @@ enum ITEM_PRIORITY {
          * @details 作为优先级范围的下限, 任何实际的接口优先级都应大于此值.
          */
         ITEM_MINIMUM_UNREACHABLE_PRIORITY = 100,
+
+        GPIO1_PRIORITY,
+
+        GPIO2_PRIORITY,
+
+        GPIO3_PRIORITY,
+
+        GPIO4_PRIORITY,
+
+        GPIO5_PRIORITY,
 
         /**
          * @brief UART1 优先级.
