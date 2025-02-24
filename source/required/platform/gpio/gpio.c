@@ -22,12 +22,12 @@
 
 static struct GPIO gpio[1];
 
-static __ctor(GPIO1_PRIORITY) void init1(void)
+static __ctor(GPIO1_PRIORITY) void init1_(void)
 {
         /* TODO */
 }
 
-static __dtor(GPIO1_PRIORITY) void deinit1(void)
+static __dtor(GPIO1_PRIORITY) void deinit1_(void)
 {
         /* TODO */
 }

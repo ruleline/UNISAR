@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-22
+ * @date 2025-02-24
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -31,22 +31,22 @@ struct GPIO {
         i32 (*highz)(struct GPIO *gpio);
 };
 
-static __force_inline bool gpio_read(struct GPIO *self)
+static __force_inline bool gpio_read_(struct GPIO *self)
 {
         return self->read(self);
 }
 
-static __force_inline i32 gpio_write(struct GPIO *self, bool state)
+static __force_inline i32 gpio_write_(struct GPIO *self, bool state)
 {
         return self->write(self, state);
 }
 
-static __force_inline i32 gpio_toggle(struct GPIO *self)
+static __force_inline i32 gpio_toggle_(struct GPIO *self)
 {
         return self->toggle(self);
 }
 
-static __force_inline i32 gpio_highz(struct GPIO *self)
+static __force_inline i32 gpio_highz_(struct GPIO *self)
 {
         return self->highz(self);
 }
