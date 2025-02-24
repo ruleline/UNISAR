@@ -85,7 +85,7 @@ static __force_inline i32 queue_delete_(struct QUEUE *queue)
  * @retval -1 失败
  * @retval 0 成功
  */
-static __force_inline i32 queue_write_(struct QUEUE *queue, void *item)
+static __force_inline i32 queue_push_(struct QUEUE *queue, void *item)
 {
         bool is_done = 0;
 
@@ -109,7 +109,7 @@ static __force_inline i32 queue_write_(struct QUEUE *queue, void *item)
  * @retval -1 失败
  * @retval 0 成功
  */
-static __force_inline i32 queue_write_head_(struct QUEUE *queue, void *item)
+static __force_inline i32 queue_push_into_head_(struct QUEUE *queue, void *item)
 {
         bool is_done = 0;
 
@@ -133,7 +133,7 @@ static __force_inline i32 queue_write_head_(struct QUEUE *queue, void *item)
  * @retval -1 失败
  * @retval 0 成功
  */
-static __force_inline i32 queue_write_tail_(struct QUEUE *queue, void *item)
+static __force_inline i32 queue_push_into_tail_(struct QUEUE *queue, void *item)
 {
         bool is_done = 0;
 
@@ -181,7 +181,7 @@ static __force_inline i32 queue_overwrite_(struct QUEUE *queue, void *item)
  * @retval -1 失败
  * @retval 0 成功
  */
-static __force_inline i32 queue_read_(struct QUEUE *queue, void *item)
+static __force_inline i32 queue_pop_(struct QUEUE *queue, void *item)
 {
         bool is_done = 0;
 
