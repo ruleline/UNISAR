@@ -43,21 +43,21 @@ static i32 send_spi_(struct SPI *self, struct SPI_PACKAGE *package)
         return 0;
 }
 
-static i32 send_qspi_(struct SPI *self, struct SPI_PACKAGE *package)
+static i32 receive_spi_(struct SPI *self, struct SPI_PACKAGE *package)
 {
-        ASSERT(self->type == QSPI_COM);
+        ASSERT(self->type == SPI_COM);
         ASSERT(package);
-        ASSERT(package->length);
         ASSERT(package->data);
 
         /* TODO */
         return 0;
 }
 
-static i32 receive_spi_(struct SPI *self, struct SPI_PACKAGE *package)
+static i32 send_qspi_(struct SPI *self, struct SPI_PACKAGE *package)
 {
-        ASSERT(self->type == SPI_COM);
+        ASSERT(self->type == QSPI_COM);
         ASSERT(package);
+        ASSERT(package->length);
         ASSERT(package->data);
 
         /* TODO */
