@@ -81,6 +81,23 @@ static i32 send_classic_(struct CAN *self, struct CAN_PACKAGE *package)
 }
 
 /**
+ * @brief 接收经典 CAN 报文
+ * @param[in] self CAN 对象
+ * @param[out] package 数据包
+ * @return 结果
+ * @retval 0 成功
+ */
+static i32 receive_classic_(struct CAN *self, struct CAN_PACKAGE *package)
+{
+        ASSERT(self->type == CAN_COM);
+        ASSERT(package);
+        ASSERT(package->data);
+
+        /* TODO */
+        return 0;
+}
+
+/**
  * @brief 发送 CANFD 报文
  * @param[in] self CAN 对象
  * @param[in] package 数据包
@@ -93,23 +110,6 @@ static i32 send_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
         ASSERT(package);
         ASSERT(package->length);
         ASSERT(package->length <= 64);
-        ASSERT(package->data);
-
-        /* TODO */
-        return 0;
-}
-
-/**
- * @brief 接收经典 CAN 报文
- * @param[in] self CAN 对象
- * @param[out] package 数据包
- * @return 结果
- * @retval 0 成功
- */
-static i32 receive_classic_(struct CAN *self, struct CAN_PACKAGE *package)
-{
-        ASSERT(self->type == CAN_COM);
-        ASSERT(package);
         ASSERT(package->data);
 
         /* TODO */
