@@ -5,7 +5,7 @@
  * @since 2025-01-29
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-09
+ * @date 2025-02-24
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -34,7 +34,7 @@
  * @return 结果
  * @retval 0 成功
  */
-static inline i32 delay1_(usize time)
+static __force_inline i32 delay1_(usize time)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskDelay((TickType_t)pdMS_TO_TICKS(time));
@@ -51,7 +51,7 @@ static inline i32 delay1_(usize time)
  * @retval -1 失败
  * @retval 0 成功
  */
-static inline i32 delay2_(usize *start, usize time)
+static __force_inline i32 delay2_(usize *start, usize time)
 {
         bool is_done = 0;
 

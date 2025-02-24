@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-09
+ * @date 2025-02-24
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -42,7 +42,7 @@ struct SEMAPHORE {
  * @return 结果
  * @retval 0 成功
  */
-static inline i32 semaphore_binary_create_(struct SEMAPHORE *semaphore)
+static __force_inline i32 semaphore_binary_create_(struct SEMAPHORE *semaphore)
 {
         if (semaphore->handle) {
                 return (0);
@@ -64,7 +64,7 @@ static inline i32 semaphore_binary_create_(struct SEMAPHORE *semaphore)
  * @return 结果
  * @retval 0 成功
  */
-static inline i32 semaphore_counting_create_(struct SEMAPHORE *semaphore,
+static __force_inline i32 semaphore_counting_create_(struct SEMAPHORE *semaphore,
                                         usize max_count, usize init_count)
 {
         if (semaphore->handle) {
@@ -85,7 +85,7 @@ static inline i32 semaphore_counting_create_(struct SEMAPHORE *semaphore,
  * @return 结果
  * @retval 0 成功
  */
-static inline i32 semaphore_mutex_create_(struct SEMAPHORE *semaphore)
+static __force_inline i32 semaphore_mutex_create_(struct SEMAPHORE *semaphore)
 {
         if (semaphore->handle) {
                 return (0);
@@ -105,7 +105,7 @@ static inline i32 semaphore_mutex_create_(struct SEMAPHORE *semaphore)
  * @return 结果
  * @retval 0 成功
  */
-static inline i32 semaphore_recursive_mutex_create_(struct SEMAPHORE *semaphore)
+static __force_inline i32 semaphore_recursive_mutex_create_(struct SEMAPHORE *semaphore)
 {
         if (semaphore->handle) {
                 return (0);
@@ -125,7 +125,7 @@ static inline i32 semaphore_recursive_mutex_create_(struct SEMAPHORE *semaphore)
  * @return 结果
  * @retval 0 成功
  */
-static inline i32 semaphore_delete_(struct SEMAPHORE *semaphore)
+static __force_inline i32 semaphore_delete_(struct SEMAPHORE *semaphore)
 {
         if (!semaphore->handle) {
                 return (0);
@@ -149,7 +149,7 @@ static inline i32 semaphore_delete_(struct SEMAPHORE *semaphore)
  *       2. 适用于计数信号量
  *       3. 与 semaphore_release_() 配合使用
  */
-static inline i32 semaphore_acquire_(struct SEMAPHORE *semaphore)
+static __force_inline i32 semaphore_acquire_(struct SEMAPHORE *semaphore)
 {
         bool is_done = 0;
 
@@ -176,7 +176,7 @@ static inline i32 semaphore_acquire_(struct SEMAPHORE *semaphore)
  *       2. 适用于计数信号量
  *       3. 与 semaphore_acquire_() 配合使用
  */
-static inline i32 semaphore_release_(struct SEMAPHORE *semaphore)
+static __force_inline i32 semaphore_release_(struct SEMAPHORE *semaphore)
 {
         bool is_done = 0;
 
@@ -202,7 +202,7 @@ static inline i32 semaphore_release_(struct SEMAPHORE *semaphore)
  * @note 1. 适用于互斥信号量
  *       2. 与 semaphore_unlock_() 配合使用
  */
-static inline i32 semaphore_lock_(struct SEMAPHORE *semaphore)
+static __force_inline i32 semaphore_lock_(struct SEMAPHORE *semaphore)
 {
         bool is_done = 0;
 
@@ -228,7 +228,7 @@ static inline i32 semaphore_lock_(struct SEMAPHORE *semaphore)
  * @note 1. 适用于互斥信号量
  *       2. 与 semaphore_lock_() 配合使用
  */
-static inline i32 semaphore_unlock_(struct SEMAPHORE *semaphore)
+static __force_inline i32 semaphore_unlock_(struct SEMAPHORE *semaphore)
 {
         bool is_done = 0;
 
@@ -254,7 +254,7 @@ static inline i32 semaphore_unlock_(struct SEMAPHORE *semaphore)
  * @note 1. 适用于递归互斥信号量
  *       2. 与 semaphore_recursive_unlock_() 配合使用
  */
-static inline i32 semaphore_recursive_lock_(struct SEMAPHORE *semaphore)
+static __force_inline i32 semaphore_recursive_lock_(struct SEMAPHORE *semaphore)
 {
         bool is_done = 0;
 
@@ -280,7 +280,7 @@ static inline i32 semaphore_recursive_lock_(struct SEMAPHORE *semaphore)
  * @note 1. 适用于递归互斥信号量
  *       2. 与 semaphore_recursive_lock_() 配合使用
  */
-static inline i32 semaphore_recursive_unlock_(struct SEMAPHORE *semaphore)
+static __force_inline i32 semaphore_recursive_unlock_(struct SEMAPHORE *semaphore)
 {
         bool is_done = 0;
 

@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-09
+ * @date 2025-02-24
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -44,7 +44,7 @@ struct QUEUE {
  * @return 结果
  * @retval 0 成功
  */
-static inline i32 queue_create_(struct QUEUE *queue)
+static __force_inline i32 queue_create_(struct QUEUE *queue)
 {
         if (queue->handle) {
                 return (0);
@@ -64,7 +64,7 @@ static inline i32 queue_create_(struct QUEUE *queue)
  * @return 结果
  * @retval 0 成功
  */
-static inline i32 queue_delete_(struct QUEUE *queue)
+static __force_inline i32 queue_delete_(struct QUEUE *queue)
 {
         if (!queue->handle) {
                 return (0);
@@ -85,7 +85,7 @@ static inline i32 queue_delete_(struct QUEUE *queue)
  * @retval -1 失败
  * @retval 0 成功
  */
-static inline i32 queue_write_(struct QUEUE *queue, void *item)
+static __force_inline i32 queue_write_(struct QUEUE *queue, void *item)
 {
         bool is_done = 0;
 
@@ -109,7 +109,7 @@ static inline i32 queue_write_(struct QUEUE *queue, void *item)
  * @retval -1 失败
  * @retval 0 成功
  */
-static inline i32 queue_write_head_(struct QUEUE *queue, void *item)
+static __force_inline i32 queue_write_head_(struct QUEUE *queue, void *item)
 {
         bool is_done = 0;
 
@@ -133,7 +133,7 @@ static inline i32 queue_write_head_(struct QUEUE *queue, void *item)
  * @retval -1 失败
  * @retval 0 成功
  */
-static inline i32 queue_write_tail_(struct QUEUE *queue, void *item)
+static __force_inline i32 queue_write_tail_(struct QUEUE *queue, void *item)
 {
         bool is_done = 0;
 
@@ -157,7 +157,7 @@ static inline i32 queue_write_tail_(struct QUEUE *queue, void *item)
  * @retval -1 失败
  * @retval 0 成功
  */
-static inline i32 queue_overwrite_(struct QUEUE *queue, void *item)
+static __force_inline i32 queue_overwrite_(struct QUEUE *queue, void *item)
 {
         bool is_done = 0;
 
@@ -181,7 +181,7 @@ static inline i32 queue_overwrite_(struct QUEUE *queue, void *item)
  * @retval -1 失败
  * @retval 0 成功
  */
-static inline i32 queue_read_(struct QUEUE *queue, void *item)
+static __force_inline i32 queue_read_(struct QUEUE *queue, void *item)
 {
         bool is_done = 0;
 
@@ -205,7 +205,7 @@ static inline i32 queue_read_(struct QUEUE *queue, void *item)
  * @retval -1 失败
  * @retval 0 成功
  */
-static inline i32 queue_peek_(struct QUEUE *queue, void *item)
+static __force_inline i32 queue_peek_(struct QUEUE *queue, void *item)
 {
         bool is_done = 0;
 
@@ -228,7 +228,7 @@ static inline i32 queue_peek_(struct QUEUE *queue, void *item)
  * @retval -1 失败
  * @retval 0 成功
  */
-static inline i32 queue_empty_(struct QUEUE *queue)
+static __force_inline i32 queue_empty_(struct QUEUE *queue)
 {
         bool is_done = 0;
 

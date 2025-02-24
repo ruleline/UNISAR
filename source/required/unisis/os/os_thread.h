@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-09
+ * @date 2025-02-24
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -47,7 +47,7 @@ struct THREAD {
  * @return 结果
  * @retval 0 成功
  */
-static inline i32 thread_create_(struct THREAD *thread)
+static __force_inline i32 thread_create_(struct THREAD *thread)
 {
         if (thread->handle) {
                 return (0);
@@ -70,7 +70,7 @@ static inline i32 thread_create_(struct THREAD *thread)
  * @return 结果
  * @retval 0 成功
  */
-static inline i32 thread_delete_(struct THREAD *thread)
+static __force_inline i32 thread_delete_(struct THREAD *thread)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskDelete(thread->handle);
@@ -91,7 +91,7 @@ static inline i32 thread_delete_(struct THREAD *thread)
  * @retval 3 挂起
  * @retval 4 删除
  */
-static inline i32 thread_get_state_(struct THREAD *thread)
+static __force_inline i32 thread_get_state_(struct THREAD *thread)
 {
         if (!thread->handle) {
                 return (-2);
@@ -116,7 +116,7 @@ static inline i32 thread_get_state_(struct THREAD *thread)
  * @return 结果
  * @retval 0 成功
  */
-static inline i32 thread_suspend_(struct THREAD *thread)
+static __force_inline i32 thread_suspend_(struct THREAD *thread)
 {
         if (thread_get_state_(thread) == 3) {
                 return (0);
@@ -136,7 +136,7 @@ static inline i32 thread_suspend_(struct THREAD *thread)
  * @retval -1 未创建
  * @retval 0 成功
  */
-static inline i32 thread_resume_(struct THREAD *thread)
+static __force_inline i32 thread_resume_(struct THREAD *thread)
 {
         if (!thread->handle) {
                 return (-1);
@@ -159,7 +159,7 @@ static inline i32 thread_resume_(struct THREAD *thread)
  * @return 结果
  * @retval 0 成功
  */
-static inline i32 thread_get_name_(struct THREAD *thread, char *name)
+static __force_inline i32 thread_get_name_(struct THREAD *thread, char *name)
 {
         strncpy(name, thread->name, strlen(thread->name));
         return (0);
@@ -171,7 +171,7 @@ static inline i32 thread_get_name_(struct THREAD *thread, char *name)
  * @param[in] thread 线程
  * @return 优先级
  */
-static inline usize thread_get_priority_(struct THREAD *thread)
+static __force_inline usize thread_get_priority_(struct THREAD *thread)
 {
         return (thread->priority);
 }
@@ -184,7 +184,7 @@ static inline usize thread_get_priority_(struct THREAD *thread)
  * @return 结果
  * @retval 0 成功
  */
-static inline i32 thread_set_priority_(struct THREAD *thread, usize priority)
+static __force_inline i32 thread_set_priority_(struct THREAD *thread, usize priority)
 {
         if (thread_get_priority_(thread) == priority) {
                 return (0);
@@ -205,7 +205,7 @@ static inline i32 thread_set_priority_(struct THREAD *thread, usize priority)
  * @retval -1 失败
  * @retval 0 成功
  */
-static inline i32 thread_give_notify_(struct THREAD *thread)
+static __force_inline i32 thread_give_notify_(struct THREAD *thread)
 {
         if (!thread->handle) {
                 return (-2);
@@ -233,7 +233,7 @@ static inline i32 thread_give_notify_(struct THREAD *thread)
  * @retval -1 失败
  * @retval 0 成功
  */
-static inline i32 thread_take_notify_(struct THREAD *thread, usize wait)
+static __force_inline i32 thread_take_notify_(struct THREAD *thread, usize wait)
 {
         bool is_done = 0;
 

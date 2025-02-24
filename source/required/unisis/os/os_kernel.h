@@ -5,7 +5,7 @@
  * @since 2025-01-29
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-19
+ * @date 2025-02-24
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -33,7 +33,7 @@
  * @return 结果
  * @retval 0 成功
  */
-static inline i32 kernel_start_(void)
+static __force_inline i32 kernel_start_(void)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskStartScheduler();
@@ -47,7 +47,7 @@ static inline i32 kernel_start_(void)
  * @return 结果
  * @retval 0 成功
  */
-static inline i32 kernel_stop_(void)
+static __force_inline i32 kernel_stop_(void)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskEndScheduler();
@@ -61,7 +61,7 @@ static inline i32 kernel_stop_(void)
  * @return 结果
  * @retval 0 成功
  */
-static inline i32 kernel_resume_(void)
+static __force_inline i32 kernel_resume_(void)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         xTaskResumeAll();
@@ -75,7 +75,7 @@ static inline i32 kernel_resume_(void)
  * @return 结果
  * @retval 0 成功
  */
-static inline i32 kernel_suspend_(void)
+static __force_inline i32 kernel_suspend_(void)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskSuspendAll();

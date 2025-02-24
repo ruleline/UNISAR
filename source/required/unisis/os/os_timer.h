@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-09
+ * @date 2025-02-24
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -47,7 +47,7 @@ struct TIMER {
  * @return 结果
  * @retval 0 成功
  */
-static inline i32 timer_create_(struct TIMER *timer)
+static __force_inline i32 timer_create_(struct TIMER *timer)
 {
         if (timer->handle) {
                 return (0);
@@ -71,7 +71,7 @@ static inline i32 timer_create_(struct TIMER *timer)
  * @retval -1 失败
  * @retval 0 成功
  */
-static inline i32 timer_delete_(struct TIMER *timer)
+static __force_inline i32 timer_delete_(struct TIMER *timer)
 {
         if (!timer->handle) {
                 return (-2);
@@ -99,7 +99,7 @@ static inline i32 timer_delete_(struct TIMER *timer)
  * @retval -1 休眠
  * @retval 0 运行
  */
-static inline i32 timer_get_state_(struct TIMER *timer)
+static __force_inline i32 timer_get_state_(struct TIMER *timer)
 {
         if (!timer->handle) {
                 return (-2);
@@ -127,7 +127,7 @@ static inline i32 timer_get_state_(struct TIMER *timer)
  * @retval -1 失败
  * @retval 0 成功
  */
-static inline i32 timer_start_(struct TIMER *timer)
+static __force_inline i32 timer_start_(struct TIMER *timer)
 {
         if (!timer->handle) {
                 return (-2);
@@ -158,7 +158,7 @@ static inline i32 timer_start_(struct TIMER *timer)
  * @retval -1 失败
  * @retval 0 成功
  */
-static inline i32 timer_stop_(struct TIMER *timer)
+static __force_inline i32 timer_stop_(struct TIMER *timer)
 {
         if (!timer->handle) {
                 return (-2);
@@ -186,7 +186,7 @@ static inline i32 timer_stop_(struct TIMER *timer)
  * @param[in] timer 定时器
  * @return 周期
  */
-static inline usize timer_get_period_(struct TIMER *timer)
+static __force_inline usize timer_get_period_(struct TIMER *timer)
 {
         return (timer->period);
 }
@@ -201,7 +201,7 @@ static inline usize timer_get_period_(struct TIMER *timer)
  * @retval -1 失败
  * @retval 0 成功
  */
-static inline i32 timer_set_period_(struct TIMER *timer, usize period)
+static __force_inline i32 timer_set_period_(struct TIMER *timer, usize period)
 {
         if (!timer->handle) {
                 return (-2);
