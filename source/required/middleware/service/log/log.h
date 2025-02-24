@@ -21,6 +21,31 @@
 #if !defined LOG_H
 #define LOG_H
 
+#include "uart.h"
 
+#define LOG_BUFFER_SIZE 1024
+
+enum LOG_TYPE {
+        CHAR_LOG,
+        HEX_LOG,
+};
+
+struct LOG_PACKAGE {
+        u8 buffer[LOG_BUFFER_SIZE];
+        usize length;
+        u8 type;
+};
+
+struct LOG {
+        struct UART *super;
+        struct THREAD send_thread;
+        struct QUEUE send_queue;
+        i32 (*send)(struct LOG *self, struct LOG_PACKAGE *log);
+};
+
+static __force_inline i32 log_send_(struct LOG *self, struct LOG_PACKAGE *package)
+{
+        return self->send(self, package);
+}
 
 #endif /* !defined LOG_H */
