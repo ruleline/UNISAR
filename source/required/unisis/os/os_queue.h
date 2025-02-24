@@ -186,7 +186,7 @@ static __force_inline i32 queue_pop_(struct QUEUE *queue, void *item)
         bool is_done = 0;
 
         #if ((FREERTOS == 1) && (FREERTOS_QUEUE == 1))
-        is_done = xQueueReceive(queue->handle, item, 0);
+        is_done = xQueueReceive(queue->handle, item, portMAX_DELAY);
         #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
 
         if (is_done) {
