@@ -80,14 +80,6 @@ enum ITEM_PRIORITY {
 
         GPIO1_PRIORITY,
 
-        GPIO2_PRIORITY,
-
-        GPIO3_PRIORITY,
-
-        GPIO4_PRIORITY,
-
-        GPIO5_PRIORITY,
-
         /**
          * @brief UART1 优先级.
          * @details 用于表示 UART1 通信接口的优先级.

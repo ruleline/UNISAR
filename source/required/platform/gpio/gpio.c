@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-22
+ * @date 2025-02-24
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -20,53 +20,14 @@
 
 #include "gpio.h"
 
-static struct GPIO gpio[5];
+static struct GPIO gpio[1];
 
 static __ctor(GPIO1_PRIORITY) void init1(void)
 {
         /* TODO */
 }
 
-static __ctor(GPIO2_PRIORITY) void init2(void)
-{
-        /* TODO */
-}
-
-static __ctor(GPIO3_PRIORITY) void init3(void)
-{
-        /* TODO */
-}
-
-static __ctor(GPIO4_PRIORITY) void init4(void)
-{
-        /* TODO */
-}
-
-static __ctor(GPIO5_PRIORITY) void init5(void)
-{
-        /* TODO */
-}
-
 static __dtor(GPIO1_PRIORITY) void deinit1(void)
-{
-        /* TODO */
-}
-
-static __dtor(GPIO2_PRIORITY) void deinit2(void)
-{
-        /* TODO */
-}
-static __dtor(GPIO3_PRIORITY) void deinit3(void)
-{
-        /* TODO */
-}
-
-static __dtor(GPIO4_PRIORITY) void deinit4(void)
-{
-        /* TODO */
-}
-
-static __dtor(GPIO5_PRIORITY) void deinit5(void)
 {
         /* TODO */
 }
