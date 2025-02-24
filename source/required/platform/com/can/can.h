@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-21
+ * @date 2025-02-24
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -118,7 +118,7 @@ struct CAN {
  * @return 结果
  * @retval 0 成功
  */
-static __force_inline i32 can_send(struct CAN *self, struct CAN_PACKAGE *package)
+static __force_inline i32 can_send_(struct CAN *self, struct CAN_PACKAGE *package)
 {
         return self->send(self, package);
 }
@@ -130,7 +130,7 @@ static __force_inline i32 can_send(struct CAN *self, struct CAN_PACKAGE *package
  * @return 结果
  * @retval 0 成功
  */
-static __force_inline i32 can_receive(struct CAN *self, struct CAN_PACKAGE *package)
+static __force_inline i32 can_receive_(struct CAN *self, struct CAN_PACKAGE *package)
 {
         return self->receive(self, package);
 }

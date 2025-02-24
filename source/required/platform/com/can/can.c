@@ -45,7 +45,7 @@ static struct CAN can[1];
  *          主要用于对 CAN1 设备进行初始化, 可能包括设置波特率、配置寄存器、启用中断等操作.
  * @ingroup CANInitialization
  */
-static __ctor(CAN1_PRIORITY) void init1(void)
+static __ctor(CAN1_PRIORITY) void init1_(void)
 {
         /* TODO */
 }
@@ -56,7 +56,7 @@ static __ctor(CAN1_PRIORITY) void init1(void)
  *          主要用于对 CAN1 设备进行反初始化, 可能包括停止数据传输、关闭相关中断、释放占用的资源等操作.
  * @ingroup CANDeinitialization
  */
-static __dtor(CAN1_PRIORITY) void deinit1(void)
+static __dtor(CAN1_PRIORITY) void deinit1_(void)
 {
         /* TODO */
 }
