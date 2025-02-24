@@ -125,30 +125,6 @@ enum ITEM_PRIORITY {
         LIN1_PRIORITY,
 
         /**
-         * @brief LIN2 优先级.
-         * @details 用于表示 LIN2 通信接口的优先级.
-         */
-        LIN2_PRIORITY,
-
-        /**
-         * @brief LIN3 优先级.
-         * @details 用于表示 LIN3 通信接口的优先级.
-         */
-        LIN3_PRIORITY,
-
-        /**
-         * @brief LIN4 优先级.
-         * @details 用于表示 LIN4 通信接口的优先级.
-         */
-        LIN4_PRIORITY,
-
-        /**
-         * @brief LIN5 优先级.
-         * @details 用于表示 LIN5 通信接口的优先级.
-         */
-        LIN5_PRIORITY,
-
-        /**
          * @brief 最大的不可达优先级.
          * @details 作为优先级范围的上限，任何实际的接口优先级都应小于此值.
          */
