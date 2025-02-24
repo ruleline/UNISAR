@@ -32,12 +32,42 @@ static __dtor(UART1_PRIORITY) void deinit1_(void)
         /* TODO */
 }
 
+static i32 open_(struct UART *self)
+{
+        self->state = 1;
+        return 0;
+}
+
+static i32 close_(struct UART *self)
+{
+        self->state = 0;
+        return 0;
+}
+
 static i32 send_uart_(struct UART *self, struct UART_PACKAGE *package)
 {
         ASSERT(self->type == UART_COM);
         ASSERT(package);
         ASSERT(package->length);
         ASSERT(package->data);
+
+        if (self->state == 0) {
+                return -1;
+        }
+
+        /* TODO */
+        return 0;
+}
+
+static i32 receive_uart_(struct UART *self, struct UART_PACKAGE *package)
+{
+        ASSERT(self->type == UART_COM);
+        ASSERT(package);
+        ASSERT(package->data);
+
+        if (self->state == 0) {
+                return -1;
+        }
 
         /* TODO */
         return 0;
@@ -50,15 +80,9 @@ static i32 send_usart_(struct UART *self, struct UART_PACKAGE *package)
         ASSERT(package->length);
         ASSERT(package->data);
 
-        /* TODO */
-        return 0;
-}
-
-static i32 receive_uart_(struct UART *self, struct UART_PACKAGE *package)
-{
-        ASSERT(self->type == UART_COM);
-        ASSERT(package);
-        ASSERT(package->data);
+        if (self->state == 0) {
+                return -1;
+        }
 
         /* TODO */
         return 0;
@@ -69,6 +93,126 @@ static i32 receive_usart_(struct UART *self, struct UART_PACKAGE *package)
         ASSERT(self->type == USART_COM);
         ASSERT(package);
         ASSERT(package->data);
+
+        if (self->state == 0) {
+                return -1;
+        }
+
+        /* TODO */
+        return 0;
+}
+
+static i32 send_blocking_uart_(struct UART *self, struct UART_PACKAGE *package)
+{
+        ASSERT(self->type == UART_COM);
+        ASSERT(package);
+        ASSERT(package->length);
+        ASSERT(package->data);
+
+        if (self->state == 0) {
+                return -1;
+        }
+
+        /* TODO */
+        return 0;
+}
+
+static i32 receive_blocking_uart_(struct UART *self, struct UART_PACKAGE *package)
+{
+        ASSERT(self->type == UART_COM);
+        ASSERT(package);
+        ASSERT(package->data);
+
+        if (self->state == 0) {
+                return -1;
+        }
+
+        /* TODO */
+        return 0;
+}
+
+static i32 send_blocking_usart_(struct UART *self, struct UART_PACKAGE *package)
+{
+        ASSERT(self->type == USART_COM);
+        ASSERT(package);
+        ASSERT(package->length);
+        ASSERT(package->data);
+
+        if (self->state == 0) {
+                return -1;
+        }
+
+        /* TODO */
+        return 0;
+}
+
+static i32 receive_blocking_usart_(struct UART *self, struct UART_PACKAGE *package)
+{
+        ASSERT(self->type == USART_COM);
+        ASSERT(package);
+        ASSERT(package->data);
+
+        if (self->state == 0) {
+                return -1;
+        }
+
+        /* TODO */
+        return 0;
+}
+
+static i32 send_polling_uart_(struct UART *self, struct UART_PACKAGE *package)
+{
+        ASSERT(self->type == UART_COM);
+        ASSERT(package);
+        ASSERT(package->length);
+        ASSERT(package->data);
+
+        if (self->state == 0) {
+                return -1;
+        }
+
+        /* TODO */
+        return 0;
+}
+
+static i32 receive_polling_uart_(struct UART *self, struct UART_PACKAGE *package)
+{
+        ASSERT(self->type == UART_COM);
+        ASSERT(package);
+        ASSERT(package->data);
+
+        if (self->state == 0) {
+                return -1;
+        }
+
+        /* TODO */
+        return 0;
+}
+
+static i32 send_polling_usart_(struct UART *self, struct UART_PACKAGE *package)
+{
+        ASSERT(self->type == USART_COM);
+        ASSERT(package);
+        ASSERT(package->length);
+        ASSERT(package->data);
+
+        if (self->state == 0) {
+                return -1;
+        }
+
+        /* TODO */
+        return 0;
+}
+
+static i32 receive_polling_usart_(struct UART *self, struct UART_PACKAGE *package)
+{
+        ASSERT(self->type == USART_COM);
+        ASSERT(package);
+        ASSERT(package->data);
+
+        if (self->state == 0) {
+                return -1;
+        }
 
         /* TODO */
         return 0;
@@ -88,12 +232,23 @@ i32 uart_create(struct UART *self, char *name, u8 type)
                 }
                 strcpy(&uart[i].name[0], name);
                 uart[i].type = type;
+                uart[i].state = 0;
+                uart[i].open = open_;
+                uart[i].close = close_;
                 if (type == UART_COM) {
                         uart[i].send = send_uart_;
                         uart[i].receive = receive_uart_;
+                        uart[i].send_blocking = send_blocking_uart_;
+                        uart[i].receive_blocking = receive_blocking_uart_;
+                        uart[i].send_polling = send_polling_uart_;
+                        uart[i].receive_polling = receive_polling_uart_;
                 } else {
                         uart[i].send = send_usart_;
                         uart[i].receive = receive_usart_;
+                        uart[i].send_blocking = send_blocking_usart_;
+                        uart[i].receive_blocking = receive_blocking_usart_;
+                        uart[i].send_polling = send_polling_usart_;
+                        uart[i].receive_polling = receive_polling_usart_;
                 }
                 self = &uart[i];
                 PRINTF("[UART] create %s success.", self->name);
