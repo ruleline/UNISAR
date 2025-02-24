@@ -22,12 +22,12 @@
 
 static struct UART uart[1];
 
-static __ctor(UART1_PRIORITY) void init1(void)
+static __ctor(UART1_PRIORITY) void init1_(void)
 {
         /* TODO */
 }
 
-static __dtor(UART1_PRIORITY) void deinit1(void)
+static __dtor(UART1_PRIORITY) void deinit1_(void)
 {
         /* TODO */
 }

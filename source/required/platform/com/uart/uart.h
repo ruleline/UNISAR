@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-21
+ * @date 2025-02-24
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -40,12 +40,12 @@ struct UART {
         i32 (*receive)(struct UART *self, struct UART_PACKAGE *package);
 };
 
-static __force_inline i32 uart_send(struct UART *self, struct UART_PACKAGE *package)
+static __force_inline i32 uart_send_(struct UART *self, struct UART_PACKAGE *package)
 {
         return self->send(self, package);
 }
 
-static __force_inline i32 uart_receive(struct UART *self, struct UART_PACKAGE *package)
+static __force_inline i32 uart_receive_(struct UART *self, struct UART_PACKAGE *package)
 {
         return self->receive(self, package);
 }
