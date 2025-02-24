@@ -101,30 +101,6 @@ enum ITEM_PRIORITY {
         CAN1_PRIORITY,
 
         /**
-         * @brief CAN2 优先级.
-         * @details 用于表示 CAN2 通信接口的优先级.
-         */
-        CAN2_PRIORITY,
-
-        /**
-         * @brief CAN3 优先级.
-         * @details 用于表示 CAN3 通信接口的优先级.
-         */
-        CAN3_PRIORITY,
-
-        /**
-         * @brief CAN4 优先级.
-         * @details 用于表示 CAN4 通信接口的优先级.
-         */
-        CAN4_PRIORITY,
-
-        /**
-         * @brief CAN5 优先级.
-         * @details 用于表示 CAN5 通信接口的优先级.
-         */
-        CAN5_PRIORITY,
-
-        /**
          * @brief 以太网 1 优先级.
          * @details 用于表示 ETH1 通信接口的优先级.
          */

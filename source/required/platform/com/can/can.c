@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-21
+ * @date 2025-02-24
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -21,16 +21,22 @@
 #include "can.h"
 
 /**
- * @brief 定义一个包含 5 个 CAN 对象的静态数组。
- * @details 可用于表示系统中的 5 个不同 CAN 对象.
+ * @brief 定义一个包含 1 个 CAN 对象的静态数组。
+ * @details 可用于表示系统中的 1 个不同 CAN 对象.
  *          每个对象可以独立配置和操作, 以满足不同的 CAN 通信需求.
  */
-static struct CAN can[5];
+static struct CAN can[1];
 
 /**
  * @defgroup CANInitialization CAN 设备初始化
  * @brief 包含用于初始化 CAN 设备的函数.
  * @details 在系统启动阶段被调用, 用于对 CAN 设备进行必要的配置和初始化操作.
+ */
+
+/**
+ * @defgroup CANDeinitialization CAN 设备反初始化
+ * @brief 包含用于对 CAN 设备进行反初始化操作的函数.
+ * @details 在系统关闭或不再需要使用 CAN 设备时被调用, 用于释放资源、恢复默认设置等.
  */
 
 /**
@@ -45,106 +51,12 @@ static __ctor(CAN1_PRIORITY) void init1(void)
 }
 
 /**
- * @brief 以 CAN2 的优先级执行初始化操作.
- * @details 使用 __ctor 机制, 会在程序启动阶段按照 CAN2_PRIORITY 指定的优先级执行初始化操作.
- *          主要用于对 CAN2 设备进行初始化, 可能包括设置波特率、配置寄存器、启用中断等操作.
- * @ingroup CANInitialization
- */
-static __ctor(CAN2_PRIORITY) void init2(void)
-{
-        /* TODO */
-}
-
-/**
- * @brief 以 CAN3 的优先级执行初始化操作.
- * @details 使用 __ctor 机制, 会在程序启动阶段按照 CAN3_PRIORITY 指定的优先级执行初始化操作.
- *          主要用于对 CAN3 设备进行初始化, 可能包括设置波特率、配置寄存器、启用中断等操作.
- * @ingroup CANInitialization
- */
-static __ctor(CAN3_PRIORITY) void init3(void)
-{
-        /* TODO */
-}
-
-/**
- * @brief 以 CAN4 的优先级执行初始化操作.
- * @details 使用 __ctor 机制, 会在程序启动阶段按照 CAN4_PRIORITY 指定的优先级执行初始化操作.
- *          主要用于对 CAN4 设备进行初始化, 可能包括设置波特率、配置寄存器、启用中断等操作.
- * @ingroup CANInitialization
- */
-static __ctor(CAN4_PRIORITY) void init4(void)
-{
-        /* TODO */
-}
-
-/**
- * @brief 以 CAN5 的优先级执行初始化操作.
- * @details 使用 __ctor 机制, 会在程序启动阶段按照 CAN5_PRIORITY 指定的优先级执行初始化操作.
- *          主要用于对 CAN5 设备进行初始化, 可能包括设置波特率、配置寄存器、启用中断等操作.
- * @ingroup CANInitialization
- */
-static __ctor(CAN5_PRIORITY) void init5(void)
-{
-        /* TODO */
-}
-
-/**
- * @defgroup CANDeinitialization CAN 设备反初始化
- * @brief 包含用于对 CAN 设备进行反初始化操作的函数.
- * @details 在系统关闭或不再需要使用 CAN 设备时被调用, 用于释放资源、恢复默认设置等.
- */
-
-/**
  * @brief 以 CAN1 的优先级执行反初始化操作.
  * @details 利用 __dtor 机制, 会在程序结束阶段按照 CAN1_PRIORITY 指定的优先级执行反初始化操作.
  *          主要用于对 CAN1 设备进行反初始化, 可能包括停止数据传输、关闭相关中断、释放占用的资源等操作.
  * @ingroup CANDeinitialization
  */
 static __dtor(CAN1_PRIORITY) void deinit1(void)
-{
-        /* TODO */
-}
-
-/**
- * @brief 以 CAN2 的优先级执行反初始化操作.
- * @details 利用 __dtor 机制, 会在程序结束阶段按照 CAN2_PRIORITY 指定的优先级执行反初始化操作.
- *          主要用于对 CAN2 设备进行反初始化, 可能包括停止数据传输、关闭相关中断、释放占用的资源等操作.
- * @ingroup CANDeinitialization
- */
-static __dtor(CAN2_PRIORITY) void deinit2(void)
-{
-        /* TODO */
-}
-
-/**
- * @brief 以 CAN3 的优先级执行反初始化操作.
- * @details 利用 __dtor 机制, 会在程序结束阶段按照 CAN3_PRIORITY 指定的优先级执行反初始化操作.
- *          主要用于对 CAN3 设备进行反初始化, 可能包括停止数据传输、关闭相关中断、释放占用的资源等操作.
- * @ingroup CANDeinitialization
- */
-static __dtor(CAN3_PRIORITY) void deinit3(void)
-{
-        /* TODO */
-}
-
-/**
- * @brief 以 CAN4 的优先级执行反初始化操作.
- * @details 利用 __dtor 机制, 会在程序结束阶段按照 CAN4_PRIORITY 指定的优先级执行反初始化操作.
- *          主要用于对 CAN4 设备进行反初始化, 可能包括停止数据传输、关闭相关中断、释放占用的资源等操作.
- * @ingroup CANDeinitialization
- */
-static __dtor(CAN4_PRIORITY) void deinit4(void)
-{
-        /* TODO */
-}
-
-/**
- * @brief 以 CAN5 的优先级执行反初始化操作.
- * @details 利用 __dtor 机制, 会在程序结束阶段按照 CAN5_PRIORITY 指定的优先级执行反初始化操作.
- *          主要用于对 CAN5 设备进行反初始化, 可能包括停止数据传输、关闭相关中断、释放占用的资源等操作.
- * @ingroup CANDeinitialization
- */
-static __dtor(CAN5_PRIORITY) void deinit5(void)
 {
         /* TODO */
 }
