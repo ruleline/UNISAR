@@ -107,30 +107,6 @@ enum ITEM_PRIORITY {
         ETH1_PRIORITY,
 
         /**
-         * @brief 以太网 2 优先级.
-         * @details 用于表示 ETH2 通信接口的优先级.
-         */
-        ETH2_PRIORITY,
-
-        /**
-         * @brief 以太网 3 优先级.
-         * @details 用于表示 ETH3 通信接口的优先级.
-         */
-        ETH3_PRIORITY,
-
-        /**
-         * @brief 以太网 4 优先级.
-         * @details 用于表示 ETH4 通信接口的优先级.
-         */
-        ETH4_PRIORITY,
-
-        /**
-         * @brief 以太网 5 优先级.
-         * @details 用于表示 ETH5 通信接口的优先级.
-         */
-        ETH5_PRIORITY,
-
-        /**
          * @brief SPI1 优先级.
          * @details 用于表示 SPI1 通信接口的优先级.
          */
