@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-21
+ * @date 2025-02-24
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -20,54 +20,14 @@
 
 #include "spi.h"
 
-static struct SPI spi[5];
+static struct SPI spi[1];
 
 static __ctor(SPI1_PRIORITY) void init1(void)
 {
         /* TODO */
 }
 
-static __ctor(SPI2_PRIORITY) void init2(void)
-{
-        /* TODO */
-}
-
-static __ctor(SPI3_PRIORITY) void init3(void)
-{
-        /* TODO */
-}
-
-static __ctor(SPI4_PRIORITY) void init4(void)
-{
-        /* TODO */
-}
-
-static __ctor(SPI5_PRIORITY) void init5(void)
-{
-        /* TODO */
-}
-
 static __dtor(SPI1_PRIORITY) void deinit1(void)
-{
-        /* TODO */
-}
-
-static __dtor(SPI2_PRIORITY) void deinit2(void)
-{
-        /* TODO */
-}
-
-static __dtor(SPI3_PRIORITY) void deinit3(void)
-{
-        /* TODO */
-}
-
-static __dtor(SPI4_PRIORITY) void deinit4(void)
-{
-        /* TODO */
-}
-
-static __dtor(SPI5_PRIORITY) void deinit5(void)
 {
         /* TODO */
 }

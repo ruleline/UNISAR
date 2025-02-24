@@ -137,30 +137,6 @@ enum ITEM_PRIORITY {
         SPI1_PRIORITY,
 
         /**
-         * @brief SPI2 优先级.
-         * @details 用于表示 SPI2 通信接口的优先级.
-         */
-        SPI2_PRIORITY,
-
-        /**
-         * @brief SPI3 优先级.
-         * @details 用于表示 SPI3 通信接口的优先级.
-         */
-        SPI3_PRIORITY,
-
-        /**
-         * @brief SPI4 优先级.
-         * @details 用于表示 SPI4 通信接口的优先级.
-         */
-        SPI4_PRIORITY,
-
-        /**
-         * @brief SPI5 优先级.
-         * @details 用于表示 SPI5 通信接口的优先级.
-         */
-        SPI5_PRIORITY,
-
-        /**
          * @brief I2C1 优先级.
          * @details 用于表示 IIC1 通信接口的优先级.
          */
