@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-22
+ * @date 2025-02-24
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -93,30 +93,6 @@ enum ITEM_PRIORITY {
          * @details 用于表示 UART1 通信接口的优先级.
          */
         UART1_PRIORITY,
-
-        /**
-         * @brief UART2 优先级.
-         * @details 用于表示 UART2 通信接口的优先级.
-         */
-        UART2_PRIORITY,
-
-        /**
-         * @brief UART3 优先级.
-         * @details 用于表示 UART3 通信接口的优先级.
-         */
-        UART3_PRIORITY,
-
-        /**
-         * @brief UART4 优先级.
-         * @details 用于表示 UART4 通信接口的优先级.
-         */
-        UART4_PRIORITY,
-
-        /**
-         * @brief UART5 优先级.
-         * @details 用于表示 UART5 通信接口的优先级.
-         */
-        UART5_PRIORITY,
 
         /**
          * @brief CAN1 优先级.

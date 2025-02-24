@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-21
+ * @date 2025-02-24
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -20,54 +20,14 @@
 
 #include "uart.h"
 
-static struct UART uart[5];
+static struct UART uart[1];
 
 static __ctor(UART1_PRIORITY) void init1(void)
 {
         /* TODO */
 }
 
-static __ctor(UART2_PRIORITY) void init2(void)
-{
-        /* TODO */
-}
-
-static __ctor(UART3_PRIORITY) void init3(void)
-{
-        /* TODO */
-}
-
-static __ctor(UART4_PRIORITY) void init4(void)
-{
-        /* TODO */
-}
-
-static __ctor(UART5_PRIORITY) void init5(void)
-{
-        /* TODO */
-}
-
 static __dtor(UART1_PRIORITY) void deinit1(void)
-{
-        /* TODO */
-}
-
-static __dtor(UART2_PRIORITY) void deinit2(void)
-{
-        /* TODO */
-}
-
-static __dtor(UART3_PRIORITY) void deinit3(void)
-{
-        /* TODO */
-}
-
-static __dtor(UART4_PRIORITY) void deinit4(void)
-{
-        /* TODO */
-}
-
-static __dtor(UART5_PRIORITY) void deinit5(void)
 {
         /* TODO */
 }
