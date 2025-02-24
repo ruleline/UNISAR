@@ -119,30 +119,6 @@ enum ITEM_PRIORITY {
         IIC1_PRIORITY,
 
         /**
-         * @brief I2C2 优先级.
-         * @details 用于表示 IIC2 通信接口的优先级.
-         */
-        IIC2_PRIORITY,
-
-        /**
-         * @brief I2C3 优先级.
-         * @details 用于表示 IIC3 通信接口的优先级.
-         */
-        IIC3_PRIORITY,
-
-        /**
-         * @brief I2C4 优先级.
-         * @details 用于表示 IIC4 通信接口的优先级.
-         */
-        IIC4_PRIORITY,
-
-        /**
-         * @brief I2C5 优先级.
-         * @details 用于表示 IIC5 通信接口的优先级.
-         */
-        IIC5_PRIORITY,
-
-        /**
          * @brief LIN1 优先级.
          * @details 用于表示 LIN1 通信接口的优先级.
          */
