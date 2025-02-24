@@ -13,6 +13,7 @@
                                 "${workspaceFolder}/source/required/middleware/database/**",
                                 "${workspaceFolder}/source/required/middleware/management/**",
                                 "${workspaceFolder}/source/required/middleware/service/**",
+                                "${workspaceFolder}/source/required/middleware/service/log/**",
                                 "${workspaceFolder}/source/required/platform/**",
                                 "${workspaceFolder}/source/required/platform/com/**",
                                 "${workspaceFolder}/source/required/platform/com/can/**",
