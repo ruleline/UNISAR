@@ -22,12 +22,12 @@
 
 static struct SPI spi[1];
 
-static __ctor(SPI1_PRIORITY) void init1(void)
+static __ctor(SPI1_PRIORITY) void init1_(void)
 {
         /* TODO */
 }
 
-static __dtor(SPI1_PRIORITY) void deinit1(void)
+static __dtor(SPI1_PRIORITY) void deinit1_(void)
 {
         /* TODO */
 }

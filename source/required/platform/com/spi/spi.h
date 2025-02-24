@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-21
+ * @date 2025-02-24
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -40,12 +40,12 @@ struct SPI {
         i32 (*receive)(struct SPI *self, struct SPI_PACKAGE *package);
 };
 
-static __force_inline i32 spi_send(struct SPI *self, struct SPI_PACKAGE *package)
+static __force_inline i32 spi_send_(struct SPI *self, struct SPI_PACKAGE *package)
 {
         return self->send(self, package);
 }
 
-static __force_inline i32 spi_receive(struct SPI *self, struct SPI_PACKAGE *package)
+static __force_inline i32 spi_receive_(struct SPI *self, struct SPI_PACKAGE *package)
 {
         return self->receive(self, package);
 }
