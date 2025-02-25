@@ -5,7 +5,7 @@
  * @since 2025-02-24
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-24
+ * @date 2025-02-25
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -31,7 +31,8 @@ static i32 send_(struct LOG *self, struct LOG_PACKAGE *package)
         return 0;
 }
 
-static __force_inline i32 parse_send_(struct LOG *self, struct LOG_PACKAGE *package)
+static __force_inline i32 parse_send_(struct LOG *self,
+                                        struct LOG_PACKAGE *package)
 {
         usize size = 3*package->length + 1;
         u8 buffer[size];
@@ -69,7 +70,7 @@ static void send_entry_(void *parameters)
                         parse_send_(self, &package);
                         uart->data = &package.buffer[0];
                         uart->length = package.length;
-                        state = uart_tx_(self->super, uart);
+                        state = uart_send_(self->super, uart);
                         ASSERT(state == 0);
                 }
         }
@@ -80,7 +81,7 @@ static __ctor(LOG_PRIORITY) void init_(void)
         i32 state = 0;
         struct LOG *self = &log;
 
-        state = uart_create(self->super, "UART1", UART_COM);
+        state = uart_create(self->super, UART_LOG);
         ASSERT(state == 0);
 
         self->send_thread.entry = &send_entry_;

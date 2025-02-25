@@ -5,7 +5,7 @@
  * @since 2025-02-24
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-24
+ * @date 2025-02-25
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -43,7 +43,8 @@ struct LOG {
         i32 (*send)(struct LOG *self, struct LOG_PACKAGE *log);
 };
 
-static __force_inline i32 log_send_(struct LOG *self, struct LOG_PACKAGE *package)
+static __force_inline i32 log_send_(struct LOG *self,
+                                        struct LOG_PACKAGE *package)
 {
         return self->send(self, package);
 }
