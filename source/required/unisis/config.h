@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-24
+ * @date 2025-02-25
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -115,6 +115,8 @@ enum ITEM_PRIORITY {
          * @details 用于表示 LIN1 通信接口的优先级.
          */
         LIN1_PRIORITY,
+
+        LOG_PRIORITY,
 
         /**
          * @brief 最大的不可达优先级.
