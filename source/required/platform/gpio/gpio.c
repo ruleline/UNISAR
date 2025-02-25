@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-24
+ * @date 2025-02-25
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -43,19 +43,19 @@ static bool read_(struct GPIO *self)
 static i32 write_(struct GPIO *self, bool state)
 {
         /* TODO */
-        return 0;
+        return (0);
 }
 
 static i32 toggle_(struct GPIO *self)
 {
         /* TODO */
-        return 0;
+        return (0);
 }
 
 static i32 highz_(struct GPIO *self)
 {
         /* TODO */
-        return 0;
+        return (0);
 }
 
 i32 gpio_create(struct GPIO *self, char *name)
@@ -76,7 +76,7 @@ i32 gpio_create(struct GPIO *self, char *name)
                 gpio[i].highz = highz_;
                 self = &gpio[i];
                 PRINTF("[GPIO] create %s success.", self->name);
-                return 0;
+                return (0);
         }
-        return -1;
+        return (-1);
 }
