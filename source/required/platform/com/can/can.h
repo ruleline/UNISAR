@@ -23,27 +23,9 @@
 
 #include "unisis.h"
 
-/**
- * @enum CAN_TYPE
- * @brief 定义不同类型的 CAN (Controller Area Network).
- * @details 此枚举列出了几种常见的 CAN 类型，用于区分不同的 CAN 总线协议或特性.
- */
-enum CAN_TYPE {
-        /**
-         * @brief 经典 CAN
-         * @details 代表经典 CAN 协议, 具有基本的功能和数据传输能力.
-         */
-        CAN_COM,
-        /**
-         * @brief CANFD
-         * @details 这种类型的 CAN 具备更灵活的配置选项和更高的性能.
-         */
-        CANFD_COM,
-        /**
-         * @brief CANXL
-         * @details 扩展 CAN 通常支持更多的功能和更大的数据传输量.
-         */
-        CANXL_COM,
+enum CAN_ID {
+        CAN_COCKPIT,
+        CAN_MAX,
 };
 
 /**
@@ -89,6 +71,8 @@ struct CAN {
         u8 type;
 
         bool is_open;
+        i32 (*open)(struct UART *self);
+        i32 (*close)(struct UART *self);
 
         /**
          * @var CAN::send
@@ -112,6 +96,16 @@ struct CAN {
          */
         i32 (*receive)(struct CAN *self, struct CAN_PACKAGE *package);
 };
+
+static __force_inline i32 can_open_(struct CAN *self)
+{
+        return self->open(self);
+}
+
+static __force_inline i32 can_close_(struct CAN *self)
+{
+        return self->close(self);
+}
 
 /**
  * @brief 发送
@@ -141,11 +135,10 @@ static __force_inline i32 can_receive_(struct CAN *self, struct CAN_PACKAGE *pac
  * @brief 创建一个 CAN 对象
  * @details 该函数用于初始化一个 CAN 对象, 并为其指定名称.
  * @param[out] self CAN 对象
- * @param[in] name 名称
- * @param[in] type 类型
+ * @param[in] id 标识符
  * @return 结果
  * @retval 0 成功
  */
-i32 can_create(struct CAN *self, char *name, u8 type);
+i32 can_create(struct CAN *self, u8 id);
 
 #endif /* !defined CAN_H */
