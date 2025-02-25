@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-24
+ * @date 2025-02-25
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -40,7 +40,7 @@ static i32 send_spi_(struct SPI *self, struct SPI_PACKAGE *package)
         ASSERT(package->data);
 
         /* TODO */
-        return 0;
+        return (0);
 }
 
 static i32 receive_spi_(struct SPI *self, struct SPI_PACKAGE *package)
@@ -50,7 +50,7 @@ static i32 receive_spi_(struct SPI *self, struct SPI_PACKAGE *package)
         ASSERT(package->data);
 
         /* TODO */
-        return 0;
+        return (0);
 }
 
 static i32 send_qspi_(struct SPI *self, struct SPI_PACKAGE *package)
@@ -61,7 +61,7 @@ static i32 send_qspi_(struct SPI *self, struct SPI_PACKAGE *package)
         ASSERT(package->data);
 
         /* TODO */
-        return 0;
+        return (0);
 }
 
 static i32 receive_qspi_(struct SPI *self, struct SPI_PACKAGE *package)
@@ -71,7 +71,7 @@ static i32 receive_qspi_(struct SPI *self, struct SPI_PACKAGE *package)
         ASSERT(package->data);
 
         /* TODO */
-        return 0;
+        return (0);
 }
 
 i32 spi_create(struct SPI *self, char *name, u8 type)
@@ -97,7 +97,7 @@ i32 spi_create(struct SPI *self, char *name, u8 type)
                 }
                 self = &spi[i];
                 PRINTF("[SPI] create %s success.", self->name);
-                return 0;
+                return (0);
         }
-        return -1;
+        return (-1);
 }
