@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-24
+ * @date 2025-02-25
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -18,39 +18,39 @@
  * -----------------------------------------------------------------------------
  */
 
-#if !defined GPIO_H
-#define GPIO_H
+#if !defined IO_H
+#define IO_H
 
 #include "unisis.h"
 
-struct GPIO {
+struct IO {
         char name[20];
-        bool (*read)(struct GPIO *gpio);
-        i32 (*write)(struct GPIO *gpio, bool state);
-        i32 (*toggle)(struct GPIO *gpio);
-        i32 (*highz)(struct GPIO *gpio);
+        bool (*read)(struct IO *gpio);
+        i32 (*write)(struct IO *gpio, bool state);
+        i32 (*toggle)(struct IO *gpio);
+        i32 (*highz)(struct IO *gpio);
 };
 
-static __force_inline bool gpio_read_(struct GPIO *self)
+static __force_inline bool gpio_read_(struct IO *self)
 {
         return self->read(self);
 }
 
-static __force_inline i32 gpio_write_(struct GPIO *self, bool state)
+static __force_inline i32 gpio_write_(struct IO *self, bool state)
 {
         return self->write(self, state);
 }
 
-static __force_inline i32 gpio_toggle_(struct GPIO *self)
+static __force_inline i32 gpio_toggle_(struct IO *self)
 {
         return self->toggle(self);
 }
 
-static __force_inline i32 gpio_highz_(struct GPIO *self)
+static __force_inline i32 gpio_highz_(struct IO *self)
 {
         return self->highz(self);
 }
 
-i32 gpio_create(struct GPIO *self, char *name);
+i32 gpio_create(struct IO *self, char *name);
 
-#endif /* !defined GPIO_H */
+#endif /* !defined IO_H */

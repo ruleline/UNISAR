@@ -78,7 +78,7 @@ enum ITEM_PRIORITY {
          */
         ITEM_MINIMUM_UNREACHABLE_PRIORITY = 100,
 
-        GPIO1_PRIORITY,
+        IO1_PRIORITY,
 
         /**
          * @brief UART1 优先级.
