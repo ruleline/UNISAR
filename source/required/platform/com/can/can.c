@@ -56,13 +56,13 @@ static struct CAN can[CAN_MAX];
 static i32 open_(struct CAN *self)
 {
         self->is_open = 1;
-        return 0;
+        return (0);
 }
 
 static i32 close_(struct CAN *self)
 {
         self->is_open = 0;
-        return 0;
+        return (0);
 }
 
 /**
@@ -81,11 +81,11 @@ static i32 send_classic_(struct CAN *self, struct CAN_PACKAGE *package)
         ASSERT(package->data);
 
         if (!self->is_open) {
-                return -1;
+                return (-1);
         }
 
         /* TODO */
-        return 0;
+        return (0);
 }
 
 /**
@@ -102,11 +102,11 @@ static i32 receive_classic_(struct CAN *self, struct CAN_PACKAGE *package)
         ASSERT(package->data);
 
         if (!self->is_open) {
-                return -1;
+                return (-1);
         }
 
         /* TODO */
-        return 0;
+        return (0);
 }
 
 /**
@@ -125,11 +125,11 @@ static i32 send_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
         ASSERT(package->data);
 
         if (!self->is_open) {
-                return -1;
+                return (-1);
         }
 
         /* TODO */
-        return 0;
+        return (0);
 }
 
 /**
@@ -146,11 +146,11 @@ static i32 receive_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
         ASSERT(package->data);
 
         if (!self->is_open) {
-                return -1;
+                return (-1);
         }
 
         /* TODO */
-        return 0;
+        return (0);
 }
 
 /**
@@ -205,5 +205,5 @@ i32 can_create(struct CAN *self, u8 id)
 
         self = &can[id];
         PRINTF("[CAN] create %s success.", self->name);
-        return 0;
+        return (0);
 }
