@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-24
+ * @date 2025-02-25
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -87,6 +87,8 @@ struct CAN {
          * @details 用于表示 CAN 对象的类型, 不同的类型可能对应不同的 CAN 协议版本或硬件特性.
          */
         u8 type;
+
+        bool is_open;
 
         /**
          * @var CAN::send

@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-24
+ * @date 2025-02-25
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -76,6 +76,10 @@ static i32 send_classic_(struct CAN *self, struct CAN_PACKAGE *package)
         ASSERT(package->length <= 8);
         ASSERT(package->data);
 
+        if (!self->is_open) {
+                return -1;
+        }
+
         /* TODO */
         return 0;
 }
@@ -92,6 +96,10 @@ static i32 receive_classic_(struct CAN *self, struct CAN_PACKAGE *package)
         ASSERT(self->type == CAN_COM);
         ASSERT(package);
         ASSERT(package->data);
+
+        if (!self->is_open) {
+                return -1;
+        }
 
         /* TODO */
         return 0;
@@ -112,6 +120,10 @@ static i32 send_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
         ASSERT(package->length <= 64);
         ASSERT(package->data);
 
+        if (!self->is_open) {
+                return -1;
+        }
+
         /* TODO */
         return 0;
 }
@@ -128,6 +140,10 @@ static i32 receive_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
         ASSERT(self->type == CANFD_COM);
         ASSERT(package);
         ASSERT(package->data);
+
+        if (!self->is_open) {
+                return -1;
+        }
 
         /* TODO */
         return 0;
