@@ -5,7 +5,7 @@
  * @since 2024-04-02
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-19
+ * @date 2025-02-25
  * @version 0.00.001
  *
  * @copyright ©2024 UNISAR
@@ -23,10 +23,10 @@
 /**
  * @brief 程序的入口函数.
  * @details 此函数作为程序执行的起始点.
- *          调用 kernel_start_ 函数启动内核, 然后返回 0 表示程序正常结束.
- * @return 始终返回 0, 表示程序成功执行.
+ * @return 结果
+ * @retval 0 成功
  */
-int main(void)
+i32 main(void)
 {
         kernel_start_();
         return (0);
