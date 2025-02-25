@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-24
+ * @date 2025-02-25
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -36,7 +36,7 @@ struct UART_PACKAGE {
 struct UART {
         char *name;
         u8 type;
-        u8 state;
+        bool is_open;
         i32 (*open)(struct UART *self);
         i32 (*close)(struct UART *self);
         i32 (*send)(struct UART *self, struct UART_PACKAGE *package);

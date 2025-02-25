@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-24
+ * @date 2025-02-25
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -34,13 +34,13 @@ static __dtor(UART1_PRIORITY) void deinit1_(void)
 
 static i32 open_(struct UART *self)
 {
-        self->state = 1;
+        self->is_open = 1;
         return 0;
 }
 
 static i32 close_(struct UART *self)
 {
-        self->state = 0;
+        self->is_open = 0;
         return 0;
 }
 
@@ -51,7 +51,7 @@ static i32 send_uart_(struct UART *self, struct UART_PACKAGE *package)
         ASSERT(package->length);
         ASSERT(package->data);
 
-        if (self->state == 0) {
+        if (!self->is_open) {
                 return -1;
         }
 
@@ -65,7 +65,7 @@ static i32 receive_uart_(struct UART *self, struct UART_PACKAGE *package)
         ASSERT(package);
         ASSERT(package->data);
 
-        if (self->state == 0) {
+        if (!self->is_open) {
                 return -1;
         }
 
@@ -80,7 +80,7 @@ static i32 send_usart_(struct UART *self, struct UART_PACKAGE *package)
         ASSERT(package->length);
         ASSERT(package->data);
 
-        if (self->state == 0) {
+        if (!self->is_open) {
                 return -1;
         }
 
@@ -94,7 +94,7 @@ static i32 receive_usart_(struct UART *self, struct UART_PACKAGE *package)
         ASSERT(package);
         ASSERT(package->data);
 
-        if (self->state == 0) {
+        if (!self->is_open) {
                 return -1;
         }
 
@@ -109,7 +109,7 @@ static i32 send_blocking_uart_(struct UART *self, struct UART_PACKAGE *package)
         ASSERT(package->length);
         ASSERT(package->data);
 
-        if (self->state == 0) {
+        if (!self->is_open) {
                 return -1;
         }
 
@@ -123,7 +123,7 @@ static i32 receive_blocking_uart_(struct UART *self, struct UART_PACKAGE *packag
         ASSERT(package);
         ASSERT(package->data);
 
-        if (self->state == 0) {
+        if (!self->is_open) {
                 return -1;
         }
 
@@ -138,7 +138,7 @@ static i32 send_blocking_usart_(struct UART *self, struct UART_PACKAGE *package)
         ASSERT(package->length);
         ASSERT(package->data);
 
-        if (self->state == 0) {
+        if (!self->is_open) {
                 return -1;
         }
 
@@ -152,7 +152,7 @@ static i32 receive_blocking_usart_(struct UART *self, struct UART_PACKAGE *packa
         ASSERT(package);
         ASSERT(package->data);
 
-        if (self->state == 0) {
+        if (!self->is_open) {
                 return -1;
         }
 
@@ -167,7 +167,7 @@ static i32 send_polling_uart_(struct UART *self, struct UART_PACKAGE *package)
         ASSERT(package->length);
         ASSERT(package->data);
 
-        if (self->state == 0) {
+        if (!self->is_open) {
                 return -1;
         }
 
@@ -181,7 +181,7 @@ static i32 receive_polling_uart_(struct UART *self, struct UART_PACKAGE *package
         ASSERT(package);
         ASSERT(package->data);
 
-        if (self->state == 0) {
+        if (!self->is_open) {
                 return -1;
         }
 
@@ -196,7 +196,7 @@ static i32 send_polling_usart_(struct UART *self, struct UART_PACKAGE *package)
         ASSERT(package->length);
         ASSERT(package->data);
 
-        if (self->state == 0) {
+        if (!self->is_open) {
                 return -1;
         }
 
@@ -210,7 +210,7 @@ static i32 receive_polling_usart_(struct UART *self, struct UART_PACKAGE *packag
         ASSERT(package);
         ASSERT(package->data);
 
-        if (self->state == 0) {
+        if (!self->is_open) {
                 return -1;
         }
 
