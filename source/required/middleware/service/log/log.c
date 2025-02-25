@@ -28,7 +28,7 @@ static i32 send_(struct LOG *self, struct LOG_PACKAGE *package)
 
         state = queue_push_(&self->send_queue, package);
         ASSERT(state == 0);
-        return 0;
+        return (0);
 }
 
 static __force_inline i32 parse_send_(struct LOG *self,
@@ -55,7 +55,7 @@ static __force_inline i32 parse_send_(struct LOG *self,
                 package->length = size;
                 memcpy(&package->buffer[0], &buffer[0], package->length);
         }
-        return 0;
+        return (0);
 }
 
 static void send_entry_(void *parameters)
