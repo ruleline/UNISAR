@@ -10,6 +10,9 @@
  *
  * @copyright ©2025 UNISAR
  *
+ * @defgroup UART-INIT UART 设备初始化
+ * @defgroup UART-DEINIT UART 设备反初始化
+ *
  * @details
  * -----------------------------------------------------------------------------
  *    version   |    date    |     author     |             comments
@@ -20,17 +23,12 @@
 
 #include "uart.h"
 
-static struct UART uart[1];
+enum UART_TYPE {
+        UART_COM,
+        USART_COM,
+};
 
-static __ctor(UART1_PRIORITY) void init1_(void)
-{
-        /* TODO */
-}
-
-static __dtor(UART1_PRIORITY) void deinit1_(void)
-{
-        /* TODO */
-}
+static struct UART uart[UART_MAX];
 
 static i32 open_(struct UART *self)
 {
@@ -218,41 +216,37 @@ static i32 receive_polling_usart_(struct UART *self, struct UART_PACKAGE *packag
         return 0;
 }
 
-i32 uart_create(struct UART *self, char *name, u8 type)
+static __ctor(UART1_PRIORITY) void init1_(void)
+{
+        struct UART *self = &uart[UART_LOG];
+
+        strcpy(&self->name[0], "uart-log");
+        self->is_open = 0;
+        self->type = UART_COM;
+        self->open = open_;
+        self->close = close_;
+        self->send = send_uart_;
+        self->receive = receive_uart_;
+        self->send_blocking = send_blocking_uart_;
+        self->receive_blocking = receive_blocking_uart_;
+        self->send_polling = send_polling_uart_;
+        self->receive_polling = receive_polling_uart_;
+
+        /* TODO */
+        PRINT("[UART] init %s success.", self->name);
+}
+
+static __dtor(UART1_PRIORITY) void deinit1_(void)
+{
+        /* TODO */
+}
+
+i32 uart_create(struct UART *self, u8 id)
 {
         ASSERT(self);
-        ASSERT(name);
-        ASSERT(strlen(name));
-        ASSERT(strlen(name) < sizeof(self->name));
-        ASSERT((type == UART_COM) || (type == USART_COM));
+        ASSERT(id < ARRAY_SIZE(uart));
 
-        for (u8 i = 0; i < ARRAY_SIZE(uart); i++) {
-                if (uart[i].name[0]) {
-                        continue;
-                }
-                strcpy(&uart[i].name[0], name);
-                uart[i].type = type;
-                uart[i].state = 0;
-                uart[i].open = open_;
-                uart[i].close = close_;
-                if (type == UART_COM) {
-                        uart[i].send = send_uart_;
-                        uart[i].receive = receive_uart_;
-                        uart[i].send_blocking = send_blocking_uart_;
-                        uart[i].receive_blocking = receive_blocking_uart_;
-                        uart[i].send_polling = send_polling_uart_;
-                        uart[i].receive_polling = receive_polling_uart_;
-                } else {
-                        uart[i].send = send_usart_;
-                        uart[i].receive = receive_usart_;
-                        uart[i].send_blocking = send_blocking_usart_;
-                        uart[i].receive_blocking = receive_blocking_usart_;
-                        uart[i].send_polling = send_polling_usart_;
-                        uart[i].receive_polling = receive_polling_usart_;
-                }
-                self = &uart[i];
-                PRINTF("[UART] create %s success.", self->name);
-                return 0;
-        }
-        return -1;
+        self = &uart[id];
+        PRINTF("[UART] create %s success.", self->name);
+        return 0;
 }

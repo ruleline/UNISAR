@@ -23,9 +23,9 @@
 
 #include "unisis.h"
 
-enum UART_TYPE {
-        UART_COM,
-        USART_COM,
+enum UART_ID {
+        UART_LOG,
+        UART_MAX,
 };
 
 struct UART_PACKAGE {
@@ -57,36 +57,42 @@ static __force_inline i32 uart_close_(struct UART *self)
         return self->close(self);
 }
 
-static __force_inline i32 uart_send_(struct UART *self, struct UART_PACKAGE *package)
+static __force_inline i32 uart_send_(struct UART *self,
+                                        struct UART_PACKAGE *package)
 {
         return self->send(self, package);
 }
 
-static __force_inline i32 uart_receive_(struct UART *self, struct UART_PACKAGE *package)
+static __force_inline i32 uart_receive_(struct UART *self,
+                                        struct UART_PACKAGE *package)
 {
         return self->receive(self, package);
 }
 
-static __force_inline i32 uart_send_blocking_(struct UART *self, struct UART_PACKAGE *package)
+static __force_inline i32 uart_send_blocking_(struct UART *self,
+                                                struct UART_PACKAGE *package)
 {
         return self->send_blocking(self, package);
 }
 
-static __force_inline i32 uart_receive_blocking_(struct UART *self, struct UART_PACKAGE *package)
+static __force_inline i32 uart_receive_blocking_(struct UART *self,
+                                                struct UART_PACKAGE *package)
 {
         return self->receive_blocking(self, package);
 }
 
-static __force_inline i32 uart_send_polling_(struct UART *self, struct UART_PACKAGE *package)
+static __force_inline i32 uart_send_polling_(struct UART *self,
+                                                struct UART_PACKAGE *package)
 {
         return self->send_polling(self, package);
 }
 
-static __force_inline i32 uart_receive_polling_(struct UART *self, struct UART_PACKAGE *package)
+static __force_inline i32 uart_receive_polling_(struct UART *self,
+                                                struct UART_PACKAGE *package)
 {
         return self->receive_polling(self, package);
 }
 
-i32 uart_create(struct UART *self, char *name, u8 type);
+i32 uart_create(struct UART *self, u8 id);
 
 #endif /* !defined UART_H */
