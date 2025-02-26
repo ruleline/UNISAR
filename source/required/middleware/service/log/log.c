@@ -5,7 +5,7 @@
  * @since 2025-02-24
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-25
+ * @date 2025-02-26
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -98,14 +98,14 @@ static __ctor(LOG_PRIORITY) void init_(void)
         ASSERT(state == 0);
 
         self->send = &send_;
-        PRINT("[LOG] init success.");
+        PRINTF("[LOG] init success.");
 
         state = uart_open_(self->super);
         ASSERT(state == 0);
-        PRINT("[LOG] open success.");
+        PRINTF("[LOG] open success.");
 }
 
 static __dtor(LOG_PRIORITY) void deinit_(void)
 {
-        PRINT("[LOG] deinit success.");
+        PRINTF("[LOG] deinit success.");
 }
