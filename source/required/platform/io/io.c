@@ -63,16 +63,18 @@ static __ctor(IO1_PRIORITY) void init1_(void)
 {
         struct IO *self = &io[IO_3V3];
         static char name[IO_3V3_NAME_LENGTH];
+        static struct OBJECT super;
 
         /* TODO */
 
         memset(&name[0], '\0', sizeof(name));
         strncpy(name, "io-3v3", strlen("io-3v3"));
-        self->super.name = &name[0];
-        self->super.open = 0;
-        self->super.close = 0;
-        self->super.read = read_;
-        self->super.write = write_;
+        super.name = &name[0];
+        super.open = 0;
+        super.close = 0;
+        super.read = read_;
+        super.write = write_;
+        self->super = &super;
         self->type = IO_INPUT;
         self->toggle = toggle_;
         self->highz = highz_;

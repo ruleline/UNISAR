@@ -29,7 +29,7 @@ enum IO_ID {
 };
 
 struct IO {
-        struct OBJECT super;
+        struct OBJECT *super;
         u8 type;
         i32 (*toggle)(struct IO *self);
         i32 (*highz)(struct IO *self);
