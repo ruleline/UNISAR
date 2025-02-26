@@ -1,11 +1,11 @@
 /**
- * @file gpio.h
- * @brief gpio
+ * @file io.h
+ * @brief io
  * @author ruleline (ruleline@outlook.com)
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-25
+ * @date 2025-02-26
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -23,34 +23,40 @@
 
 #include "unisis.h"
 
-struct IO {
-        char name[20];
-        bool (*read)(struct IO *gpio);
-        i32 (*write)(struct IO *gpio, bool state);
-        i32 (*toggle)(struct IO *gpio);
-        i32 (*highz)(struct IO *gpio);
+enum IO_ID {
+        IO_3V3,
+        IO_MAX,
 };
 
-static __force_inline bool gpio_read_(struct IO *self)
+struct IO {
+        char *name;
+        u8 type;
+        bool (*read)(struct IO *self);
+        i32 (*write)(struct IO *self, bool state);
+        i32 (*toggle)(struct IO *self);
+        i32 (*highz)(struct IO *self);
+};
+
+static __force_inline bool io_read_(struct IO *self)
 {
         return self->read(self);
 }
 
-static __force_inline i32 gpio_write_(struct IO *self, bool state)
+static __force_inline i32 io_write_(struct IO *self, bool state)
 {
         return self->write(self, state);
 }
 
-static __force_inline i32 gpio_toggle_(struct IO *self)
+static __force_inline i32 io_toggle_(struct IO *self)
 {
         return self->toggle(self);
 }
 
-static __force_inline i32 gpio_highz_(struct IO *self)
+static __force_inline i32 io_highz_(struct IO *self)
 {
         return self->highz(self);
 }
 
-i32 gpio_create(struct IO *self, char *name);
+i32 io_create(struct IO *self, u8 id);
 
 #endif /* !defined IO_H */
