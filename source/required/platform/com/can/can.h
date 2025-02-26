@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-25
+ * @date 2025-02-27
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -61,7 +61,7 @@ struct CAN {
          * @brief 名称
          * @details 用于存储 CAN 对象的名称, 方便在系统中识别和区分不同的 CAN 对象.
          */
-        char name[20];
+        char *name;
 
         /**
          * @var CAN::type

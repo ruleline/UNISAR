@@ -177,7 +177,8 @@ static __ctor(CAN1_PRIORITY) void init1_(void)
         /* TODO */
 
         memset(&name[0], '\0', sizeof(name));
-        strcpy(&self->name[0], "can-cockpit");
+        strncpy(&name[0], "can-cockpit", sizeof(name));
+        self->name = &name[0];
         self->is_open = 0;
         self->type = CAN_COM;
         self->open = open_;
