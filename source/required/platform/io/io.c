@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-25
+ * @date 2025-02-26
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -27,35 +27,41 @@ static bool read_(struct IO *self)
         bool state = 0;
 
         /* TODO */
+        // PRINTF("[IO] read %s successfully.", self->name);
         return state;
 }
 
 static i32 write_(struct IO *self, bool state)
 {
         /* TODO */
+        // PRINTF("[IO] write %s successfully.", self->name);
         return (0);
 }
 
 static i32 toggle_(struct IO *self)
 {
         /* TODO */
+        // PRINTF("[IO] toggle %s successfully.", self->name);
         return (0);
 }
 
 static i32 highz_(struct IO *self)
 {
         /* TODO */
+        // PRINTF("[IO] highz %s successfully.", self->name);
         return (0);
 }
 
 static __ctor(IO1_PRIORITY) void init1_(void)
 {
         /* TODO */
+        // PRINTF("[IO] init %s successfully.", self->name);
 }
 
 static __dtor(IO1_PRIORITY) void deinit1_(void)
 {
         /* TODO */
+        // PRINTF("[IO] deinit %s successfully.", self->name);
 }
 
 i32 io_create(struct IO *self, char *name)
@@ -75,7 +81,7 @@ i32 io_create(struct IO *self, char *name)
                 io[i].toggle = toggle_;
                 io[i].highz = highz_;
                 self = &io[i];
-                PRINTF("[IO] create %s success.", self->name);
+                PRINTF("[IO] create %s successfully.", self->name);
                 return (0);
         }
         return (-1);
