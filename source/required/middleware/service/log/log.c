@@ -98,14 +98,13 @@ static __ctor(LOG_PRIORITY) void init_(void)
         ASSERT(state == 0);
 
         self->send = &send_;
-        PRINTF("[LOG] init success.");
+        PRINTF("[LOG] init successfully.");
 
         state = uart_open_(self->super);
         ASSERT(state == 0);
-        PRINTF("[LOG] open success.");
 }
 
 static __dtor(LOG_PRIORITY) void deinit_(void)
 {
-        PRINTF("[LOG] deinit success.");
+        PRINTF("[LOG] deinit successfully.");
 }
