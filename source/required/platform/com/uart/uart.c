@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-25
+ * @date 2025-02-26
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -233,7 +233,7 @@ static __ctor(UART1_PRIORITY) void init1_(void)
         self->receive_polling = receive_polling_uart_;
 
         /* TODO */
-        PRINT("[UART] init %s success.", self->name);
+        PRINTF("[UART] init %s success.", self->name);
 }
 
 static __dtor(UART1_PRIORITY) void deinit1_(void)
