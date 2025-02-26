@@ -56,12 +56,14 @@ static struct CAN can[CAN_MAX];
 static i32 open_(struct CAN *self)
 {
         self->is_open = 1;
+        PRINTF("[CAN] open %s successfully.", self->name);
         return (0);
 }
 
 static i32 close_(struct CAN *self)
 {
         self->is_open = 0;
+        PRINTF("[CAN] close %s successfully.", self->name);
         return (0);
 }
 
@@ -85,6 +87,7 @@ static i32 send_classic_(struct CAN *self, struct CAN_PACKAGE *package)
         }
 
         /* TODO */
+        PRINTF("[CAN] send %s successfully.", self->name);
         return (0);
 }
 
@@ -106,6 +109,7 @@ static i32 receive_classic_(struct CAN *self, struct CAN_PACKAGE *package)
         }
 
         /* TODO */
+        PRINTF("[CAN] receive %s successfully.", self->name);
         return (0);
 }
 
@@ -129,6 +133,7 @@ static i32 send_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
         }
 
         /* TODO */
+        PRINTF("[CAN] send %s successfully.", self->name);
         return (0);
 }
 
@@ -150,6 +155,7 @@ static i32 receive_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
         }
 
         /* TODO */
+        PRINTF("[CAN] receive %s successfully.", self->name);
         return (0);
 }
 
@@ -163,6 +169,8 @@ static __ctor(CAN1_PRIORITY) void init1_(void)
 {
         struct CAN *self = &can[CAN_COCKPIT];
 
+        /* TODO */
+
         strcpy(&self->name[0], "can-cockpit");
         self->is_open = 0;
         self->type = CAN_COM;
@@ -170,9 +178,7 @@ static __ctor(CAN1_PRIORITY) void init1_(void)
         self->close = close_;
         self->send = send_classic_;
         self->receive = receive_classic_;
-
-        /* TODO */
-        PRINTF("[CAN] init %s success.", self->name);
+        PRINTF("[CAN] init %s successfully.", self->name);
 }
 
 /**
@@ -186,7 +192,7 @@ static __dtor(CAN1_PRIORITY) void deinit1_(void)
         struct CAN *self = &can[CAN_COCKPIT];
 
         /* TODO */
-        PRINTF("[CAN] deinit %s success.", self->name);
+        PRINTF("[CAN] deinit %s successfully.", self->name);
 }
 
 /**
@@ -204,6 +210,6 @@ i32 can_create(struct CAN *self, u8 id)
         ASSERT(id < ARRAY_SIZE(can));
 
         self = &can[id];
-        PRINTF("[CAN] create %s success.", self->name);
+        PRINTF("[CAN] create %s successfully.", self->name);
         return (0);
 }
