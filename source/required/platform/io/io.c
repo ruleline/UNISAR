@@ -25,6 +25,10 @@ enum IO_TYPE {
         IO_OUTPUT,
 };
 
+enum IO_NAME_LENGTH {
+        IO_3V3_NAME_LENGTH = 20,
+};
+
 static struct IO io[IO_MAX];
 
 static bool read_(struct IO *self)
@@ -32,44 +36,47 @@ static bool read_(struct IO *self)
         bool state = 0;
 
         /* TODO */
-        PRINTF("[IO] read %s successfully.", self->name);
+        PRINTF("[IO] read %s successfully", self->name);
         return state;
 }
 
 static i32 write_(struct IO *self, bool state)
 {
         /* TODO */
-        PRINTF("[IO] write %s successfully.", self->name);
+        PRINTF("[IO] write %s successfully", self->name);
         return (0);
 }
 
 static i32 toggle_(struct IO *self)
 {
         /* TODO */
-        PRINTF("[IO] toggle %s successfully.", self->name);
+        PRINTF("[IO] toggle %s successfully", self->name);
         return (0);
 }
 
 static i32 highz_(struct IO *self)
 {
         /* TODO */
-        PRINTF("[IO] highz %s successfully.", self->name);
+        PRINTF("[IO] highz %s successfully", self->name);
         return (0);
 }
 
 static __ctor(IO1_PRIORITY) void init1_(void)
 {
         struct IO *self = &io[IO_3V3];
+        static char name[IO_3V3_NAME_LENGTH];
 
         /* TODO */
 
-        strcpy(&self->name[0], "io-3v3");
+        memset(&name[0], '\0', sizeof(name));
+        strncpy(name, "io-3v3", strlen("io-3v3"));
+        self->name = &name[0];
         self->type = IO_INPUT;
         self->read = read_;
         self->write = write_;
         self->toggle = toggle_;
         self->highz = highz_;
-        PRINTF("[IO] init %s successfully.", self->name);
+        PRINTF("[IO] init %s successfully", self->name);
 }
 
 static __dtor(IO1_PRIORITY) void deinit1_(void)
@@ -77,7 +84,7 @@ static __dtor(IO1_PRIORITY) void deinit1_(void)
         struct IO *self = &io[IO_3V3];
 
         /* TODO */
-        PRINTF("[IO] deinit %s successfully.", self->name);
+        PRINTF("[IO] deinit %s successfully", self->name);
 }
 
 i32 io_create(struct IO *self, u8 id)
@@ -86,6 +93,6 @@ i32 io_create(struct IO *self, u8 id)
         ASSERT(id < ARRAY_SIZE(io));
 
         self = &io[id];
-        PRINTF("[IO] create %s successfully.", self->name);
+        PRINTF("[IO] create %s successfully", self->name);
         return (0);
 }
