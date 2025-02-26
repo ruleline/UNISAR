@@ -179,12 +179,12 @@ static __ctor(CAN1_PRIORITY) void init1_(void)
         memset(&name[0], '\0', sizeof(name));
         strncpy(&name[0], "can-cockpit", sizeof(name));
         self->super.name = &name[0];
-        self->is_open = 0;
-        self->type = CAN_COM;
         self->super.open = open_;
         self->super.close = close_;
         self->super.write = send_classic_;
         self->super.read = receive_classic_;
+        self->type = CAN_COM;
+        self->is_open = 0;
         PRINTF("[CAN] init %s successfully", can_name_(self));
 }
 
