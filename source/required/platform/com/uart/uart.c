@@ -238,16 +238,17 @@ static __ctor(UART1_PRIORITY) void init1_(void)
 {
         struct UART *self = &uart[UART_LOG];
         static char name[UART_LOG_NAME_LENGTH];
+        static struct OBJECT super;
 
         /* TODO */
 
         memset(&name[0], '\0', sizeof(name));
         strncpy(&name[0], "uart-log", strlen("uart-log"));
-        self->super.name = &name[0];
-        self->super.open = open_;
-        self->super.close = close_;
-        self->super.write = send_uart_;
-        self->super.read = receive_uart_;
+        super.name = &name[0];
+        super.open = open_;
+        super.close = close_;
+        super.write = send_uart_;
+        self->super = &super;
         self->type = UART_COM;
         self->is_open = 0;
         self->send_blocking = send_blocking_uart_;

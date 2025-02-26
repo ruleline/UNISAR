@@ -34,7 +34,7 @@ struct UART_PACKAGE {
 };
 
 struct UART {
-        struct OBJECT super;
+        struct OBJECT *super;
         u8 type;
         bool is_open;
         i32 (*send_blocking)(struct UART *self, struct UART_PACKAGE *package);
