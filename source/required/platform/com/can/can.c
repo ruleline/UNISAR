@@ -60,14 +60,14 @@ static struct CAN can[CAN_MAX];
 static i32 open_(struct CAN *self)
 {
         self->is_open = 1;
-        PRINTF("[CAN] open %s successfully", self->name);
+        PRINTF("[CAN] open %s successfully", can_name_(self));
         return (0);
 }
 
 static i32 close_(struct CAN *self)
 {
         self->is_open = 0;
-        PRINTF("[CAN] close %s successfully", self->name);
+        PRINTF("[CAN] close %s successfully", can_name_(self));
         return (0);
 }
 
@@ -91,7 +91,7 @@ static i32 send_classic_(struct CAN *self, struct CAN_PACKAGE *package)
         }
 
         /* TODO */
-        PRINTF("[CAN] send %s successfully", self->name);
+        PRINTF("[CAN] send %s successfully", can_name_(self));
         return (0);
 }
 
@@ -113,7 +113,7 @@ static i32 receive_classic_(struct CAN *self, struct CAN_PACKAGE *package)
         }
 
         /* TODO */
-        PRINTF("[CAN] receive %s successfully", self->name);
+        PRINTF("[CAN] receive %s successfully", can_name_(self));
         return (0);
 }
 
@@ -137,7 +137,7 @@ static i32 send_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
         }
 
         /* TODO */
-        PRINTF("[CAN] send %s successfully", self->name);
+        PRINTF("[CAN] send %s successfully", can_name_(self));
         return (0);
 }
 
@@ -159,7 +159,7 @@ static i32 receive_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
         }
 
         /* TODO */
-        PRINTF("[CAN] receive %s successfully", self->name);
+        PRINTF("[CAN] receive %s successfully", can_name_(self));
         return (0);
 }
 
@@ -178,14 +178,14 @@ static __ctor(CAN1_PRIORITY) void init1_(void)
 
         memset(&name[0], '\0', sizeof(name));
         strncpy(&name[0], "can-cockpit", sizeof(name));
-        self->name = &name[0];
+        self->super.name = &name[0];
         self->is_open = 0;
         self->type = CAN_COM;
-        self->open = open_;
-        self->close = close_;
-        self->send = send_classic_;
-        self->receive = receive_classic_;
-        PRINTF("[CAN] init %s successfully", self->name);
+        self->super.open = open_;
+        self->super.close = close_;
+        self->super.write = send_classic_;
+        self->super.read = receive_classic_;
+        PRINTF("[CAN] init %s successfully", can_name_(self));
 }
 
 /**
@@ -199,7 +199,7 @@ static __dtor(CAN1_PRIORITY) void deinit1_(void)
         struct CAN *self = &can[CAN_COCKPIT];
 
         /* TODO */
-        PRINTF("[CAN] deinit %s successfully", self->name);
+        PRINTF("[CAN] deinit %s successfully", can_name_(self));
 }
 
 /**
@@ -217,6 +217,6 @@ i32 can_create(struct CAN *self, u8 id)
         ASSERT(id < ARRAY_SIZE(can));
 
         self = &can[id];
-        PRINTF("[CAN] create %s successfully", self->name);
+        PRINTF("[CAN] create %s successfully", can_name_(self));
         return (0);
 }

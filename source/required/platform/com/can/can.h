@@ -21,7 +21,7 @@
 #if !defined CAN_H
 #define CAN_H
 
-#include "unisis.h"
+#include "object.h"
 
 enum CAN_ID {
         CAN_COCKPIT,
@@ -56,12 +56,7 @@ struct CAN_PACKAGE {
  *          方便对 CAN 对象进行统一管理和操作.
  */
 struct CAN {
-        /**
-         * @var CAN::name
-         * @brief 名称
-         * @details 用于存储 CAN 对象的名称, 方便在系统中识别和区分不同的 CAN 对象.
-         */
-        char *name;
+        struct OBJECT super;
 
         /**
          * @var CAN::type
@@ -71,40 +66,21 @@ struct CAN {
         u8 type;
 
         bool is_open;
-        i32 (*open)(struct UART *self);
-        i32 (*close)(struct UART *self);
-
-        /**
-         * @var CAN::send
-         * @brief 发送
-         * @details 用于通过 CAN 对象发送数据包的函数.
-         * @param[in] self CAN 对象
-         * @param[in] package 数据包
-         * @return 结果
-         * @retval 0 成功
-         */
-        i32 (*send)(struct CAN *self, struct CAN_PACKAGE *package);
-
-        /**
-         * @var CAN::receive
-         * @brief 接收
-         * @details 用于从 CAN 对象接收数据包的函数.
-         * @param[in] self CAN 对象
-         * @param[out] package 数据包
-         * @return 结果
-         * @retval 0 成功
-         */
-        i32 (*receive)(struct CAN *self, struct CAN_PACKAGE *package);
 };
+
+static __force_inline char *can_name_(struct CAN *self)
+{
+        return (object_name_(self));
+}
 
 static __force_inline i32 can_open_(struct CAN *self)
 {
-        return self->open(self);
+        return (object_open_(self));
 }
 
 static __force_inline i32 can_close_(struct CAN *self)
 {
-        return self->close(self);
+        return (object_close_(self));
 }
 
 /**
@@ -116,7 +92,7 @@ static __force_inline i32 can_close_(struct CAN *self)
  */
 static __force_inline i32 can_send_(struct CAN *self, struct CAN_PACKAGE *package)
 {
-        return self->send(self, package);
+        return (object_write_(self, package));
 }
 
 /**
@@ -128,7 +104,7 @@ static __force_inline i32 can_send_(struct CAN *self, struct CAN_PACKAGE *packag
  */
 static __force_inline i32 can_receive_(struct CAN *self, struct CAN_PACKAGE *package)
 {
-        return self->receive(self, package);
+        return (object_read_(self, package));
 }
 
 /**
