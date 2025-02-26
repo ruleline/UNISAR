@@ -33,12 +33,14 @@ static struct UART uart[UART_MAX];
 static i32 open_(struct UART *self)
 {
         self->is_open = 1;
+        PRINTF("[UART] open %s successfully.", self->name);
         return (0);
 }
 
 static i32 close_(struct UART *self)
 {
         self->is_open = 0;
+        PRINTF("[UART] close %s successfully.", self->name);
         return (0);
 }
 
@@ -54,6 +56,7 @@ static i32 send_uart_(struct UART *self, struct UART_PACKAGE *package)
         }
 
         /* TODO */
+        PRINTF("[UART] send %s successfully.", self->name);
         return (0);
 }
 
@@ -68,6 +71,7 @@ static i32 receive_uart_(struct UART *self, struct UART_PACKAGE *package)
         }
 
         /* TODO */
+        PRINTF("[UART] receive %s successfully.", self->name);
         return (0);
 }
 
@@ -83,6 +87,7 @@ static i32 send_usart_(struct UART *self, struct UART_PACKAGE *package)
         }
 
         /* TODO */
+        PRINTF("[UART] send %s successfully.", self->name);
         return (0);
 }
 
@@ -97,6 +102,7 @@ static i32 receive_usart_(struct UART *self, struct UART_PACKAGE *package)
         }
 
         /* TODO */
+        PRINTF("[UART] receive %s successfully.", self->name);
         return (0);
 }
 
@@ -112,6 +118,7 @@ static i32 send_blocking_uart_(struct UART *self, struct UART_PACKAGE *package)
         }
 
         /* TODO */
+        PRINTF("[UART] send %s successfully.", self->name);
         return (0);
 }
 
@@ -126,6 +133,7 @@ static i32 receive_blocking_uart_(struct UART *self, struct UART_PACKAGE *packag
         }
 
         /* TODO */
+        PRINTF("[UART] receive %s successfully.", self->name);
         return (0);
 }
 
@@ -141,6 +149,7 @@ static i32 send_blocking_usart_(struct UART *self, struct UART_PACKAGE *package)
         }
 
         /* TODO */
+        PRINTF("[UART] send %s successfully.", self->name);
         return (0);
 }
 
@@ -155,6 +164,7 @@ static i32 receive_blocking_usart_(struct UART *self, struct UART_PACKAGE *packa
         }
 
         /* TODO */
+        PRINTF("[UART] receive %s successfully.", self->name);
         return (0);
 }
 
@@ -170,6 +180,7 @@ static i32 send_polling_uart_(struct UART *self, struct UART_PACKAGE *package)
         }
 
         /* TODO */
+        PRINTF("[UART] send %s successfully.", self->name);
         return (0);
 }
 
@@ -184,6 +195,7 @@ static i32 receive_polling_uart_(struct UART *self, struct UART_PACKAGE *package
         }
 
         /* TODO */
+        PRINTF("[UART] receive %s successfully.", self->name);
         return (0);
 }
 
@@ -199,6 +211,7 @@ static i32 send_polling_usart_(struct UART *self, struct UART_PACKAGE *package)
         }
 
         /* TODO */
+        PRINTF("[UART] send %s successfully.", self->name);
         return (0);
 }
 
@@ -213,12 +226,15 @@ static i32 receive_polling_usart_(struct UART *self, struct UART_PACKAGE *packag
         }
 
         /* TODO */
+        PRINTF("[UART] receive %s successfully.", self->name);
         return (0);
 }
 
 static __ctor(UART1_PRIORITY) void init1_(void)
 {
         struct UART *self = &uart[UART_LOG];
+
+        /* TODO */
 
         strcpy(&self->name[0], "uart-log");
         self->is_open = 0;
@@ -231,14 +247,15 @@ static __ctor(UART1_PRIORITY) void init1_(void)
         self->receive_blocking = receive_blocking_uart_;
         self->send_polling = send_polling_uart_;
         self->receive_polling = receive_polling_uart_;
-
-        /* TODO */
-        PRINTF("[UART] init %s success.", self->name);
+        PRINTF("[UART] init %s successfully.", self->name);
 }
 
 static __dtor(UART1_PRIORITY) void deinit1_(void)
 {
+        struct UART *self = &uart[UART_LOG];
+
         /* TODO */
+        PRINTF("[UART] deinit %s successfully.", self->name);
 }
 
 i32 uart_create(struct UART *self, u8 id)
@@ -247,6 +264,6 @@ i32 uart_create(struct UART *self, u8 id)
         ASSERT(id < ARRAY_SIZE(uart));
 
         self = &uart[id];
-        PRINTF("[UART] create %s success.", self->name);
+        PRINTF("[UART] create %s successfully.", self->name);
         return (0);
 }
