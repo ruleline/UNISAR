@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-26
+ * @date 2025-02-27
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -30,7 +30,7 @@ static i32 send_spi_(struct SPI *self, struct SPI_PACKAGE *package)
         ASSERT(package->data);
 
         /* TODO */
-        PRINTF("[SPI] send %s successfully.", self->name);
+        PRINTF("[SPI] send %s successfully", self->name);
         return (0);
 }
 
@@ -41,7 +41,7 @@ static i32 receive_spi_(struct SPI *self, struct SPI_PACKAGE *package)
         ASSERT(package->data);
 
         /* TODO */
-        PRINTF("[SPI] receive %s successfully.", self->name);
+        PRINTF("[SPI] receive %s successfully", self->name);
         return (0);
 }
 
@@ -53,7 +53,7 @@ static i32 send_qspi_(struct SPI *self, struct SPI_PACKAGE *package)
         ASSERT(package->data);
 
         /* TODO */
-        PRINTF("[SPI] send %s successfully.", self->name);
+        PRINTF("[SPI] send %s successfully", self->name);
         return (0);
 }
 
@@ -64,20 +64,20 @@ static i32 receive_qspi_(struct SPI *self, struct SPI_PACKAGE *package)
         ASSERT(package->data);
 
         /* TODO */
-        PRINTF("[SPI] receive %s successfully.", self->name);
+        PRINTF("[SPI] receive %s successfully", self->name);
         return (0);
 }
 
 static __ctor(SPI1_PRIORITY) void init1_(void)
 {
         /* TODO */
-        // PRINTF("[SPI] init %s successfully.", self->name);
+        // PRINTF("[SPI] init %s successfully", self->name);
 }
 
 static __dtor(SPI1_PRIORITY) void deinit1_(void)
 {
         /* TODO */
-        // PRINTF("[SPI] deinit %s successfully.", self->name);
+        // PRINTF("[SPI] deinit %s successfully", self->name);
 }
 
 i32 spi_create(struct SPI *self, char *name, u8 type)
@@ -102,7 +102,7 @@ i32 spi_create(struct SPI *self, char *name, u8 type)
                         spi[i].receive = receive_qspi_;
                 }
                 self = &spi[i];
-                PRINTF("[SPI] create %s successfully.", self->name);
+                PRINTF("[SPI] create %s successfully", self->name);
                 return (0);
         }
         return (-1);
