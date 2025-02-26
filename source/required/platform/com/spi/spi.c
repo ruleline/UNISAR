@@ -101,8 +101,8 @@ static __ctor(SPI1_PRIORITY) void init1_(void)
         memset(&name[0], '\0', sizeof(name));
         strncpy(&name[0], "spi-flash", strlen("spi-flash"));
         self->super.name = &name[0];
-        self->is_open = 0;
         self->type = QSPI_COM;
+        self->is_open = 0;
         self->super.open = open_;
         self->super.close = close_;
         self->super.write = send_qspi_;
