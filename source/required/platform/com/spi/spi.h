@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-24
+ * @date 2025-02-27
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -23,9 +23,9 @@
 
 #include "unisis.h"
 
-enum SPI_TYPE {
-        SPI_COM,
-        QSPI_COM,
+enum SPI_ID {
+        SPI_FLASH,
+        SPI_MAX,
 };
 
 struct SPI_PACKAGE {
@@ -36,9 +36,22 @@ struct SPI_PACKAGE {
 struct SPI {
         char *name;
         u8 type;
+        bool is_open;
+        i32 (*open)(struct SPI *self);
+        i32 (*close)(struct SPI *self);
         i32 (*send)(struct SPI *self, struct SPI_PACKAGE *package);
         i32 (*receive)(struct SPI *self, struct SPI_PACKAGE *package);
 };
+
+static __force_inline i32 spi_open_(struct SPI *self)
+{
+        return self->open(self);
+}
+
+static __force_inline i32 spi_close_(struct SPI *self)
+{
+        return self->close(self);
+}
 
 static __force_inline i32 spi_send_(struct SPI *self, struct SPI_PACKAGE *package)
 {
@@ -50,6 +63,6 @@ static __force_inline i32 spi_receive_(struct SPI *self, struct SPI_PACKAGE *pac
         return self->receive(self, package);
 }
 
-i32 spi_create(struct SPI *self, char *name, u8 type);
+i32 spi_create(struct SPI *self, u8 id);
 
 #endif /* !defined SPI_H */

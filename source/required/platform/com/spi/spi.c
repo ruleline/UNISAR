@@ -20,7 +20,30 @@
 
 #include "spi.h"
 
-static struct SPI spi[1];
+enum SPI_TYPE {
+        SPI_COM,
+        QSPI_COM,
+};
+
+enum SPI_NAME_LENGTH {
+        SPI_FLASH_NAME_LENGTH = 20,
+};
+
+static struct SPI spi[SPI_MAX];
+
+static i32 open_(struct SPI *self)
+{
+        self->is_open = 1;
+        PRINTF("[SPI] open %s successfully", self->name);
+        return (0);
+}
+
+static i32 close_(struct SPI *self)
+{
+        self->is_open = 0;
+        PRINTF("[SPI] close %s successfully", self->name);
+        return (0);
+}
 
 static i32 send_spi_(struct SPI *self, struct SPI_PACKAGE *package)
 {
@@ -70,40 +93,37 @@ static i32 receive_qspi_(struct SPI *self, struct SPI_PACKAGE *package)
 
 static __ctor(SPI1_PRIORITY) void init1_(void)
 {
+        struct SPI *self = &spi[SPI_FLASH];
+        static char name[SPI_FLASH_NAME_LENGTH];
+
         /* TODO */
-        // PRINTF("[SPI] init %s successfully", self->name);
+
+        memset(&name[0], '\0', sizeof(name));
+        strncpy(&name[0], "spi-flash", strlen("spi-flash"));
+        self->name = &name[0];
+        self->is_open = 0;
+        self->type = QSPI_COM;
+        self->open = open_;
+        self->close = close_;
+        self->send = send_qspi_;
+        self->receive = receive_qspi_;
+        PRINTF("[SPI] init %s successfully", self->name);
 }
 
 static __dtor(SPI1_PRIORITY) void deinit1_(void)
 {
+        struct SPI *self = &spi[SPI_FLASH];
+
         /* TODO */
-        // PRINTF("[SPI] deinit %s successfully", self->name);
+        PRINTF("[SPI] deinit %s successfully", self->name);
 }
 
-i32 spi_create(struct SPI *self, char *name, u8 type)
+i32 spi_create(struct SPI *self, u8 id)
 {
         ASSERT(self);
-        ASSERT(name);
-        ASSERT(strlen(name));
-        ASSERT(strlen(name) < sizeof(self->name));
-        ASSERT((type == SPI_COM) || (type == QSPI_COM));
+        ASSERT(id < ARRAY_SIZE(spi));
 
-        for (u8 i = 0; i < ARRAY_SIZE(spi); i++) {
-                if (spi[i].name[0]) {
-                        continue;
-                }
-                strcpy(&spi[i].name[0], name);
-                spi[i].type = type;
-                if (type == SPI_COM) {
-                        spi[i].send = send_spi_;
-                        spi[i].receive = receive_spi_;
-                } else {
-                        spi[i].send = send_qspi_;
-                        spi[i].receive = receive_qspi_;
-                }
-                self = &spi[i];
-                PRINTF("[SPI] create %s successfully", self->name);
-                return (0);
-        }
-        return (-1);
+        self = &spi[id];
+        PRINTF("[SPI] create %s successfully", self->name);
+        return (0);
 }
