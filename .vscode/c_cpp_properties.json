@@ -29,6 +29,7 @@
                                 "${workspaceFolder}/source/required/platform/memory/flash/**",
                                 "${workspaceFolder}/source/required/unisis/**",
                                 "${workspaceFolder}/source/required/unisis/fixed/**",
+                                "${workspaceFolder}/source/required/unisis/object/**",
                                 "${workspaceFolder}/source/required/unisis/os/**",
 
                                 "${workspaceFolder}/source/optional/**",
