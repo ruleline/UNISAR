@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-26
+ * @date 2025-02-27
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -46,6 +46,10 @@ enum CAN_TYPE {
         CANXL_COM,
 };
 
+enum CAN_NAME_LENGTH {
+        CAN_COCKPIT_NAME_LENGTH = 20,
+};
+
 /**
  * @brief 定义一个包含 1 个 CAN 对象的静态数组。
  * @details 可用于表示系统中的 1 个不同 CAN 对象.
@@ -56,14 +60,14 @@ static struct CAN can[CAN_MAX];
 static i32 open_(struct CAN *self)
 {
         self->is_open = 1;
-        PRINTF("[CAN] open %s successfully.", self->name);
+        PRINTF("[CAN] open %s successfully", self->name);
         return (0);
 }
 
 static i32 close_(struct CAN *self)
 {
         self->is_open = 0;
-        PRINTF("[CAN] close %s successfully.", self->name);
+        PRINTF("[CAN] close %s successfully", self->name);
         return (0);
 }
 
@@ -87,7 +91,7 @@ static i32 send_classic_(struct CAN *self, struct CAN_PACKAGE *package)
         }
 
         /* TODO */
-        PRINTF("[CAN] send %s successfully.", self->name);
+        PRINTF("[CAN] send %s successfully", self->name);
         return (0);
 }
 
@@ -109,7 +113,7 @@ static i32 receive_classic_(struct CAN *self, struct CAN_PACKAGE *package)
         }
 
         /* TODO */
-        PRINTF("[CAN] receive %s successfully.", self->name);
+        PRINTF("[CAN] receive %s successfully", self->name);
         return (0);
 }
 
@@ -133,7 +137,7 @@ static i32 send_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
         }
 
         /* TODO */
-        PRINTF("[CAN] send %s successfully.", self->name);
+        PRINTF("[CAN] send %s successfully", self->name);
         return (0);
 }
 
@@ -155,7 +159,7 @@ static i32 receive_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
         }
 
         /* TODO */
-        PRINTF("[CAN] receive %s successfully.", self->name);
+        PRINTF("[CAN] receive %s successfully", self->name);
         return (0);
 }
 
@@ -168,9 +172,11 @@ static i32 receive_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
 static __ctor(CAN1_PRIORITY) void init1_(void)
 {
         struct CAN *self = &can[CAN_COCKPIT];
+        static char name[CAN_COCKPIT_NAME_LENGTH];
 
         /* TODO */
 
+        memset(&name[0], '\0', sizeof(name));
         strcpy(&self->name[0], "can-cockpit");
         self->is_open = 0;
         self->type = CAN_COM;
@@ -178,7 +184,7 @@ static __ctor(CAN1_PRIORITY) void init1_(void)
         self->close = close_;
         self->send = send_classic_;
         self->receive = receive_classic_;
-        PRINTF("[CAN] init %s successfully.", self->name);
+        PRINTF("[CAN] init %s successfully", self->name);
 }
 
 /**
@@ -192,7 +198,7 @@ static __dtor(CAN1_PRIORITY) void deinit1_(void)
         struct CAN *self = &can[CAN_COCKPIT];
 
         /* TODO */
-        PRINTF("[CAN] deinit %s successfully.", self->name);
+        PRINTF("[CAN] deinit %s successfully", self->name);
 }
 
 /**
@@ -210,6 +216,6 @@ i32 can_create(struct CAN *self, u8 id)
         ASSERT(id < ARRAY_SIZE(can));
 
         self = &can[id];
-        PRINTF("[CAN] create %s successfully.", self->name);
+        PRINTF("[CAN] create %s successfully", self->name);
         return (0);
 }
