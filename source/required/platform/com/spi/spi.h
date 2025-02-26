@@ -21,7 +21,7 @@
 #if !defined SPI_H
 #define SPI_H
 
-#include "unisis.h"
+#include "object.h"
 
 enum SPI_ID {
         SPI_FLASH,
@@ -34,33 +34,34 @@ struct SPI_PACKAGE {
 };
 
 struct SPI {
-        char *name;
+        struct OBJECT super;
         u8 type;
         bool is_open;
-        i32 (*open)(struct SPI *self);
-        i32 (*close)(struct SPI *self);
-        i32 (*send)(struct SPI *self, struct SPI_PACKAGE *package);
-        i32 (*receive)(struct SPI *self, struct SPI_PACKAGE *package);
 };
+
+static __force_inline char *spi_name_(struct SPI *self)
+{
+        return (object_name_(self));
+}
 
 static __force_inline i32 spi_open_(struct SPI *self)
 {
-        return self->open(self);
+        return (object_open_(self));
 }
 
 static __force_inline i32 spi_close_(struct SPI *self)
 {
-        return self->close(self);
+        return (object_close_(self));
 }
 
 static __force_inline i32 spi_send_(struct SPI *self, struct SPI_PACKAGE *package)
 {
-        return self->send(self, package);
+        return (object_write_(self, package));
 }
 
 static __force_inline i32 spi_receive_(struct SPI *self, struct SPI_PACKAGE *package)
 {
-        return self->receive(self, package);
+        return (object_read_(self, package));
 }
 
 i32 spi_create(struct SPI *self, u8 id);
