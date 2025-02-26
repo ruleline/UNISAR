@@ -178,16 +178,18 @@ static __ctor(CAN1_PRIORITY) void init1_(void)
 {
         struct CAN *self = &can[CAN_COCKPIT];
         static char name[CAN_COCKPIT_NAME_LENGTH];
+        static struct OBJECT super;
 
         /* TODO */
 
         memset(&name[0], '\0', sizeof(name));
         strncpy(&name[0], "can-cockpit", sizeof(name));
-        self->super.name = &name[0];
-        self->super.open = open_;
-        self->super.close = close_;
-        self->super.write = send_classic_;
-        self->super.read = receive_classic_;
+        super.name = &name[0];
+        super.open = open_;
+        super.close = close_;
+        super.write = send_classic_;
+        super.read = receive_classic_;
+        self->super = &super;
         self->type = CAN_COM;
         self->is_open = 0;
         PRINTF("[CAN] init %s successfully", can_name_(self));

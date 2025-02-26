@@ -56,7 +56,7 @@ struct CAN_PACKAGE {
  *          方便对 CAN 对象进行统一管理和操作.
  */
 struct CAN {
-        struct OBJECT super;
+        struct OBJECT *super;
 
         /**
          * @var CAN::type
