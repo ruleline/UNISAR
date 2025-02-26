@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-25
+ * @date 2025-02-26
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -172,7 +172,7 @@ static __ctor(CAN1_PRIORITY) void init1_(void)
         self->receive = receive_classic_;
 
         /* TODO */
-        PRINT("[CAN] init %s success.", self->name);
+        PRINTF("[CAN] init %s success.", self->name);
 }
 
 /**
@@ -186,7 +186,7 @@ static __dtor(CAN1_PRIORITY) void deinit1_(void)
         struct CAN *self = &can[CAN_COCKPIT];
 
         /* TODO */
-        PRINT("[CAN] deinit %s success.", self->name);
+        PRINTF("[CAN] deinit %s success.", self->name);
 }
 
 /**
