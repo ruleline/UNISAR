@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-26
+ * @date 2025-02-27
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -26,6 +26,10 @@
 enum UART_TYPE {
         UART_COM,
         USART_COM,
+};
+
+enum UART_NAME_LENGTH {
+        UART_LOG_NAME_LENGTH = 20,
 };
 
 static struct UART uart[UART_MAX];
@@ -233,10 +237,13 @@ static i32 receive_polling_usart_(struct UART *self, struct UART_PACKAGE *packag
 static __ctor(UART1_PRIORITY) void init1_(void)
 {
         struct UART *self = &uart[UART_LOG];
+        static char name[UART_LOG_NAME_LENGTH];
 
         /* TODO */
 
-        strcpy(&self->name[0], "uart-log");
+        memset(&name[0], '\0', sizeof(name));
+        strncpy(&name[0], "uart-log", strlen("uart-log"));
+        self->name = &name[0];
         self->is_open = 0;
         self->type = UART_COM;
         self->open = open_;
