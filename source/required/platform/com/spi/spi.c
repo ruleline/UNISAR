@@ -95,18 +95,20 @@ static __ctor(SPI1_PRIORITY) void init1_(void)
 {
         struct SPI *self = &spi[SPI_FLASH];
         static char name[SPI_FLASH_NAME_LENGTH];
+        static struct OBJECT super;
 
         /* TODO */
 
         memset(&name[0], '\0', sizeof(name));
         strncpy(&name[0], "spi-flash", strlen("spi-flash"));
-        self->super.name = &name[0];
+        super.name = &name[0];
+        super.open = open_;
+        super.close = close_;
+        super.read = receive_qspi_;
+        super.write = send_qspi_;
+        self->super = &super;
         self->type = QSPI_COM;
         self->is_open = 0;
-        self->super.open = open_;
-        self->super.close = close_;
-        self->super.write = send_qspi_;
-        self->super.read = receive_qspi_;
         PRINTF("[SPI] init %s successfully", spi_name_(self));
 }
 

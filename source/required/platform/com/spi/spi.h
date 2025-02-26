@@ -34,7 +34,7 @@ struct SPI_PACKAGE {
 };
 
 struct SPI {
-        struct OBJECT super;
+        struct OBJECT *super;
         u8 type;
         bool is_open;
 };
