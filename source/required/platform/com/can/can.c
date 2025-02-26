@@ -50,6 +50,11 @@ enum CAN_NAME_LENGTH {
         CAN_COCKPIT_NAME_LENGTH = 20,
 };
 
+enum CAN_DATA_LENGTH {
+        CLASSIC_CAN_DATA_LENGTH = 8,
+        FLEXIBLE_CAN_DATA_LENGTH = 64,
+};
+
 /**
  * @brief 定义一个包含 1 个 CAN 对象的静态数组。
  * @details 可用于表示系统中的 1 个不同 CAN 对象.
@@ -83,7 +88,7 @@ static i32 send_classic_(struct CAN *self, struct CAN_PACKAGE *package)
         ASSERT(self->type == CAN_COM);
         ASSERT(package);
         ASSERT(package->length);
-        ASSERT(package->length <= 8);
+        ASSERT(package->length <= CLASSIC_CAN_DATA_LENGTH);
         ASSERT(package->data);
 
         if (!self->is_open) {
@@ -129,7 +134,7 @@ static i32 send_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
         ASSERT(self->type == CANFD_COM);
         ASSERT(package);
         ASSERT(package->length);
-        ASSERT(package->length <= 64);
+        ASSERT(package->length <= FLEXIBLE_CAN_DATA_LENGTH);
         ASSERT(package->data);
 
         if (!self->is_open) {
