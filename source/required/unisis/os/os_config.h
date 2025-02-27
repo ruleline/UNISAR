@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-08
+ * @date 2025-02-27
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -20,8 +20,6 @@
 
 #if !defined OS_CONFIG_H
 #define OS_CONFIG_H
-
-#include "config.h"
 
 #if (FREERTOS == 1)
 #define FREERTOS_TASK           (1)

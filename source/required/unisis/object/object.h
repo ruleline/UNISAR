@@ -5,7 +5,7 @@
  * @since 2025-02-26
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-26
+ * @date 2025-02-27
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -20,8 +20,6 @@
 
 #if !defined OBJECT_H
 #define OBJECT_H
-
-#include "unisis.h"
 
 struct OBJECT {
         char *name;
