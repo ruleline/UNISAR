@@ -62,14 +62,12 @@ static i32 highz_(struct IO *self)
 static __ctor(IO1_PRIORITY) void init1_(void)
 {
         struct IO *self = &io[IO_3V3];
-        static char name[IO_3V3_NAME_LENGTH];
+        static char *name = "io-3v3";
         static struct OBJECT super;
 
         /* TODO */
 
-        memset(&name[0], '\0', sizeof(name));
-        strncpy(name, "io-3v3", strlen("io-3v3"));
-        super.name = &name[0];
+        super.name = name;
         super.open = 0;
         super.close = 0;
         super.read = read_;
