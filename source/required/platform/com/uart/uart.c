@@ -237,14 +237,12 @@ static i32 receive_polling_usart_(struct UART *self, struct UART_PACKAGE *packag
 static __ctor(UART1_PRIORITY) void init1_(void)
 {
         struct UART *self = &uart[UART_LOG];
-        static char name[UART_LOG_NAME_LENGTH];
+        static char *name = "uart-log";
         static struct OBJECT super;
 
         /* TODO */
 
-        memset(&name[0], '\0', sizeof(name));
-        strncpy(&name[0], "uart-log", strlen("uart-log"));
-        super.name = &name[0];
+        super.name = name;
         super.open = open_;
         super.close = close_;
         super.write = send_uart_;
