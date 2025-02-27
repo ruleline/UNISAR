@@ -21,7 +21,7 @@
 #if !defined UART_H
 #define UART_H
 
-#include "object.h"
+#include "unisis.h"
 
 enum UART_ID {
         UART_LOG,

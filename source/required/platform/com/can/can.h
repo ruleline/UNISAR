@@ -21,7 +21,7 @@
 #if !defined CAN_H
 #define CAN_H
 
-#include "object.h"
+#include "unisis.h"
 
 enum CAN_ID {
         CAN_COCKPIT,

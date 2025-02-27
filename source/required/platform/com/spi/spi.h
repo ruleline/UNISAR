@@ -21,7 +21,7 @@
 #if !defined SPI_H
 #define SPI_H
 
-#include "object.h"
+#include "unisis.h"
 
 enum SPI_ID {
         SPI_FLASH,
