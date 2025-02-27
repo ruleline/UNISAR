@@ -177,14 +177,12 @@ static i32 receive_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
 static __ctor(CAN1_PRIORITY) void init1_(void)
 {
         struct CAN *self = &can[CAN_COCKPIT];
-        static char name[CAN_COCKPIT_NAME_LENGTH];
+        static char *name = "can-cockpit";
         static struct OBJECT super;
 
         /* TODO */
 
-        memset(&name[0], '\0', sizeof(name));
-        strncpy(&name[0], "can-cockpit", sizeof(name));
-        super.name = &name[0];
+        super.name = name;
         super.open = open_;
         super.close = close_;
         super.write = send_classic_;
