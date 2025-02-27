@@ -94,14 +94,12 @@ static i32 receive_qspi_(struct SPI *self, struct SPI_PACKAGE *package)
 static __ctor(SPI1_PRIORITY) void init1_(void)
 {
         struct SPI *self = &spi[SPI_FLASH];
-        static char name[SPI_FLASH_NAME_LENGTH];
+        static char *name = "spi-flash";
         static struct OBJECT super;
 
         /* TODO */
 
-        memset(&name[0], '\0', sizeof(name));
-        strncpy(&name[0], "spi-flash", strlen("spi-flash"));
-        super.name = &name[0];
+        super.name = name;
         super.open = open_;
         super.close = close_;
         super.read = receive_qspi_;
