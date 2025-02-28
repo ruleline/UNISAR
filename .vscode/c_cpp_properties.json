@@ -36,6 +36,7 @@
                                 "${workspaceFolder}/source/optional/hardware/bsp/**",
                                 "${workspaceFolder}/source/optional/hardware/sdk/**",
                                 "${workspaceFolder}/source/optional/open/**",
+                                "${workspaceFolder}/source/optional/open/easylogger/**",
                                 "${workspaceFolder}/source/optional/open/freertos/**",
                                 "${workspaceFolder}/source/optional/open/shell/**",
                                 "${workspaceFolder}/source/optional/test/**"

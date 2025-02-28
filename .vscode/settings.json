@@ -1,5 +1,6 @@
 {
         "cSpell.words": [
+                "Armink",
                 "Bufferable",
                 "CANFD",
                 "CANXL",
@@ -7,6 +8,7 @@
                 "croutine",
                 "duisi",
                 "eeprom",
+                "ELOG",
                 "highz",
                 "ipsr",
                 "NVIC",
