@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-27
+ * @date 2025-03-03
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -243,16 +243,17 @@ static __ctor(UART1_PRIORITY) void init1_(void)
         /* TODO */
 
         super.name = name;
-        super.open = open_;
-        super.close = close_;
-        super.write = send_uart_;
+        super.open = &open_;
+        super.close = &close_;
+        super.read = &receive_uart_;
+        super.write = &send_uart_;
         self->super = &super;
         self->type = UART_COM;
         self->is_open = 0;
-        self->send_blocking = send_blocking_uart_;
-        self->receive_blocking = receive_blocking_uart_;
-        self->send_polling = send_polling_uart_;
-        self->receive_polling = receive_polling_uart_;
+        self->send_blocking = &send_blocking_uart_;
+        self->receive_blocking = &receive_blocking_uart_;
+        self->send_polling = &send_polling_uart_;
+        self->receive_polling = &receive_polling_uart_;
         PRINTF("[UART] init %s successfully", uart_name_(self));
 }
 
