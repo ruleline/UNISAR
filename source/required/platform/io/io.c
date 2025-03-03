@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-27
+ * @date 2025-03-03
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -70,12 +70,12 @@ static __ctor(IO1_PRIORITY) void init1_(void)
         super.name = name;
         super.open = 0;
         super.close = 0;
-        super.read = read_;
-        super.write = write_;
+        super.read = &read_;
+        super.write = &write_;
         self->super = &super;
         self->type = IO_INPUT;
-        self->toggle = toggle_;
-        self->highz = highz_;
+        self->toggle = &toggle_;
+        self->highz = &highz_;
         PRINTF("[IO] init %s successfully", io_name_(self));
 }
 
