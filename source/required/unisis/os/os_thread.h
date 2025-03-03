@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-24
+ * @date 2025-03-03
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -56,8 +56,7 @@ static __force_inline i32 thread_create_(struct THREAD *thread)
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         BaseType_t xReturn = pdPASS;
         xReturn = xTaskCreate(thread->entry, thread->name, thread->stack_depth,
-                                thread->parameters, thread->priority,
-                                (struct tskTaskControlBlock **)&thread->handle);
+                        thread->parameters, thread->priority, &thread->handle);
         ASSERT(xReturn == pdPASS);
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
         return (0);
