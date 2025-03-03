@@ -38,6 +38,7 @@
                                 "${workspaceFolder}/source/optional/open/**",
                                 "${workspaceFolder}/source/optional/open/easylogger/**",
                                 "${workspaceFolder}/source/optional/open/freertos/**",
+                                "${workspaceFolder}/source/optional/open/littlefs/**",
                                 "${workspaceFolder}/source/optional/open/shell/**",
                                 "${workspaceFolder}/source/optional/test/**"
                         ],
