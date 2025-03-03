@@ -79,6 +79,8 @@ enum ITEM_PRIORITY {
          */
         ITEM_MINIMUM_UNREACHABLE_PRIORITY = 100,
 
+        FILE1_PRIORITY,
+
         IO1_PRIORITY,
 
         /**
