@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-27
+ * @date 2025-03-03
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -39,6 +39,9 @@
  * @details 值为 1 表示启用, 值为 0 表示不启用.
  */
 #define THREADX         (0)
+
+#define LITTLE_FILE_SYSTEM       (1)
+#define FAT_FILE_SYSTEM          (0)
 
 /**
  * @def LINE_BREAK
