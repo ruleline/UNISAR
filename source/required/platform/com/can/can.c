@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-27
+ * @date 2025-03-03
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -183,10 +183,10 @@ static __ctor(CAN1_PRIORITY) void init1_(void)
         /* TODO */
 
         super.name = name;
-        super.open = open_;
-        super.close = close_;
-        super.write = send_classic_;
-        super.read = receive_classic_;
+        super.open = &open_;
+        super.close = &close_;
+        super.read = &receive_classic_;
+        super.write = &send_classic_;
         self->super = &super;
         self->type = CAN_COM;
         self->is_open = 0;
