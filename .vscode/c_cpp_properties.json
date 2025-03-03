@@ -23,6 +23,7 @@
                                 "${workspaceFolder}/source/required/platform/com/lin/**",
                                 "${workspaceFolder}/source/required/platform/com/spi/**",
                                 "${workspaceFolder}/source/required/platform/com/uart/**",
+                                "${workspaceFolder}/source/required/platform/file/**",
                                 "${workspaceFolder}/source/required/platform/io/**",
                                 "${workspaceFolder}/source/required/platform/memory/**",
                                 "${workspaceFolder}/source/required/platform/memory/eeprom/**",
