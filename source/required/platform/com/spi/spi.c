@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-27
+ * @date 2025-03-03
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -100,10 +100,10 @@ static __ctor(SPI1_PRIORITY) void init1_(void)
         /* TODO */
 
         super.name = name;
-        super.open = open_;
-        super.close = close_;
-        super.read = receive_qspi_;
-        super.write = send_qspi_;
+        super.open = &open_;
+        super.close = &close_;
+        super.read = &receive_qspi_;
+        super.write = &send_qspi_;
         self->super = &super;
         self->type = QSPI_COM;
         self->is_open = 0;
