@@ -81,8 +81,6 @@
         "workbench.editorAssociations": {
                 "*.copilotmd": "vscode.markdown.preview.editor",
                 "{git,gitlens,git-graph}:/**/*.{md,csv,svg}": "default",
-                "*.svg": "editor.excalidraw",
-                "*.xlsx": "gc-excelviewer-excel-editor"
         },
         "workbench.editor.closeOnFileDelete": true,
         "workbench.editor.pinnedTabsOnSeparateRow":true,
@@ -97,7 +95,6 @@
 
         /* 3. window */
 
-        "window.commandCenter": true,
         "window.density.editorTabHeight": "compact",
         "window.title": "${rootName}${separator}${activeRepositoryName}${separator}${activeRepositoryBranchName}${separator}${activeEditorMedium}${separator}",
 
@@ -116,6 +113,7 @@
         "explorer.fileNesting.patterns": {
                 "*c": "${basename}.c, ${basename}.h"
         },
+        "explorer.sortOrder": "mixed",
         "extensions.autoCheckUpdates": false,
         "extensions.closeExtensionDetailsOnViewChange": true,
         "notebook.lineNumbers": "on",
@@ -131,7 +129,7 @@
         "terminal.integrated.cwd": "${fileDirname}",
         "terminal.integrated.smoothScrolling": true,
         "terminal.integrated.stickyScroll.enabled": true,
-        "terminal.integrated.tabStopWidth": 4,
+        "terminal.integrated.tabStopWidth": 8,
 
         /* 5. application */
 
