@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-03-03
+ * @date 2025-04-17
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -177,12 +177,11 @@ static i32 receive_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
 static __ctor(CAN1_PRIORITY) void init1_(void)
 {
         struct CAN *self = &can[CAN_COCKPIT];
-        static char *name = "can-cockpit";
         static struct OBJECT super;
 
         /* TODO */
 
-        super.name = name;
+        super.name = "can-cockpit";
         super.open = &open_;
         super.close = &close_;
         super.read = &receive_classic_;
