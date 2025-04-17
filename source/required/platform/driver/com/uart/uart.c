@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-03-03
+ * @date 2025-04-17
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -237,12 +237,11 @@ static i32 receive_polling_usart_(struct UART *self, struct UART_PACKAGE *packag
 static __ctor(UART1_PRIORITY) void init1_(void)
 {
         struct UART *self = &uart[UART_LOG];
-        static char *name = "uart-log";
         static struct OBJECT super;
 
         /* TODO */
 
-        super.name = name;
+        super.name = "uart-log";
         super.open = &open_;
         super.close = &close_;
         super.read = &receive_uart_;
