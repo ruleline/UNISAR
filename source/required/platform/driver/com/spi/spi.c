@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-03-03
+ * @date 2025-04-17
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -94,12 +94,11 @@ static i32 receive_qspi_(struct SPI *self, struct SPI_PACKAGE *package)
 static __ctor(SPI1_PRIORITY) void init1_(void)
 {
         struct SPI *self = &spi[SPI_FLASH];
-        static char *name = "spi-flash";
         static struct OBJECT super;
 
         /* TODO */
 
-        super.name = name;
+        super.name = "spi-flash";
         super.open = &open_;
         super.close = &close_;
         super.read = &receive_qspi_;
