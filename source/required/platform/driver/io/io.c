@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-03-03
+ * @date 2025-04-17
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -62,12 +62,11 @@ static i32 highz_(struct IO *self)
 static __ctor(IO1_PRIORITY) void init1_(void)
 {
         struct IO *self = &io[IO_3V3];
-        static char *name = "io-3v3";
         static struct OBJECT super;
 
         /* TODO */
 
-        super.name = name;
+        super.name = "io-3v3";
         super.open = 0;
         super.close = 0;
         super.read = &read_;
