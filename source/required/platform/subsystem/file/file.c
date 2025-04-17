@@ -5,7 +5,7 @@
  * @since 2025-03-03
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-03-03
+ * @date 2025-04-17
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -55,11 +55,10 @@ static __force_inline i32 erase_(struct FILE *self)
 static __ctor(FILE1_PRIORITY) void init1_(void)
 {
         struct FILE *self = &file[FILE_ALL];
-        static char *name = "file-all";
         static struct OBJECT super;
 
         /* TODO */
-        super.name = name;
+        super.name = "file-all";
         super.open = &open_;
         super.close = &close_;
         super.read = &read_;
