@@ -75,7 +75,7 @@ static __force_inline i32 kernel_resume(void)
  * @return 结果
  * @retval 0 成功
  */
-static __force_inline i32 kernel_suspend_(void)
+static __force_inline i32 kernel_suspend(void)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskSuspendAll();
