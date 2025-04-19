@@ -61,7 +61,7 @@ static __force_inline i32 kernel_stop(void)
  * @return 结果
  * @retval 0 成功
  */
-static __force_inline i32 kernel_resume_(void)
+static __force_inline i32 kernel_resume(void)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         xTaskResumeAll();
