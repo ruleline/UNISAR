@@ -5,7 +5,7 @@
  * @since 2025-01-29
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-24
+ * @date 2025-04-20
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -33,7 +33,7 @@
  * @return 结果
  * @retval 0 成功
  */
-static __force_inline i32 kernel_start_(void)
+static __force_inline i32 kernel_start(void)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskStartScheduler();

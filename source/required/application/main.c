@@ -5,7 +5,7 @@
  * @since 2024-04-02
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-25
+ * @date 2025-04-20
  * @version 0.00.001
  *
  * @copyright ©2024 UNISAR
@@ -28,6 +28,6 @@
  */
 i32 main(void)
 {
-        kernel_start_();
+        kernel_start();
         return (0);
 }
