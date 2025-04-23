@@ -1,6 +1,6 @@
 # UNISAR
 
-UNISAR (UNIversal Software ARchitecture), 一款适用于嵌入式汽车电子 MCU 方面的通用架构。
+UNISAR (UNIversal Software ARchitecture), 一款适用于嵌入式软件方面的通用架构。
 
 * C 语言
 * GCC 编译构建
