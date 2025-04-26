@@ -1,6 +1,5 @@
 {
-        // path: C:\Users\用户名\AppData\Roaming\Code\User
-        // e.g.: C:\Users\duisi\AppData\Roaming\Code\User
+        // file path: %appdata%\Code\User
 
         /* 1.text editor */
 
@@ -16,12 +15,13 @@
         "editor.cursorSmoothCaretAnimation": "on",
         "editor.detectIndentation": false,
         "editor.fastScrollSensitivity": 10,
-        "editor.fontFamily": "SFMono Nerd Font",
-        // "editor.fontFamily": "Consolas-with-Yahei",
-        "editor.fontLigatures": true,
-        "editor.fontSize": 14,
+        // "editor.fontFamily": "SFMono Nerd Font",
+        "editor.fontFamily": "Consolas-with-Yahei",
+        "editor.fontLigatures": false,
+        "editor.fontSize": 15,
         "editor.fontWeight": "600",
-        "editor.guides.bracketPairs": "active",
+        "editor.guides.bracketPairs": true,
+        "editor.guides.bracketPairsHorizontal": true,
         "editor.inlineSuggest.showToolbar": "always",
         "editor.minimap.enabled": false,
         "editor.occurrencesHighlight": "multiFile",
@@ -31,13 +31,13 @@
                         "color": "#ff0000"
                 },
         ],
-        "editor.tabSize": 8,
         "editor.scrollbar.horizontal": "hidden",
         // "editor.scrollbar.vertical": "hidden",
         "editor.smoothScrolling": true,
         "editor.stickyScroll.enabled": true,
         "editor.suggest.showStatusBar": true,
         "editor.suggest.snippetsPreventQuickSuggestions": true,
+        "editor.tabSize": 8,
         "editor.tokenColorCustomizations": {
                 "comments": "#3CB371",
                 "textMateRules": [
@@ -62,8 +62,8 @@
         "files.associations": {
                 "*.h": "c"
         },
-        "files.autoSave": "onFocusChange",
         "files.autoGuessEncoding": true,
+        "files.autoSave": "onFocusChange",
         "files.eol": "\n",
         "files.insertFinalNewline": true,
         "files.trimFinalNewlines": true,
@@ -278,14 +278,27 @@
                 }
         ],
 
-        "projectManager.any.maxDepthRecursion": 0,
+        "projectManager.any.maxDepthRecursion": 1,
         "projectManager.confirmSwitchOnActiveWindow": "always",
-        "projectManager.git.maxDepthRecursion": 0,
-        "projectManager.hg.maxDepthRecursion": 0,
-        "projectManager.svn.maxDepthRecursion": 0,
-        "projectManager.vscode.maxDepthRecursion": 0,
+        "projectManager.git.maxDepthRecursion": 1,
+        "projectManager.hg.maxDepthRecursion": 1,
+        "projectManager.svn.maxDepthRecursion": 1,
+        "projectManager.vscode.maxDepthRecursion": 1,
+
+        "trae.advanced": {
+                "logLevel": "verbose",
+                "logFile": true,
+                "outOfScopeProcess": true,
+                "debounceInterval": 125,
+                "proxyMode": "system",
+                "proxyUrl": ""
+        },
+        "trae.codeCompletionPro": {
+                "enableCodeCompletionPro": true
+        },
 
         "vscode-office.editorLanguage": "zh_CN",
         "vscode-office.editorTheme": "Auto",
         "vscode-office.openOutline": false,
+        "trae.chatLanguage": "cn",
 }
