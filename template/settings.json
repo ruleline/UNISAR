@@ -1,5 +1,5 @@
 {
-        // file path: %appdata%\Code\User
+        // file path: %appdata%\code\user
 
         /* 1.text editor */
 
@@ -210,8 +210,7 @@
                 "enableCodeCompletionPro": true
         },
 
-        "psi-header.config":
-        {
+        "psi-header.config": {
                 "forceToTop": true,
                 "blankLinesAfter": 1,
                 "spacesBetweenYears": false,
@@ -219,8 +218,7 @@
                 "authorEmail": "ruleline@outlook.com",
                 "creationDateZero": "asIs"
         },
-        "psi-header.changes-tracking":
-        {
+        "psi-header.changes-tracking": {
                 "isActive": true,
                 "modAuthor": "@authors",
                 "modDate": "@date",
@@ -235,8 +233,7 @@
                         "shellscript"
                 ],
         },
-        "psi-header.lang-config":
-        [
+        "psi-header.lang-config": [
                 {
                         "language": "*",
                         "begin": "/**",
@@ -244,8 +241,7 @@
                         "end": " */",
                 }
         ],
-        "psi-header.templates":
-        [
+        "psi-header.templates": [
                 {
                         "language": "*",
                         "template":
