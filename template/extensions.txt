@@ -20,9 +20,9 @@ ms-vscode.azure-repos
 ms-vscode.cpptools
 ms-vscode.remote-repositories
 oderwat.indent-rainbow
-pkief.material-icon-theme
 psioniq.psi-header
 sandcastle.vscode-open
 streetsidesoftware.code-spell-checker
 uvdream.git-commit-lint-vscode
+wayou.vscode-icons-mac
 zatkins-dev.doxdocgen-with-direction

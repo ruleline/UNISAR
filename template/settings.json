@@ -86,7 +86,7 @@
         "workbench.editor.pinnedTabsOnSeparateRow":true,
         "workbench.editor.showTabs": "none",
         "workbench.editorLargeFileConfirmation": 1,
-        "workbench.iconTheme": "material-icon-theme",
+        "workbench.iconTheme": "vscode-icons-mac",
         "workbench.list.smoothScrolling": true,
         "workbench.sideBar.location": "right",
         "workbench.startupEditor": "none",
@@ -297,4 +297,7 @@
         "vscode-office.editorTheme": "Auto",
         "vscode-office.openOutline": false,
         "trae.chatLanguage": "cn",
+        "cSpell.userWords": [
+                "trae"
+        ],
 }
