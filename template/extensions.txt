@@ -2,6 +2,8 @@ adpyke.codesnap
 alefragnani.project-manager
 coder-xiaomo.variable-conversion
 cweijan.vscode-office
+github.copilot
+github.copilot-chat
 github.remotehub
 gruntfuggly.todo-tree
 huizhou.githd
@@ -10,7 +12,6 @@ joelcrosby.one-dark-darker
 liulongbin1314.escook-translate
 marscode.marscode-extension
 mhutchie.git-graph
-ms-vscode.azure-repos
 ms-vscode.cpptools
 ms-vscode.remote-repositories
 oderwat.indent-rainbow
