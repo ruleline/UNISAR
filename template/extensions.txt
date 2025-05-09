@@ -1,12 +1,6 @@
 adpyke.codesnap
 alefragnani.project-manager
-alibaba-cloud.tongyi-lingma
-aminer.codegeex
-chensuiyi.fn-map
-cl.keil-assistant
 coder-xiaomo.variable-conversion
-continue.continue
-cschlosser.doxdocgen
 cweijan.vscode-office
 github.remotehub
 gruntfuggly.todo-tree
@@ -23,6 +17,7 @@ oderwat.indent-rainbow
 psioniq.psi-header
 sandcastle.vscode-open
 streetsidesoftware.code-spell-checker
+techer.open-in-browser
 uvdream.git-commit-lint-vscode
 wayou.vscode-icons-mac
 zatkins-dev.doxdocgen-with-direction

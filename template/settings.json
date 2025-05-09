@@ -15,7 +15,6 @@
         "editor.cursorSmoothCaretAnimation": "on",
         "editor.detectIndentation": false,
         "editor.fastScrollSensitivity": 10,
-        // "editor.fontFamily": "SFMono Nerd Font",
         "editor.fontFamily": "Consolas-with-Yahei",
         "editor.fontLigatures": false,
         "editor.fontSize": 15,
@@ -29,7 +28,7 @@
                 {
                         "column": 80,
                         "color": "#ff0000"
-                },
+                }
         ],
         "editor.scrollbar.horizontal": "hidden",
         // "editor.scrollbar.vertical": "hidden",
@@ -57,7 +56,7 @@
                                         "fontStyle": "italic bold"
                                 }
                         }
-                ],
+                ]
         },
         "files.associations": {
                 "*.h": "c"
@@ -74,13 +73,12 @@
 
         "workbench.activityBar.location": "bottom",
         "workbench.colorCustomizations": {
-                "editorWhitespace.foreground": "#FFFFFF",
+                "editorWhitespace.foreground": "#FFFFFF"
         },
         "workbench.colorTheme": "One Dark Darker",
         "workbench.commandPalette.experimental.suggestCommands": true,
         "workbench.editorAssociations": {
-                "*.copilotmd": "vscode.markdown.preview.editor",
-                "{git,gitlens,git-graph}:/**/*.{md,csv,svg}": "default",
+                "*.copilotmd": "vscode.markdown.preview.editor"
         },
         "workbench.editor.closeOnFileDelete": true,
         "workbench.editor.pinnedTabsOnSeparateRow":true,
@@ -142,13 +140,14 @@
 
         /* 7. extensions */
 
-        "Codegeex.CandidateNum": "3 (慢)",
-        "Codegeex.Comment.LanguagePreference": "中文",
-        "Codegeex.CompletionDelay": 0.1,
-        "Codegeex.CompletionModel": "CodeGeeX Pro[Beta]",
-
         "codesnap.containerPadding": "1em",
         "codesnap.transparentBackground": true,
+
+        "cSpell.userWords": [
+                "consolas",
+                "trae",
+                "yahei"
+        ],
 
         "C_Cpp.errorSquiggles": "enabled",
         "C_Cpp.loggingLevel": "Debug",
@@ -167,21 +166,10 @@
                 "param",
                 "empty",
                 "return",
-                "retval",
+                "retval"
         ],
         "doxdocgen.generic.paramTemplate": "@param[${{cursor}|in,out,in\\,out|}] {param} ",
         "doxdocgen.generic.returnTemplate": "@return ${cursor}",
-
-
-        "excalidraw.theme": "dark",
-        "excalidraw.image": {
-                "exportScale": 1,
-                "exportWithBackground": true,
-                "exportWithDarkMode": false
-        },
-
-        "fnMap.registrationCode": "qvJ7QFSiG9qtnlpAbY1MAmzW0iKuKgFo6kgRxFzSL+MuO6h1huD0GMu1XiuKp0CM7qINkGDl9FDv2tWaB5IgUyqy5bDVzRB06YKi/GU1Yyi4w0RFy2oRsG7dlsMevVdambh5bIQ2ZBrhIlmoydE4uf6yqxYPXrSbZSTZ9Z1Yp2pnHM8pyAuLkzr9uY/+CAl4pIjRI/datnkLHktqBaPgjutYNs/WE7u1lpX/zClQkzPjDlgUy8fRk5o833KQaANOAnDnSstARo8CVj+hJ2wbv+tiHpC4oWSjznqe637GSJ5273UfvRxOJNI6NO2IOoEkXLOHEBHF4MbCXZ62OORNxw==",
-        "fnMap.isShowSymbolDetail": true,
 
         "git.autofetch": true,
         "git.closeDiffOnOperation": true,
@@ -195,20 +183,8 @@
         "githd.logView.expressMode": true,
         "githd.traceLevel": "verbose",
 
-        "github.copilot.chat.followUps": "always",
-
         "git-graph.enhancedAccessibility": true,
         "git-graph.maxDepthOfRepoSearch": 10,
-
-        "KeilAssistant.MDK.Uv4Path": "C:\\Keil_v5\\UV4\\UV4.exe",
-
-        "Lingma.cloudModelAutoTriggerGenerateLength": "long",
-        "Lingma.cloudModelManualTriggerGenerateLength": "long",
-        "Lingma.DisplayLanguage": "English",
-
-        "marscode.codeCompletionPro": {
-                "enableCodeCompletionPro": true
-        },
 
         "psi-header.config": {
                 "forceToTop": true,
@@ -225,27 +201,25 @@
                 "modDateFormat": "YYYY-MM-DD",
                 "autoHeader": "off",
                 // "enforceHeader": true,
-                "exclude":
-                [
+                "exclude": [
                         "markdown",
                         "json",
                         "jsonc",
                         "shellscript"
-                ],
+                ]
         },
         "psi-header.lang-config": [
                 {
                         "language": "*",
                         "begin": "/**",
                         "prefix": " * ",
-                        "end": " */",
+                        "end": " */"
                 }
         ],
         "psi-header.templates": [
                 {
                         "language": "*",
-                        "template":
-                        [
+                        "template": [
                                 "@file <<filename>>",
                                 "@brief <<filenamebase!L>>",
                                 "@author <<author>> (<<authorEmail>>)",
@@ -262,42 +236,25 @@
                                 "   version   |    date    |       by       |              comments",
                                 "------------ | ---------- | -------------- | --------------------------------",
                                 "  0.00.001   | <<dateformat('YYYY-MM-DD')>> |    <<author>>    | 初版",
-                                "-----------------------------------------------------------------------------",
+                                "-----------------------------------------------------------------------------"
                         ],
                         "changeLogCaption": "@details",
                         "changeLogHeaderLineCount": 2,
-                        "changeLogEntryTemplate":
-                        [
+                        "changeLogEntryTemplate": [
                                 "------------ | ---------- | -------------- | --------------------------------",
-                                "  0.00.001   | <<dateformat('YYYY-MM-DD')>> |    <<author>>    | ",
+                                "  0.00.001   | <<dateformat('YYYY-MM-DD')>> |    <<author>>    | "
                         ]
                 }
         ],
 
-        "projectManager.any.maxDepthRecursion": 1,
+        "projectManager.any.maxDepthRecursion": 0,
         "projectManager.confirmSwitchOnActiveWindow": "always",
-        "projectManager.git.maxDepthRecursion": 1,
-        "projectManager.hg.maxDepthRecursion": 1,
-        "projectManager.svn.maxDepthRecursion": 1,
-        "projectManager.vscode.maxDepthRecursion": 1,
-
-        "trae.advanced": {
-                "logLevel": "verbose",
-                "logFile": true,
-                "outOfScopeProcess": true,
-                "debounceInterval": 125,
-                "proxyMode": "system",
-                "proxyUrl": ""
-        },
-        "trae.codeCompletionPro": {
-                "enableCodeCompletionPro": true
-        },
+        "projectManager.git.maxDepthRecursion": 0,
+        "projectManager.hg.maxDepthRecursion": 0,
+        "projectManager.svn.maxDepthRecursion": 0,
+        "projectManager.vscode.maxDepthRecursion": 0,
 
         "vscode-office.editorLanguage": "zh_CN",
         "vscode-office.editorTheme": "Auto",
-        "vscode-office.openOutline": false,
-        "trae.chatLanguage": "cn",
-        "cSpell.userWords": [
-                "trae"
-        ],
+        "vscode-office.openOutline": false
 }
