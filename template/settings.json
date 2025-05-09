@@ -4,16 +4,17 @@
         /* 1.text editor */
 
         "diffEditor.experimental.showMoves":true,
+        "diffEditor.experimental.useTrueInlineView": true,
         "diffEditor.hideUnchangedRegions.contextLineCount": 8,
         "diffEditor.hideUnchangedRegions.enabled": true,
         "diffEditor.ignoreTrimWhitespace": false,
         "diffEditor.renderSideBySide": false,
         "diffEditor.useInlineViewWhenSpaceIsLimited": true,
         "editor.accessibilitySupport": "on",
-        "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
         "editor.cursorBlinking": "smooth",
         "editor.cursorSmoothCaretAnimation": "on",
         "editor.detectIndentation": false,
+        "editor.experimentalGpuAcceleration": "on",
         "editor.fastScrollSensitivity": 10,
         "editor.fontFamily": "Consolas-with-Yahei",
         "editor.fontLigatures": false,
@@ -21,6 +22,7 @@
         "editor.fontWeight": "600",
         "editor.guides.bracketPairs": true,
         "editor.guides.bracketPairsHorizontal": true,
+        "editor.inlayHints.enabled": "off",
         "editor.inlineSuggest.showToolbar": "always",
         "editor.minimap.enabled": false,
         "editor.occurrencesHighlight": "multiFile",
@@ -31,7 +33,7 @@
                 }
         ],
         "editor.scrollbar.horizontal": "hidden",
-        // "editor.scrollbar.vertical": "hidden",
+        "editor.scrollbar.vertical": "visible",
         "editor.smoothScrolling": true,
         "editor.stickyScroll.enabled": true,
         "editor.suggest.showStatusBar": true,
@@ -84,8 +86,13 @@
         "workbench.editor.pinnedTabsOnSeparateRow":true,
         "workbench.editor.showTabs": "none",
         "workbench.editorLargeFileConfirmation": 1,
+        "workbench.experimental.cloudChanges.autoStore": "onShutdown",
+        "workbench.experimental.share.enabled": true,
         "workbench.iconTheme": "vscode-icons-mac",
         "workbench.list.smoothScrolling": true,
+        "workbench.panel.showLabels": false,
+        "workbench.preferredDarkColorTheme": "One Dark Darker",
+        "workbench.preferredHighContrastColorTheme": "One Dark Darker",
         "workbench.sideBar.location": "right",
         "workbench.startupEditor": "none",
         "workbench.tree.enableStickyScroll": true,
@@ -99,7 +106,9 @@
         /* 4. feature */
 
         "accessibility.signalOptions.volume": 0,
-        "chat.commandCenter.enabled": false,
+        "accessibility.underlineLinks": true,
+        "chat.tools.autoApprove": true,
+        "chat.renderRelatedFiles": true,
         "explorer.autoOpenDroppedFile": false,
         "explorer.confirmDelete": false,
         "explorer.confirmDragAndDrop": false,
@@ -111,9 +120,10 @@
         "explorer.fileNesting.patterns": {
                 "*c": "${basename}.c, ${basename}.h"
         },
+        "explorer.incrementalNaming": "smart",
         "explorer.sortOrder": "mixed",
-        "extensions.autoCheckUpdates": false,
         "extensions.closeExtensionDetailsOnViewChange": true,
+        "inlineChat.accessibleDiffView": "on",
         "notebook.lineNumbers": "on",
         "notebook.outline.showCodeCells": true,
         "notebook.stickyScroll.enabled": true,
@@ -123,8 +133,9 @@
         "terminal.integrated.copyOnSelection": true,
         "terminal.integrated.cursorBlinking": true,
         "terminal.integrated.cursorStyle": "line",
-        "terminal.integrated.defaultProfile.windows": "Command Prompt",
+        "terminal.integrated.defaultProfile.windows": "Git Bash",
         "terminal.integrated.cwd": "${fileDirname}",
+        "terminal.integrated.gpuAcceleration": "on",
         "terminal.integrated.smoothScrolling": true,
         "terminal.integrated.stickyScroll.enabled": true,
         "terminal.integrated.tabStopWidth": 8,
@@ -145,12 +156,14 @@
 
         "cSpell.userWords": [
                 "consolas",
+                "ruleline",
                 "trae",
                 "yahei"
         ],
 
         "C_Cpp.errorSquiggles": "enabled",
         "C_Cpp.loggingLevel": "Debug",
+        "C_Cpp.workspaceSymbols": "All",
 
         "doxdocgen.generic.linesToGet": 200,
         "doxdocgen.generic.order": [
@@ -253,6 +266,11 @@
         "projectManager.hg.maxDepthRecursion": 0,
         "projectManager.svn.maxDepthRecursion": 0,
         "projectManager.vscode.maxDepthRecursion": 0,
+
+        "trae.codeCompletionPro": {
+                "enableCodeCompletionPro": true,
+                "enableTabKeyboardShortcuts": true
+        },
 
         "vscode-office.editorLanguage": "zh_CN",
         "vscode-office.editorTheme": "Auto",
