@@ -158,6 +158,7 @@
                 "consolas",
                 "ruleline",
                 "trae",
+                "UNISAR",
                 "yahei"
         ],
 
@@ -272,7 +273,6 @@
                 "enableTabKeyboardShortcuts": true
         },
 
-        "vscode-office.editorLanguage": "zh_CN",
         "vscode-office.editorTheme": "Auto",
-        "vscode-office.openOutline": false
+        "vscode-office.openOutline": false,
 }
