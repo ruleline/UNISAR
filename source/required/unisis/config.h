@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-03-03
+ * @date 2025-05-10
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -81,7 +81,7 @@ enum ITEM_PRIORITY {
 
         FILE1_PRIORITY,
 
-        IO1_PRIORITY,
+        PIN1_PRIORITY,
 
         /**
          * @brief UART1 优先级.

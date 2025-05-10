@@ -1,11 +1,11 @@
 /**
- * @file io.h
- * @brief io
+ * @file pin.h
+ * @brief pin
  * @author ruleline (ruleline@outlook.com)
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-27
+ * @date 2025-05-10
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -18,48 +18,48 @@
  * -----------------------------------------------------------------------------
  */
 
-#if !defined IO_H
-#define IO_H
+#if !defined PIN_H
+#define PIN_H
 
 #include "unisis.h"
 
-enum IO_ID {
-        IO_3V3,
-        IO_MAX,
+enum PIN_ID {
+        PIN_3V3,
+        PIN_MAX,
 };
 
-struct IO {
+struct PIN {
         struct OBJECT *super;
         u8 type;
-        i32 (*toggle)(struct IO *self);
-        i32 (*highz)(struct IO *self);
+        i32 (*toggle)(struct PIN *self);
+        i32 (*highz)(struct PIN *self);
 };
 
-static __force_inline char *io_name_(struct IO *self)
+static __force_inline char *pin_name_(struct PIN *self)
 {
         return (object_name_(self));
 }
 
-static __force_inline bool io_read_(struct IO *self, bool *state)
+static __force_inline bool pin_read_(struct PIN *self, bool *state)
 {
         return (object_read_(self, state));
 }
 
-static __force_inline i32 io_write_(struct IO *self, bool state)
+static __force_inline i32 pin_write_(struct PIN *self, bool state)
 {
         return (object_write_(self, &state));
 }
 
-static __force_inline i32 io_toggle_(struct IO *self)
+static __force_inline i32 pin_toggle_(struct PIN *self)
 {
         return self->toggle(self);
 }
 
-static __force_inline i32 io_highz_(struct IO *self)
+static __force_inline i32 pin_highz_(struct PIN *self)
 {
         return self->highz(self);
 }
 
-i32 io_create(struct IO *self, u8 id);
+i32 pin_create(struct PIN *self, u8 id);
 
-#endif /* !defined IO_H */
+#endif /* !defined PIN_H */
