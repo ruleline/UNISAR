@@ -1,7 +1,7 @@
 {
         // file path: %appdata%\code\user
 
-        /* 1.text editor */
+        /* 1. text editor */
 
         "diffEditor.experimental.showMoves":true,
         "diffEditor.experimental.useTrueInlineView": true,
@@ -16,6 +16,7 @@
         "editor.detectIndentation": false,
         "editor.experimentalGpuAcceleration": "on",
         "editor.fastScrollSensitivity": 10,
+        "editor.foldingStrategy": "indentation",
         "editor.fontFamily": "Consolas-with-Yahei",
         "editor.fontLigatures": false,
         "editor.fontSize": 15,
@@ -36,6 +37,7 @@
         "editor.scrollbar.vertical": "visible",
         "editor.smoothScrolling": true,
         "editor.stickyScroll.enabled": true,
+        "editor.stickyScroll.maxLineCount": 20,
         "editor.suggest.showStatusBar": true,
         "editor.suggest.snippetsPreventQuickSuggestions": true,
         "editor.tabSize": 8,
@@ -80,12 +82,13 @@
         "workbench.colorTheme": "One Dark Darker",
         "workbench.commandPalette.experimental.suggestCommands": true,
         "workbench.editorAssociations": {
-                "*.copilotmd": "vscode.markdown.preview.editor"
+                "*.copilotmd": "vscode.markdown.preview.editor",
+                "{git,github}-graph:/**/*.{md,csv,svg}": "default",
         },
         "workbench.editor.closeOnFileDelete": true,
         "workbench.editor.pinnedTabsOnSeparateRow":true,
         "workbench.editor.showTabs": "none",
-        "workbench.editorLargeFileConfirmation": 1,
+        "workbench.editorLargeFileConfirmation": 10,
         "workbench.experimental.cloudChanges.autoStore": "onShutdown",
         "workbench.experimental.share.enabled": true,
         "workbench.iconTheme": "vscode-icons-mac",
@@ -97,6 +100,7 @@
         "workbench.startupEditor": "none",
         "workbench.tree.enableStickyScroll": true,
         "workbench.tree.indent": 30,
+        "workbench.tree.stickyScrollMaxItemCount": 7,
 
         /* 3. window */
 
@@ -107,6 +111,7 @@
 
         "accessibility.signalOptions.volume": 0,
         "accessibility.underlineLinks": true,
+        "chat.commandCenter.enabled": true,
         "chat.tools.autoApprove": true,
         "chat.renderRelatedFiles": true,
         "explorer.autoOpenDroppedFile": false,
@@ -123,6 +128,7 @@
         "explorer.incrementalNaming": "smart",
         "explorer.sortOrder": "mixed",
         "extensions.closeExtensionDetailsOnViewChange": true,
+        "extensions.autoCheckUpdates": false,
         "inlineChat.accessibleDiffView": "on",
         "notebook.lineNumbers": "on",
         "notebook.outline.showCodeCells": true,
@@ -150,6 +156,8 @@
         "security.workspace.trust.enabled": false,
 
         /* 7. extensions */
+
+        "appworks.enableDataAnalysisServices": false,
 
         "codesnap.containerPadding": "1em",
         "codesnap.transparentBackground": true,
@@ -189,6 +197,7 @@
         "git.closeDiffOnOperation": true,
         "git.confirmSync": false,
         "git.enableSmartCommit": true,
+        "git.openRepositoryInParentFolders": "always",
         "git.postCommitCommand": "push",
         "git.repositoryScanMaxDepth": -1,
         "git.showPushSuccessNotification": true,
