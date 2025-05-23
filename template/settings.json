@@ -82,7 +82,7 @@
         "workbench.commandPalette.experimental.suggestCommands": true,
         "workbench.editorAssociations": {
                 "*.copilotmd": "vscode.markdown.preview.editor",
-                "{git,github}-graph:/**/*.{md,csv,svg}": "default"
+                "{git,git-graph}:/**/*.{md,csv,svg}": "default"
         },
         "workbench.editor.closeOnFileDelete": true,
         "workbench.editor.pinnedTabsOnSeparateRow": true,
@@ -200,7 +200,7 @@
                 "yml": false
         },
         "cSpell.language": "en, en-GB, en-US, lorem",
-        "cSpell.logFile": "Debug",
+        "cSpell.logLevel": "Debug",
         "cSpell.userWords": [
                 "consolas",
                 "jaxon",
