@@ -126,7 +126,7 @@
         },
         "explorer.incrementalNaming": "smart",
         "explorer.sortOrder": "mixed",
-        "extensions.autoCheckUpdates": false,
+        "extensions.autoCheckUpdates":true,
         "extensions.closeExtensionDetailsOnViewChange": true,
         "inlineChat.accessibleDiffView": "on",
         "notebook.lineNumbers": "on",
@@ -351,5 +351,5 @@
         "vscode-office.chromiumPath": "%localappdata%\\centbrowser\\browser\\application\\chrome.exe",
         "vscode-office.editorLanguage": "zh_CN",
         "vscode-office.editorTheme": "Auto",
-        "vscode-office.openOutline": false,
+        "vscode-office.openOutline": false
 }
