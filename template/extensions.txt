@@ -1,3 +1,4 @@
+adam-bender.commit-message-editor
 adpyke.codesnap
 alefragnani.project-manager
 coder-xiaomo.variable-conversion
@@ -20,5 +21,6 @@ sandcastle.vscode-open
 streetsidesoftware.code-spell-checker
 techer.open-in-browser
 uvdream.git-commit-lint-vscode
+vivaxy.vscode-conventional-commits
 wayou.vscode-icons-mac
 zatkins-dev.doxdocgen-with-direction
