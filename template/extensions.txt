@@ -18,6 +18,7 @@ ms-vscode.remote-repositories
 oderwat.indent-rainbow
 psioniq.psi-header
 sandcastle.vscode-open
+seatonjiang.gitmoji-vscode
 streetsidesoftware.code-spell-checker
 techer.open-in-browser
 uvdream.git-commit-lint-vscode
