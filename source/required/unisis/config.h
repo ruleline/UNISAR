@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-05-10
+ * @date 2025-06-01
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -14,7 +14,7 @@
  * -----------------------------------------------------------------------------
  *    version   |    date    |     author     |             comments
  * ------------ | ---------- | -------------- | --------------------------------
- *   0.00.001   | 2025-01-28 |    ruleline    | 初版
+ *   0.00.001   | 2025-01-28 |    ruleline    | initial commit
  * -----------------------------------------------------------------------------
  */
 
@@ -22,109 +22,78 @@
 #define CONFIG_H
 
 /**
- * @def FREERTOS
- * @brief 定义一个标识, 用于启用 FreeRTOS 相关功能.
- * @details 值为 1 表示启用, 值为 0 表示不启用.
+ * @brief the identifier of FreeRTOS.
+ * @details when the identifier is 1, FreeRTOS will be used.
  */
 #define FREERTOS        (1)
 /**
- * @def ZEPHYR
- * @brief 定义一个标识, 用于启用 Zephyr 相关功能.
- * @details 值为 1 表示启用, 值为 0 表示不启用.
+ * @brief the identifier of Zephyr.
+ * @details
  */
 #define ZEPHYR          (0)
 /**
- * @def THREADX
- * @brief 定义一个标识, 用于启用 ThreadX 相关功能.
- * @details 值为 1 表示启用, 值为 0 表示不启用.
+ * @brief the identifier of ThreadX.
+ * @details when the identifier is 1, ThreadX will be used.
  */
 #define THREADX         (0)
 
+/**
+ * @brief the identifier of Little-FS.
+ * @details when the identifier is 1, Little-FS will be used.
+ */
 #define LITTLE_FILE_SYSTEM       (1)
+/**
+ * @brief the identifier of FAT-FS.
+ * @details when the identifier is 1, FAT-FS will be used.
+ */
 #define FAT_FILE_SYSTEM          (0)
 
 /**
- * @def LINE_BREAK
- * @brief 定义换行符常量.
- * @details Windows 风格的换行符 "\r\n", Linux 风格的换行符 "\n".
+ * @brief line break.
+ * @details windows: "\r\n", linux: "\n".
  */
 #define LINE_BREAK      "\r\n"
 /**
- * @def PRINTF
- * @brief 定义常规打印函数.
- * @details 默认加上头(file&line)、尾(换行符).
+ * @brief regular printing.
+ * @details it is recommended to use this macro for regular information,
+ *              such as debug information.
  */
 #define PRINTF          printf
 /**
- * @def PRINT
- * @brief 定义立即打印函数.
- * @details 默认加上头(file&line)、尾(换行符).
+ * @brief immediate printing.
+ * @details it is recommended to use this macro for critical information,
+ *              such as errors.
  */
 #define PRINT           printf
 
 /**
- * @enum ITEM_PRIORITY
- * @brief 定义各种 item 的优先级.
- * @details 该枚举类型用于表示不同 item 的优先级.
- *          ITEM_MINIMUM_UNREACHABLE_PRIORITY 和 ITEM_MAXIMUM_UNREACHABLE_PRIORITY
- *          作为边界值, 分别代表最小和最大的不可达优先级，实际的接口优先级介于这两个值之间.
- *          从 0 到 MINIMUM_UNREACHABLE_PRIORITY 为内部实现的特殊值,
- *          在构造中, 优先级值越小越早执行.
- *          在析构中, 优先级值越小越晚执行.
+ * @brief item priority set.
+ * @details the priority is used to determine the order of execution of the items.
  */
 enum ITEM_PRIORITY {
-        /**
-         * @brief 最小的不可达优先级.
-         * @details 作为优先级范围的下限, 任何实际的接口优先级都应大于此值.
-         */
+        /** the minimum unreachable priority. */
         ITEM_MINIMUM_UNREACHABLE_PRIORITY = 100,
 
+        /** FILE1 priority. */
         FILE1_PRIORITY,
-
+        /** PIN1 priority. */
         PIN1_PRIORITY,
-
-        /**
-         * @brief UART1 优先级.
-         * @details 用于表示 UART1 通信接口的优先级.
-         */
+        /** UART1 priority. */
         UART1_PRIORITY,
-
-        /**
-         * @brief CAN1 优先级.
-         * @details 用于表示 CAN1 通信接口的优先级.
-         */
+        /** CAN1 priority. */
         CAN1_PRIORITY,
-
-        /**
-         * @brief 以太网 1 优先级.
-         * @details 用于表示 ETH1 通信接口的优先级.
-         */
+        /** ETH1 priority. */
         ETH1_PRIORITY,
-
-        /**
-         * @brief SPI1 优先级.
-         * @details 用于表示 SPI1 通信接口的优先级.
-         */
+        /** SPI1 priority. */
         SPI1_PRIORITY,
-
-        /**
-         * @brief I2C1 优先级.
-         * @details 用于表示 IIC1 通信接口的优先级.
-         */
+        /** IIC1 priority. */
         IIC1_PRIORITY,
-
-        /**
-         * @brief LIN1 优先级.
-         * @details 用于表示 LIN1 通信接口的优先级.
-         */
+        /** LIN1 priority. */
         LIN1_PRIORITY,
-
+        /** LOG priority. */
         LOG_PRIORITY,
 
-        /**
-         * @brief 最大的不可达优先级.
-         * @details 作为优先级范围的上限，任何实际的接口优先级都应小于此值.
-         */
+        /** the maximum reachable priority. */
         ITEM_MAXIMUM_UNREACHABLE_PRIORITY = 65536,
 };
 
