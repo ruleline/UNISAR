@@ -212,6 +212,7 @@
                 "yahei"
         ],
 
+        "C_Cpp.copilotHover": "disabled",
         "C_Cpp.default.cppStandard": "c++11",
         "C_Cpp.default.cStandard": "c99",
         "C_Cpp.errorSquiggles": "enabled",
@@ -225,12 +226,6 @@
 
         "doxdocgen.generic.linesToGet": 200,
         "doxdocgen.generic.order": [
-                "def",
-                "enum",
-                "typedef",
-                "struct",
-                "union",
-                "var",
                 "brief",
                 "details",
                 "empty",
@@ -256,6 +251,7 @@
         "githd.traceLevel": "verbose",
 
         "github.copilot.chat.followUps": "always",
+        "github.copilot.nextEditSuggestions.enabled": true,
 
         "git-graph.enhancedAccessibility": true,
         "git-graph.maxDepthOfRepoSearch": 10,
@@ -309,13 +305,12 @@
                                 "-----------------------------------------------------------------------------",
                                 "   version   |    date    |       by       |              comments",
                                 "------------ | ---------- | -------------- | --------------------------------",
-                                "  0.00.001   | <<dateformat('YYYY-MM-DD')>> |    <<author>>    | 初版",
+                                "  0.00.001   | <<dateformat('YYYY-MM-DD')>> |    <<author>>    | initial commit",
                                 "-----------------------------------------------------------------------------"
                         ],
                         "changeLogCaption": "@details",
-                        "changeLogHeaderLineCount": 2,
+                        "changeLogHeaderLineCount": 3,
                         "changeLogEntryTemplate": [
-                                "------------ | ---------- | -------------- | --------------------------------",
                                 "  0.00.001   | <<dateformat('YYYY-MM-DD')>> |    <<author>>    | "
                         ]
                 }
