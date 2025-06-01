@@ -1,11 +1,11 @@
 /**
  * @file os_delay.h
- * @brief 延时
+ * @brief delay functions
  * @author ruleline (ruleline@outlook.com)
  * @since 2025-01-29
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-24
+ * @date 2025-06-01
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -14,7 +14,7 @@
  * -----------------------------------------------------------------------------
  *    version   |    date    |     author     |             comments
  * ------------ | ---------- | -------------- | --------------------------------
- *   0.00.001   | 2025-01-29 |    ruleline    | 初版
+ *   0.00.001   | 2025-01-29 |    ruleline    | initial commit
  * -----------------------------------------------------------------------------
  */
 
@@ -28,13 +28,11 @@
 #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
 
 /**
- * @brief 相对延时
- *
- * @param[in] time 时间(单位:ms)
- * @return 结果
- * @retval 0 成功
+ * @brief delay function.
+ * @param[in] time delay time in milliseconds.
+ * @return result code.
  */
-static __force_inline i32 delay1_(usize time)
+static __force_inline i32 delay(usize time)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskDelay((TickType_t)pdMS_TO_TICKS(time));
@@ -43,15 +41,12 @@ static __force_inline i32 delay1_(usize time)
 }
 
 /**
- * @brief 绝对延时
- *
- * @param[in,out] start 开始时间(单位:ms)
- * @param[in] time 时间(单位:ms)
- * @return 结果
- * @retval -1 失败
- * @retval 0 成功
+ * @brief delay until function.
+ * @param[in,out] start pointer to the start time in milliseconds.
+ * @param[in] time delay time in milliseconds.
+ * @return result code.
  */
-static __force_inline i32 delay2_(usize *start, usize time)
+static __force_inline i32 delay_until(usize *start, usize time)
 {
         bool is_done = 0;
 
@@ -62,9 +57,9 @@ static __force_inline i32 delay2_(usize *start, usize time)
         #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
 
         if (is_done) {
-                return 0;
+                return (0);
         } else {
-                return -1;
+                return (-1);
         }
 }
 
