@@ -1,11 +1,11 @@
 /**
  * @file os_queue.h
- * @brief 队列
+ * @brief queue.
  * @author ruleline (ruleline@outlook.com)
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-24
+ * @date 2025-06-01
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -14,7 +14,7 @@
  * -----------------------------------------------------------------------------
  *    version   |    date    |     author     |             comments
  * ------------ | ---------- | -------------- | --------------------------------
- *   0.00.001   | 2025-01-28 |    ruleline    | 初版
+ *   0.00.001   | 2025-01-28 |    ruleline    | initial commit
  * -----------------------------------------------------------------------------
  */
 
@@ -28,23 +28,28 @@
 #endif /* ((FREERTOS == 1) && (FREERTOS_QUEUE == 1)) */
 
 /**
- * @brief 队列
- *
+ * @brief queue structure.
+ * @details
+ * this structure represents a queue that can be used to manage items in a
+ * FIFO (First In, First Out) manner.
  */
 struct QUEUE {
-        void *handle;           /* 句柄 */
-        usize length;           /* 长度 */
-        usize item_size;        /* 元素大小 */
+        /** queue handle */
+        void *handle;
+        /** queue length */
+        usize length;
+        /** item size */
+        usize item_size;
 };
 
 /**
- * @brief 创建队列
- *
- * @param[in,out] queue 队列
- * @return 结果
- * @retval 0 成功
+ * @brief create a queue.
+ * @details
+ * this function creates a queue with the specified length and item size.
+ * @param[in,out] queue pointer to the queue structure.
+ * @return the status of creation.
  */
-static __force_inline i32 queue_create_(struct QUEUE *queue)
+static __force_inline i32 queue_create(struct QUEUE *queue)
 {
         if (queue->handle) {
                 return (0);
@@ -58,13 +63,13 @@ static __force_inline i32 queue_create_(struct QUEUE *queue)
 }
 
 /**
- * @brief 删除队列
- *
- * @param[in,out] queue 队列
- * @return 结果
- * @retval 0 成功
+ * @brief delete a queue.
+ * @details
+ * this function deletes a queue and frees its resources.
+ * @param[in,out] queue pointer to the queue structure.
+ * @return the status of deletion.
  */
-static __force_inline i32 queue_delete_(struct QUEUE *queue)
+static __force_inline i32 queue_delete(struct QUEUE *queue)
 {
         if (!queue->handle) {
                 return (0);
@@ -77,15 +82,15 @@ static __force_inline i32 queue_delete_(struct QUEUE *queue)
 }
 
 /**
- * @brief 入队
- *
- * @param[in] queue 队列
- * @param[in] item 元素
- * @return 结果
- * @retval -1 失败
- * @retval 0 成功
+ * @brief push an item into the queue.
+ * @details
+ * this function pushes an item into the queue. if the queue is full, it will
+ * block until space is available.
+ * @param[in,out] queue pointer to the queue structure.
+ * @param[in] item pointer to the item to be pushed.
+ * @return the status of push operation.
  */
-static __force_inline i32 queue_push_(struct QUEUE *queue, void *item)
+static __force_inline i32 queue_push(struct QUEUE *queue, void *item)
 {
         bool is_done = 0;
 
@@ -101,15 +106,15 @@ static __force_inline i32 queue_push_(struct QUEUE *queue, void *item)
 }
 
 /**
- * @brief 入队头
- *
- * @param[in] queue 队列
- * @param[in] item 元素
- * @return 结果
- * @retval -1 失败
- * @retval 0 成功
+ * @brief push an item into the head of the queue.
+ * @details
+ * this function pushes an item into the head of the queue. it is useful for
+ * prioritizing certain items over others.
+ * @param[in,out] queue pointer to the queue structure.
+ * @param[in] item pointer to the item to be pushed.
+ * @return the status of push operation.
  */
-static __force_inline i32 queue_push_into_head_(struct QUEUE *queue, void *item)
+static __force_inline i32 queue_push_into_head(struct QUEUE *queue, void *item)
 {
         bool is_done = 0;
 
@@ -125,15 +130,16 @@ static __force_inline i32 queue_push_into_head_(struct QUEUE *queue, void *item)
 }
 
 /**
- * @brief 入队尾
- *
- * @param[in] queue 队列
- * @param[in] item 元素
- * @return 结果
- * @retval -1 失败
- * @retval 0 成功
+ * @brief push an item into the tail of the queue.
+ * @details
+ * this function pushes an item into the tail of the queue. it is useful for
+ * adding items to the end of the queue without affecting the order of
+ * existing items.
+ * @param[in,out] queue pointer to the queue structure.
+ * @param[in] item pointer to the item to be pushed.
+ * @return the status of push operation.
  */
-static __force_inline i32 queue_push_into_tail_(struct QUEUE *queue, void *item)
+static __force_inline i32 queue_push_into_tail(struct QUEUE *queue, void *item)
 {
         bool is_done = 0;
 
@@ -149,15 +155,15 @@ static __force_inline i32 queue_push_into_tail_(struct QUEUE *queue, void *item)
 }
 
 /**
- * @brief 覆盖入队
- *
- * @param[in] queue 队列
- * @param[in] item 元素
- * @return 结果
- * @retval -1 失败
- * @retval 0 成功
+ * @brief overwrite an item in the queue.
+ * @details
+ * this function overwrites the item at the front of the queue with a new item.
+ * it is useful for replacing the oldest item in the queue with a new one.
+ * @param[in,out] queue pointer to the queue structure.
+ * @param[in] item pointer to the item to be overwritten.
+ * @return the status of overwrite operation.
  */
-static __force_inline i32 queue_overwrite_(struct QUEUE *queue, void *item)
+static __force_inline i32 queue_overwrite(struct QUEUE *queue, void *item)
 {
         bool is_done = 0;
 
@@ -173,15 +179,15 @@ static __force_inline i32 queue_overwrite_(struct QUEUE *queue, void *item)
 }
 
 /**
- * @brief 出队
- *
- * @param[in] queue 队列
- * @param[out] item 元素
- * @return 结果
- * @retval -1 失败
- * @retval 0 成功
+ * @brief pop an item from the queue.
+ * @details
+ * this function pops an item from the front of the queue. if the queue is empty,
+ * it will block until an item is available.
+ * @param[in,out] queue pointer to the queue structure.
+ * @param[out] item pointer to the item to be popped.
+ * @return the status of pop operation.
  */
-static __force_inline i32 queue_pop_(struct QUEUE *queue, void *item)
+static __force_inline i32 queue_pop(struct QUEUE *queue, void *item)
 {
         bool is_done = 0;
 
@@ -197,15 +203,16 @@ static __force_inline i32 queue_pop_(struct QUEUE *queue, void *item)
 }
 
 /**
- * @brief 查看队头
- *
- * @param[in] queue 队列
- * @param[out] item 元素
- * @return 结果
- * @retval -1 失败
- * @retval 0 成功
+ * @brief peek an item from the queue.
+ * @details
+ * this function retrieves the item at the front of the queue without removing
+ * it. it is useful for checking the next item to be processed without modifying
+ * the queue.
+ * @param[in] queue pointer to the queue structure.
+ * @param[out] item pointer to the item to be peeked.
+ * @return the status of peek operation.
  */
-static __force_inline i32 queue_peek_(struct QUEUE *queue, void *item)
+static __force_inline i32 queue_peek(struct QUEUE *queue, void *item)
 {
         bool is_done = 0;
 
@@ -221,14 +228,14 @@ static __force_inline i32 queue_peek_(struct QUEUE *queue, void *item)
 }
 
 /**
- * @brief 清空队列
- *
- * @param[in] queue 队列
- * @return 结果
- * @retval -1 失败
- * @retval 0 成功
+ * @brief empty the queue.
+ * @details
+ * this function empties the queue, removing all items from it. it is useful
+ * for clearing the queue when it is no longer needed or before reusing it.
+ * @param[in] queue pointer to the queue structure.
+ * @return the status of empty operation.
  */
-static __force_inline i32 queue_empty_(struct QUEUE *queue)
+static __force_inline i32 queue_empty(struct QUEUE *queue)
 {
         bool is_done = 0;
 
