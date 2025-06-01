@@ -5,19 +5,19 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-09
+ * @date 2025-06-01
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
  *
- * @ref 1. 韦东山freeRTOS系列教程
+ * @ref 1. Weidongshan's FreeRTOS Series Tutorials
  *         https://blog.csdn.net/thisway_diy/article/details/121399484
  *
  * @details
  * -----------------------------------------------------------------------------
  *    version   |    date    |     author     |             comments
  * ------------ | ---------- | -------------- | --------------------------------
- *   0.00.001   | 2025-01-28 |    ruleline    | 初版
+ *   0.00.001   | 2025-01-28 |    ruleline    | initial commit
  * -----------------------------------------------------------------------------
  */
 
