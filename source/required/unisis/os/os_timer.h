@@ -1,11 +1,11 @@
 /**
  * @file os_timer.h
- * @brief 定时器
+ * @brief software timer management.
  * @author ruleline (ruleline@outlook.com)
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-24
+ * @date 2025-06-02
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -14,7 +14,7 @@
  * -----------------------------------------------------------------------------
  *    version   |    date    |     author     |             comments
  * ------------ | ---------- | -------------- | --------------------------------
- *   0.00.001   | 2025-01-28 |    ruleline    | 初版
+ *   0.00.001   | 2025-01-28 |    ruleline    | initial commit.
  * -----------------------------------------------------------------------------
  */
 
@@ -28,26 +28,35 @@
 #endif /* ((FREERTOS == 1) && (FREERTOS_TIMER == 1)) */
 
 /**
- * @brief 定时器
- *
+ * @brief timer structure.
+ * @details
+ * this structure represents a software timer that can be used for executing
+ * tasks at a specific time interval.
  */
 struct TIMER {
-        void *handle;   /**< 句柄 */
-        char *name;     /**< 名称 */
-        usize period;   /**< 周期 */
-        bool is_reload; /**< 是否重载 */
-        usize id;       /**< 标识符 */
-        void *callback; /**< 回调 */
+        /** timer handle. */
+        void *handle;
+        /** timer name. */
+        char *name;
+        /** timer period. */
+        usize period;
+        /** timer is reload. */
+        bool is_reload;
+        /** timer id. */
+        usize id;
+        /** timer callback. */
+        void *callback;
 };
 
 /**
- * @brief 创建定时器
- *
- * @param[in,out] timer 定时器
- * @return 结果
- * @retval 0 成功
+ * @brief create a timer.
+ * @details
+ * this function creates a timer with the given name, period, is_reload, id, and
+ * callback. if the timer already exists, it does nothing.
+ * @param[in,out] timer pointer to the timer structure.
+ * @return the status of creation.
  */
-static __force_inline i32 timer_create_(struct TIMER *timer)
+static __force_inline i32 timer_create(struct TIMER *timer)
 {
         if (timer->handle) {
                 return (0);
@@ -63,15 +72,13 @@ static __force_inline i32 timer_create_(struct TIMER *timer)
 }
 
 /**
- * @brief 删除定时器
- *
- * @param[in,out] timer 定时器
- * @return 结果
- * @retval -2 未创建
- * @retval -1 失败
- * @retval 0 成功
+ * @brief delete a timer.
+ * @details
+ * this function deletes a timer. if the timer does not exist, it does nothing.
+ * @param[in,out] timer pointer to the timer structure.
+ * @return the status of deletion.
  */
-static __force_inline i32 timer_delete_(struct TIMER *timer)
+static __force_inline i32 timer_delete(struct TIMER *timer)
 {
         if (!timer->handle) {
                 return (-2);
@@ -91,15 +98,15 @@ static __force_inline i32 timer_delete_(struct TIMER *timer)
 }
 
 /**
- * @brief 获取定时器状态
- *
- * @param[in] timer 定时器
- * @return 状态
- * @retval -2 未创建
- * @retval -1 休眠
- * @retval 0 运行
+ * @brief get the state of a timer.
+ * @details
+ * this function gets the state of a timer. if the timer does not exist, it
+ * returns -2. if the timer is running, it returns 0. if the timer is not
+ * running, it returns -1.
+ * @param[in,out] timer pointer to the timer structure.
+ * @return the state of the timer.
  */
-static __force_inline i32 timer_get_state_(struct TIMER *timer)
+static __force_inline i32 timer_get_state(struct TIMER *timer)
 {
         if (!timer->handle) {
                 return (-2);
@@ -119,20 +126,20 @@ static __force_inline i32 timer_get_state_(struct TIMER *timer)
 }
 
 /**
- * @brief 启动定时器
- *
- * @param[in] timer 定时器
- * @return 结果
- * @retval -2 未创建
- * @retval -1 失败
- * @retval 0 成功
+ * @brief start a timer.
+ * @details
+ * this function starts a timer. if the timer does not exist, it returns -2. if
+ * the timer is already running, it returns 0. if the timer is not running, it
+ * returns -1.
+ * @param[in,out] timer pointer to the timer structure.
+ * @return the status of start operation.
  */
-static __force_inline i32 timer_start_(struct TIMER *timer)
+static __force_inline i32 timer_start(struct TIMER *timer)
 {
         if (!timer->handle) {
                 return (-2);
         }
-        if (timer_get_state_(timer) == 0) {
+        if (timer_get_state(timer) == 0) {
                 return (0);
         }
 
@@ -150,20 +157,20 @@ static __force_inline i32 timer_start_(struct TIMER *timer)
 }
 
 /**
- * @brief 停止定时器
- *
- * @param[in] timer 定时器
- * @return 结果
- * @retval -2 未创建
- * @retval -1 失败
- * @retval 0 成功
+ * @brief stop a timer.
+ * @details
+ * this function stops a timer. if the timer does not exist, it returns -2. if
+ * the timer is not running, it returns 0. if the timer is running, it returns
+ * -1.
+ * @param[in,out] timer pointer to the timer structure.
+ * @return the status of stop operation.
  */
-static __force_inline i32 timer_stop_(struct TIMER *timer)
+static __force_inline i32 timer_stop(struct TIMER *timer)
 {
         if (!timer->handle) {
                 return (-2);
         }
-        if (timer_get_state_(timer) != 0) {
+        if (timer_get_state(timer) != 0) {
                 return (0);
         }
 
@@ -181,27 +188,28 @@ static __force_inline i32 timer_stop_(struct TIMER *timer)
 }
 
 /**
- * @brief 获取定时器周期
- *
- * @param[in] timer 定时器
- * @return 周期
+ * @brief get the period of a timer.
+ * @details
+ * this function gets the period of a timer. if the timer does not exist, it
+ * returns 0.
+ * @param[in,out] timer pointer to the timer structure.
+ * @return the period of the timer.
  */
-static __force_inline usize timer_get_period_(struct TIMER *timer)
+static __force_inline usize timer_get_period(struct TIMER *timer)
 {
         return (timer->period);
 }
 
 /**
- * @brief 设置定时器周期
- *
- * @param[in] timer 定时器
- * @param[in] period 周期(单位:ms)
- * @return 结果
- * @retval -2 未创建
- * @retval -1 失败
- * @retval 0 成功
+ * @brief set the period of a timer.
+ * @details
+ * this function sets the period of a timer. if the timer does not exist, it
+ * does nothing.
+ * @param[in,out] timer pointer to the timer structure.
+ * @param[in] period new period of the timer.
+ * @return the status of setting the period.
  */
-static __force_inline i32 timer_set_period_(struct TIMER *timer, usize period)
+static __force_inline i32 timer_set_period(struct TIMER *timer, usize period)
 {
         if (!timer->handle) {
                 return (-2);
