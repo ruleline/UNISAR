@@ -1,11 +1,11 @@
 /**
  * @file os_thread.h
- * @brief 线程
+ * @brief thread management.
  * @author ruleline (ruleline@outlook.com)
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-03-03
+ * @date 2025-06-02
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -14,7 +14,7 @@
  * -----------------------------------------------------------------------------
  *    version   |    date    |     author     |             comments
  * ------------ | ---------- | -------------- | --------------------------------
- *   0.00.001   | 2025-01-28 |    ruleline    | 初版
+ *   0.00.001   | 2025-01-28 |    ruleline    | initial commit.
  * -----------------------------------------------------------------------------
  */
 
@@ -28,26 +28,35 @@
 #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
 
 /**
- * @brief 线程
- *
+ * @brief thread structure.
+ * @details
+ * this structure represents a thread that can be used for executing tasks.
  */
 struct THREAD {
-        void *handle;           /**< 句柄 */
-        void *entry;            /**< 入口 */
-        char *name;             /**< 名称 */
-        usize stack_depth;      /**< 栈深度(单位:字) */
-        void *parameters;       /**< 参数 */
-        usize priority;         /**< 优先级 */
+        /** thread handle. */
+        void *handle;
+        /** thread entry function. */
+        void *entry;
+        /** thread name. */
+        char *name;
+        /** thread stack depth. */
+        usize stack_depth;
+        /** thread parameters. */
+        void *parameters;
+        /** thread priority. */
+        usize priority;
 };
 
 /**
- * @brief 创建线程
- *
- * @param[in,out] thread 线程
- * @return 结果
- * @retval 0 成功
+ * @brief create a thread.
+ * @details
+ * this function creates a thread with the given entry function, name, stack
+ * depth, parameters, and priority. if the thread already exists, it does
+ * nothing.
+ * @param[in,out] thread pointer to the thread structure.
+ * @return the status of creation.
  */
-static __force_inline i32 thread_create_(struct THREAD *thread)
+static __force_inline i32 thread_create(struct THREAD *thread)
 {
         if (thread->handle) {
                 return (0);
@@ -63,13 +72,14 @@ static __force_inline i32 thread_create_(struct THREAD *thread)
 }
 
 /**
- * @brief 删除线程
- *
- * @param[in] thread 线程
- * @return 结果
- * @retval 0 成功
+ * @brief delete a thread.
+ * @details
+ * this function deletes a thread. if the thread does not exist, it does
+ * nothing.
+ * @param[in,out] thread pointer to the thread structure.
+ * @return the status of deletion.
  */
-static __force_inline i32 thread_delete_(struct THREAD *thread)
+static __force_inline i32 thread_delete(struct THREAD *thread)
 {
         #if ((FREERTOS == 1) && (FREERTOS_TASK == 1))
         vTaskDelete(thread->handle);
@@ -78,19 +88,14 @@ static __force_inline i32 thread_delete_(struct THREAD *thread)
 }
 
 /**
- * @brief 获取线程状态
- *
- * @param[in] thread 线程
- * @return 状态
- * @retval -2 未创建
- * @retval -1 无效
- * @retval 0 运行
- * @retval 1 就绪
- * @retval 2 阻塞
- * @retval 3 挂起
- * @retval 4 删除
+ * @brief get the state of a thread.
+ * @details
+ * this function gets the state of a thread. if the thread does not exist, it
+ * returns -1.
+ * @param[in,out] thread pointer to the thread structure.
+ * @return the state of the thread.
  */
-static __force_inline i32 thread_get_state_(struct THREAD *thread)
+static __force_inline i32 thread_get_state(struct THREAD *thread)
 {
         if (!thread->handle) {
                 return (-2);
@@ -109,15 +114,16 @@ static __force_inline i32 thread_get_state_(struct THREAD *thread)
 }
 
 /**
- * @brief 挂起线程
- *
- * @param[in] thread 线程
- * @return 结果
- * @retval 0 成功
+ * @brief suspend a thread.
+ * @details
+ * this function suspends a thread. if the thread does not exist, it does
+ * nothing.
+ * @param[in,out] thread pointer to the thread structure.
+ * @return the status of suspension.
  */
-static __force_inline i32 thread_suspend_(struct THREAD *thread)
+static __force_inline i32 thread_suspend(struct THREAD *thread)
 {
-        if (thread_get_state_(thread) == 3) {
+        if (thread_get_state(thread) == 3) {
                 return (0);
         }
 
@@ -128,19 +134,19 @@ static __force_inline i32 thread_suspend_(struct THREAD *thread)
 }
 
 /**
- * @brief 恢复线程
- *
- * @param[in] thread 线程
- * @return 结果
- * @retval -1 未创建
- * @retval 0 成功
+ * @brief resume a thread.
+ * @details
+ * this function resumes a thread. if the thread does not exist, it does
+ * nothing.
+ * @param[in,out] thread pointer to the thread structure.
+ * @return the status of resumption.
  */
-static __force_inline i32 thread_resume_(struct THREAD *thread)
+static __force_inline i32 thread_resume(struct THREAD *thread)
 {
         if (!thread->handle) {
                 return (-1);
         }
-        if (thread_get_state_(thread) == 0) {
+        if (thread_get_state(thread) == 0) {
                 return (0);
         }
 
@@ -151,41 +157,45 @@ static __force_inline i32 thread_resume_(struct THREAD *thread)
 }
 
 /**
- * @brief 获取线程名称
- *
- * @param[in] thread 线程
- * @param[out] name 名称
- * @return 结果
- * @retval 0 成功
+ * @brief get the name of a thread.
+ * @details
+ * this function gets the name of a thread. if the thread does not exist, it
+ * returns -1.
+ * @param[in,out] thread pointer to the thread structure.
+ * @param[in,out] name pointer to the name buffer.
+ * @return the status of getting the name.
  */
-static __force_inline i32 thread_get_name_(struct THREAD *thread, char *name)
+static __force_inline i32 thread_get_name(struct THREAD *thread, char *name)
 {
         strncpy(name, thread->name, strlen(thread->name));
         return (0);
 }
 
 /**
- * @brief 获取线程优先级
- *
- * @param[in] thread 线程
- * @return 优先级
+ * @brief get the priority of a thread.
+ * @details
+ * this function gets the priority of a thread. if the thread does not exist, it
+ * returns -1.
+ * @param[in,out] thread pointer to the thread structure.
+ * @return the priority of the thread.
  */
-static __force_inline usize thread_get_priority_(struct THREAD *thread)
+static __force_inline usize thread_get_priority(struct THREAD *thread)
 {
         return (thread->priority);
 }
 
 /**
- * @brief 设置线程优先级
- *
- * @param[in] thread 线程
- * @param[in] priority 优先级
- * @return 结果
- * @retval 0 成功
+ * @brief set the priority of a thread.
+ * @details
+ * this function sets the priority of a thread. if the thread does not exist, it
+ * does nothing.
+ * @param[in,out] thread pointer to the thread structure.
+ * @param[in] priority new priority of the thread.
+ * @return the status of setting the priority.
  */
-static __force_inline i32 thread_set_priority_(struct THREAD *thread, usize priority)
+static __force_inline i32 thread_set_priority(struct THREAD *thread, usize priority)
 {
-        if (thread_get_priority_(thread) == priority) {
+        if (thread_get_priority(thread) == priority) {
                 return (0);
         }
 
@@ -196,15 +206,14 @@ static __force_inline i32 thread_set_priority_(struct THREAD *thread, usize prio
 }
 
 /**
- * @brief 发送线程通知
- *
- * @param[in] thread 线程
- * @return 结果
- * @retval -2 未创建
- * @retval -1 失败
- * @retval 0 成功
+ * @brief give a notification to a thread.
+ * @details
+ * this function gives a notification to a thread. if the thread does not exist,
+ * it does nothing.
+ * @param[in,out] thread pointer to the thread structure.
+ * @return the status of giving the notification.
  */
-static __force_inline i32 thread_give_notify_(struct THREAD *thread)
+static __force_inline i32 thread_give_notify(struct THREAD *thread)
 {
         if (!thread->handle) {
                 return (-2);
@@ -224,15 +233,15 @@ static __force_inline i32 thread_give_notify_(struct THREAD *thread)
 }
 
 /**
- * @brief 获取线程通知
- *
- * @param[in] thread 线程
- * @param[in] wait 等待时间(单位:ms)
- * @return 结果
- * @retval -1 失败
- * @retval 0 成功
+ * @brief take a notification from a thread.
+ * @details
+ * this function takes a notification from a thread. if the thread does not
+ * exist, it does nothing.
+ * @param[in,out] thread pointer to the thread structure.
+ * @param[in] wait wait time in milliseconds.
+ * @return the status of taking the notification.
  */
-static __force_inline i32 thread_take_notify_(struct THREAD *thread, usize wait)
+static __force_inline i32 thread_take_notify(struct THREAD *thread, usize wait)
 {
         bool is_done = 0;
 
