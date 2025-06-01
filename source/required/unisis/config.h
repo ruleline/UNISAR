@@ -27,7 +27,7 @@
  * when the identifier is 1, FreeRTOS will be used. when the identifier is 0,
  * FreeRTOS will not be used.
  */
-#define FREERTOS        (1)
+#define FREERTOS        (0)
 /**
  * @brief the identifier of Zephyr.
  * @details
