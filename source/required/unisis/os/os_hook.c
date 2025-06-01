@@ -1,11 +1,11 @@
 /**
  * @file os_hook.c
- * @brief 钩子
+ * @brief hook functions for operating system.
  * @author ruleline (ruleline@outlook.com)
  * @since 2025-01-30
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-09
+ * @date 2025-06-01
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -14,7 +14,7 @@
  * -----------------------------------------------------------------------------
  *    version   |    date    |     author     |             comments
  * ------------ | ---------- | -------------- | --------------------------------
- *   0.00.001   | 2025-01-30 |    ruleline    | 初版
+ *   0.00.001   | 2025-01-30 |    ruleline    | initial commit
  * -----------------------------------------------------------------------------
  */
 
@@ -22,8 +22,9 @@
 
 #if (FREERTOS == 1)
 /**
- * @brief 空闲钩子
- *
+ * @brief idle hook.
+ * @details
+ * this function is called when the idle task is running.
  */
 void vApplicationIdleHook(void)
 {
@@ -33,8 +34,9 @@ void vApplicationIdleHook(void)
 
 #if (FREERTOS == 1)
 /**
- * @brief 滴答钩子
- *
+ * @brief tick hook.
+ * @details
+ * this function is called when the tick timer expires.
  */
 void vApplicationTickHook(void)
 {
@@ -44,8 +46,9 @@ void vApplicationTickHook(void)
 
 #if (FREERTOS == 1)
 /**
- * @brief 内存分配失败钩子
- *
+ * @brief memory allocation failed hook.
+ * @details
+ * this function is called when a memory allocation fails.
  */
 void vApplicationMallocFailedHook(void)
 {
@@ -55,10 +58,11 @@ void vApplicationMallocFailedHook(void)
 
 #if (FREERTOS == 1)
 /**
- * @brief 堆栈溢出钩子
- *
- * @param[in] handle 句柄
- * @param[in] name 名称
+ * @brief stack overflow hook.
+ * @details
+ * this function is called when a stack overflow occurs.
+ * @param[in] handle task handle that caused the overflow.
+ * @param[in] name name of the task that caused the overflow.
  */
 void vApplicationStackOverflowHook(TaskHandle_t handle, char *name)
 {
@@ -68,8 +72,9 @@ void vApplicationStackOverflowHook(TaskHandle_t handle, char *name)
 
 #if (FREERTOS == 1)
 /**
- * @brief 守护进程任务启动钩子
- *
+ * @brief daemon task startup hook.
+ * @details
+ * this function is called when the daemon task is started.
  */
 void vApplicationDaemonTaskStartupHook(void)
 {
