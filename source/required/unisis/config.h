@@ -23,52 +23,68 @@
 
 /**
  * @brief the identifier of FreeRTOS.
- * @details when the identifier is 1, FreeRTOS will be used.
+ * @details
+ * when the identifier is 1, FreeRTOS will be used. when the identifier is 0,
+ * FreeRTOS will not be used.
  */
 #define FREERTOS        (1)
 /**
  * @brief the identifier of Zephyr.
  * @details
+ * when the identifier is 1, Zephyr will be used. when the identifier is 0,
+ * Zephyr will not be used.
  */
 #define ZEPHYR          (0)
 /**
  * @brief the identifier of ThreadX.
- * @details when the identifier is 1, ThreadX will be used.
+ * @details
+ * when the identifier is 1, ThreadX will be used. when the identifier is 0,
+ * ThreadX will not be used.
  */
 #define THREADX         (0)
 
 /**
  * @brief the identifier of Little-FS.
- * @details when the identifier is 1, Little-FS will be used.
+ * @details
+ * when the identifier is 1, Little-FS will be used. when the identifier is 0,
+ * Little-FS will not be used.
  */
-#define LITTLE_FILE_SYSTEM       (1)
+#define LITTLE_FILE_SYSTEM       (0)
 /**
  * @brief the identifier of FAT-FS.
- * @details when the identifier is 1, FAT-FS will be used.
+ * @details
+ * when the identifier is 1, FAT-FS will be used. when the identifier is 0,
+ * FAT-FS will not be used.
  */
 #define FAT_FILE_SYSTEM          (0)
 
 /**
  * @brief line break.
- * @details windows: "\r\n", linux: "\n".
+ * @details
+ * this macro is used to define the line break character. it is recommended to
+ * use "\r\n" for Windows and "\n" for Linux.
  */
 #define LINE_BREAK      "\r\n"
 /**
  * @brief regular printing.
- * @details it is recommended to use this macro for regular information,
- *              such as debug information.
+ * @details
+ * this macro is used to define the regular printing function. it is recommended
+ * to use this macro for regular information, such as debug information.
  */
 #define PRINTF          printf
 /**
  * @brief immediate printing.
- * @details it is recommended to use this macro for critical information,
- *              such as errors.
+ * @details
+ * this macro is used to define the immediate printing function. it is recommended
+ * to use this macro for immediate information, such as error information.
  */
 #define PRINT           printf
 
 /**
  * @brief item priority set.
- * @details the priority is used to determine the order of execution of the items.
+ * @details
+ * this enum defines the priority of each item in the system. the priority is
+ * used to determine the order of execution of each item.
  */
 enum ITEM_PRIORITY {
         /** the minimum unreachable priority. */
