@@ -1,11 +1,11 @@
 /**
  * @file unisis.h
- * @brief 通用软件接口标准
+ * @brief universal software interface standard
  * @author ruleline (ruleline@outlook.com)
  * @since 2025-02-09
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-27
+ * @date 2025-06-01
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -14,7 +14,7 @@
  * -----------------------------------------------------------------------------
  *    version   |    date    |     author     |             comments
  * ------------ | ---------- | -------------- | --------------------------------
- *   0.00.001   | 2025-02-09 |    ruleline    | 初版
+ *   0.00.001   | 2025-02-09 |    ruleline    | initial commit
  * -----------------------------------------------------------------------------
  */
 
