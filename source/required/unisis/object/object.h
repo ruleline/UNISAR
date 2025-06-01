@@ -5,7 +5,7 @@
  * @since 2025-02-26
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-27
+ * @date 2025-06-01
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -14,44 +14,93 @@
  * -----------------------------------------------------------------------------
  *    version   |    date    |     author     |             comments
  * ------------ | ---------- | -------------- | --------------------------------
- *   0.00.001   | 2025-02-26 |    ruleline    | 初版
+ *   0.00.001   | 2025-02-26 |    ruleline    | initial commit
  * -----------------------------------------------------------------------------
  */
 
 #if !defined OBJECT_H
 #define OBJECT_H
 
+#include "unisis.h"
+
+/**
+ * @brief object structure.
+ * @details
+ * this structure represents an object.
+ */
 struct OBJECT {
+        /** name of the object */
         char *name;
+        /** open the object. */
         i32 (*open)(struct OBJECT *self);
+        /** close the object. */
         i32 (*close)(struct OBJECT *self);
+        /** read data from the object. */
         i32 (*read)(struct OBJECT *self, void *package);
+        /** write data to the object. */
         i32 (*write)(struct OBJECT *self, void *package);
 };
 
-static __force_inline char *object_name_(struct OBJECT *self)
+/**
+ * @brief get the name of the object.
+ * @details
+ * this function returns the name of the given object.
+ * @param[in] self a pointer to the `OBJECT` structure representing the target object.
+ * @return a pointer to the name of the object.
+ */
+static __force_inline char *object_name(struct OBJECT *self)
 {
-        return (self->name);
+        return self->name;
 }
 
-static __force_inline i32 object_open_(struct OBJECT *self)
+/**
+ * @brief open the object.
+ * @details
+ * this function invokes the `open` method of the given object.
+ * @param[in] self a pointer to the `OBJECT` structure representing the target object.
+ * @return the result of the `open` operation.
+ */
+static __force_inline i32 object_open(struct OBJECT *self)
 {
-        return (self->open(self));
+        return self->open(self);
 }
 
-static __force_inline i32 object_close_(struct OBJECT *self)
+/**
+ * @brief close the object.
+ * @details
+ * this function invokes the `close` method of the given object.
+ * @param[in] self a pointer to the `OBJECT` structure representing the target object.
+ * @return the result of the `close` operation.
+ */
+static __force_inline i32 object_close(struct OBJECT *self)
 {
-        return (self->close(self));
+        return self->close(self);
 }
 
-static __force_inline i32 object_read_(struct OBJECT *self, void *package)
+/**
+ * @brief read data from the object.
+ * @details
+ * this function invokes the `read` method of the given object.
+ * @param[in] self a pointer to the `OBJECT` structure representing the target object.
+ * @param[out] package a pointer to the data package to be read from the object.
+ * @return the result of the `read` operation.
+ */
+static __force_inline i32 object_read(struct OBJECT *self, void *package)
 {
-        return (self->read(self, package));
+        return self->read(self, package);
 }
 
-static __force_inline i32 object_write_(struct OBJECT *self, void *package)
+/**
+ * @brief write data to the object.
+ * @details
+ * this function invokes the `write` method of the given object.
+ * @param[in] self a pointer to the `OBJECT` structure representing the target object.
+ * @param[in] package a pointer to the data package to be written to the object.
+ * @return the result of the `write` operation.
+ */
+static __force_inline i32 object_write(struct OBJECT *self, void *package)
 {
-        return (self->write(self, package));
+        return self->write(self, package);
 }
 
 #endif /* !defined OBJECT_H */
