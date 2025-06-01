@@ -228,9 +228,7 @@
         "doxdocgen.generic.order": [
                 "brief",
                 "details",
-                "empty",
                 "param",
-                "empty",
                 "return",
                 "retval"
         ],
