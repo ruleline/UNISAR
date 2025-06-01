@@ -121,9 +121,9 @@
         "explorer.excludeGitIgnore": true,
         "explorer.copyRelativePathSeparator": "/",
         "explorer.fileNesting.enabled": true,
-        "explorer.fileNesting.patterns": {
-                "*c": "${basename}.c, ${basename}.h"
-        },
+        // "explorer.fileNesting.patterns": {
+        //         "*c": "${basename}.c, ${basename}.h"
+        // },
         "explorer.incrementalNaming": "smart",
         "explorer.sortOrder": "mixed",
         "extensions.autoCheckUpdates":true,
