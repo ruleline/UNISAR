@@ -1,11 +1,11 @@
 /**
  * @file os_semaphore.h
- * @brief 信号量
+ * @brief semaphore management.
  * @author ruleline (ruleline@outlook.com)
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-24
+ * @date 2025-06-02
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -14,7 +14,7 @@
  * -----------------------------------------------------------------------------
  *    version   |    date    |     author     |             comments
  * ------------ | ---------- | -------------- | --------------------------------
- *   0.00.001   | 2025-01-28 |    ruleline    | 初版
+ *   0.00.001   | 2025-01-28 |    ruleline    | initial commit.
  * -----------------------------------------------------------------------------
  */
 
@@ -28,21 +28,24 @@
 #endif /* ((FREERTOS == 1) && (FREERTOS_SEMAPHORE == 1)) */
 
 /**
- * @brief 信号量
- *
+ * @brief semaphore structure.
+ * @details
+ * this structure represents a semaphore that can be used for synchronization
+ * between tasks or threads.
  */
 struct SEMAPHORE {
-        void *handle; /**< 句柄 */
+        void *handle;
 };
 
 /**
- * @brief 创建二值信号量
- *
- * @param[in,out] semaphore 二值信号量
- * @return 结果
- * @retval 0 成功
+ * @brief create a binary semaphore.
+ * @details
+ * this function creates a binary semaphore. if the semaphore already exists,
+ * it does nothing.
+ * @param[in,out] semaphore pointer to the semaphore structure.
+ * @return the status of creation.
  */
-static __force_inline i32 semaphore_binary_create_(struct SEMAPHORE *semaphore)
+static __force_inline i32 semaphore_binary_create(struct SEMAPHORE *semaphore)
 {
         if (semaphore->handle) {
                 return (0);
@@ -56,16 +59,17 @@ static __force_inline i32 semaphore_binary_create_(struct SEMAPHORE *semaphore)
 }
 
 /**
- * @brief 创建计数信号量
- *
- * @param[in,out] semaphore 计数信号量
- * @param[in] max_count 最大计数
- * @param[in] init_count 初始计数
- * @return 结果
- * @retval 0 成功
+ * @brief create a counting semaphore.
+ * @details
+ * this function creates a counting semaphore with a maximum count and an initial
+ * count. if the semaphore already exists, it does nothing.
+ * @param[in,out] semaphore pointer to the semaphore structure.
+ * @param[in] max_count maximum count of the semaphore.
+ * @param[in] init_count initial count of the semaphore.
+ * @return the status of creation.
  */
-static __force_inline i32 semaphore_counting_create_(struct SEMAPHORE *semaphore,
-                                        usize max_count, usize init_count)
+static __force_inline i32 semaphore_counting_create(
+                struct SEMAPHORE *semaphore, usize max_count, usize init_count)
 {
         if (semaphore->handle) {
                 return (0);
@@ -79,13 +83,14 @@ static __force_inline i32 semaphore_counting_create_(struct SEMAPHORE *semaphore
 }
 
 /**
- * @brief 创建互斥信号量
- *
- * @param[in,out] semaphore 互斥信号量
- * @return 结果
- * @retval 0 成功
+ * @brief create a binary semaphore with a timeout.
+ * @details
+ * this function creates a binary semaphore that can be used with a timeout.
+ * if the semaphore already exists, it does nothing.
+ * @param[in,out] semaphore pointer to the semaphore structure.
+ * @return the status of creation.
  */
-static __force_inline i32 semaphore_mutex_create_(struct SEMAPHORE *semaphore)
+static __force_inline i32 semaphore_mutex_create(struct SEMAPHORE *semaphore)
 {
         if (semaphore->handle) {
                 return (0);
@@ -99,13 +104,16 @@ static __force_inline i32 semaphore_mutex_create_(struct SEMAPHORE *semaphore)
 }
 
 /**
- * @brief 创建递归互斥信号量
- *
- * @param[in,out] semaphore 递归互斥信号量
- * @return 结果
- * @retval 0 成功
+ * @brief create a recursive mutex semaphore.
+ * @details
+ * this function creates a recursive mutex semaphore that allows the same task
+ * to acquire the semaphore multiple times without blocking. if the semaphore
+ * already exists, it does nothing.
+ * @param[in,out] semaphore pointer to the semaphore structure.
+ * @return the status of creation.
  */
-static __force_inline i32 semaphore_recursive_mutex_create_(struct SEMAPHORE *semaphore)
+static __force_inline i32 semaphore_recursive_mutex_create(
+                                                struct SEMAPHORE *semaphore)
 {
         if (semaphore->handle) {
                 return (0);
@@ -119,13 +127,14 @@ static __force_inline i32 semaphore_recursive_mutex_create_(struct SEMAPHORE *se
 }
 
 /**
- * @brief 删除信号量
- *
- * @param[in,out] semaphore 信号量
- * @return 结果
- * @retval 0 成功
+ * @brief delete a semaphore.
+ * @details
+ * this function deletes a semaphore and frees its resources. if the semaphore
+ * does not exist, it does nothing.
+ * @param[in,out] semaphore pointer to the semaphore structure.
+ * @return the status of deletion.
  */
-static __force_inline i32 semaphore_delete_(struct SEMAPHORE *semaphore)
+static __force_inline i32 semaphore_delete(struct SEMAPHORE *semaphore)
 {
         if (!semaphore->handle) {
                 return (0);
@@ -138,18 +147,14 @@ static __force_inline i32 semaphore_delete_(struct SEMAPHORE *semaphore)
 }
 
 /**
- * @brief 获取信号量
- *
- * @param[in] semaphore 信号量
- * @return 结果
- * @retval -1 失败
- * @retval 0 成功
- *
- * @note 1. 适用于二值信号量
- *       2. 适用于计数信号量
- *       3. 与 semaphore_release_() 配合使用
+ * @brief acquire a semaphore.
+ * @details
+ * this function acquires a semaphore. if the semaphore is not available, it
+ * will block until it becomes available.
+ * @param[in,out] semaphore pointer to the semaphore structure.
+ * @return the status of acquisition.
  */
-static __force_inline i32 semaphore_acquire_(struct SEMAPHORE *semaphore)
+static __force_inline i32 semaphore_acquire(struct SEMAPHORE *semaphore)
 {
         bool is_done = 0;
 
@@ -165,18 +170,14 @@ static __force_inline i32 semaphore_acquire_(struct SEMAPHORE *semaphore)
 }
 
 /**
- * @brief 释放信号量
- *
- * @param[in] semaphore 信号量
- * @return 结果
- * @retval -1 失败
- * @retval 0 成功
- *
- * @note 1. 适用于二值信号量
- *       2. 适用于计数信号量
- *       3. 与 semaphore_acquire_() 配合使用
+ * @brief release a semaphore.
+ * @details
+ * this function releases a semaphore. if the semaphore is not held, it does
+ * nothing.
+ * @param[in,out] semaphore pointer to the semaphore structure.
+ * @return the status of release operation.
  */
-static __force_inline i32 semaphore_release_(struct SEMAPHORE *semaphore)
+static __force_inline i32 semaphore_release(struct SEMAPHORE *semaphore)
 {
         bool is_done = 0;
 
@@ -192,17 +193,14 @@ static __force_inline i32 semaphore_release_(struct SEMAPHORE *semaphore)
 }
 
 /**
- * @brief 上锁
- *
- * @param[in] semaphore 信号量
- * @return 结果
- * @retval -1 失败
- * @retval 0 成功
- *
- * @note 1. 适用于互斥信号量
- *       2. 与 semaphore_unlock_() 配合使用
+ * @brief lock a semaphore.
+ * @details
+ * this function locks a semaphore. if the semaphore is already held, it will
+ * block until it becomes available.
+ * @param[in,out] semaphore pointer to the semaphore structure.
+ * @return the status of lock operation.
  */
-static __force_inline i32 semaphore_lock_(struct SEMAPHORE *semaphore)
+static __force_inline i32 semaphore_lock(struct SEMAPHORE *semaphore)
 {
         bool is_done = 0;
 
@@ -218,17 +216,14 @@ static __force_inline i32 semaphore_lock_(struct SEMAPHORE *semaphore)
 }
 
 /**
- * @brief 解锁
- *
- * @param[in] semaphore 信号量
- * @return 结果
- * @retval -1 失败
- * @retval 0 成功
- *
- * @note 1. 适用于互斥信号量
- *       2. 与 semaphore_lock_() 配合使用
+ * @brief unlock a semaphore.
+ * @details
+ * this function unlocks a semaphore. if the semaphore is not held, it does
+ * nothing.
+ * @param[in,out] semaphore pointer to the semaphore structure.
+ * @return the status of unlock operation.
  */
-static __force_inline i32 semaphore_unlock_(struct SEMAPHORE *semaphore)
+static __force_inline i32 semaphore_unlock(struct SEMAPHORE *semaphore)
 {
         bool is_done = 0;
 
@@ -244,17 +239,14 @@ static __force_inline i32 semaphore_unlock_(struct SEMAPHORE *semaphore)
 }
 
 /**
- * @brief 上递归锁
- *
- * @param[in] semaphore 信号量
- * @return 结果
- * @retval -1 失败
- * @retval 0 成功
- *
- * @note 1. 适用于递归互斥信号量
- *       2. 与 semaphore_recursive_unlock_() 配合使用
+ * @brief lock a semaphore recursively.
+ * @details
+ * this function locks a semaphore recursively. if the semaphore is already held,
+ * it will block until it becomes available.
+ * @param[in,out] semaphore pointer to the semaphore structure.
+ * @return the status of lock operation.
  */
-static __force_inline i32 semaphore_recursive_lock_(struct SEMAPHORE *semaphore)
+static __force_inline i32 semaphore_recursive_lock(struct SEMAPHORE *semaphore)
 {
         bool is_done = 0;
 
@@ -270,17 +262,14 @@ static __force_inline i32 semaphore_recursive_lock_(struct SEMAPHORE *semaphore)
 }
 
 /**
- * @brief 解递归锁
- *
- * @param[in] semaphore 信号量
- * @return 结果
- * @retval -1 失败
- * @retval 0 成功
- *
- * @note 1. 适用于递归互斥信号量
- *       2. 与 semaphore_recursive_lock_() 配合使用
+ * @brief unlock a semaphore recursively.
+ * @details
+ * this function unlocks a semaphore recursively. if the semaphore is not held,
+ * it does nothing.
+ * @param[in,out] semaphore pointer to the semaphore structure.
+ * @return the status of unlock operation.
  */
-static __force_inline i32 semaphore_recursive_unlock_(struct SEMAPHORE *semaphore)
+static __force_inline i32 semaphore_recursive_unlock(struct SEMAPHORE *semaphore)
 {
         bool is_done = 0;
 
