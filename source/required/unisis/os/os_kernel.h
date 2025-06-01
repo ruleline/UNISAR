@@ -1,11 +1,11 @@
 /**
  * @file os_kernel.h
- * @brief 内核
+ * @brief kernel functions.
  * @author ruleline (ruleline@outlook.com)
  * @since 2025-01-29
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-04-20
+ * @date 2025-06-01
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -14,7 +14,7 @@
  * -----------------------------------------------------------------------------
  *    version   |    date    |     author     |             comments
  * ------------ | ---------- | -------------- | --------------------------------
- *   0.00.001   | 2025-01-29 |    ruleline    | 初版
+ *   0.00.001   | 2025-01-29 |    ruleline    | initial commit
  * -----------------------------------------------------------------------------
  */
 
@@ -28,10 +28,10 @@
 #endif /* ((FREERTOS == 1) && (FREERTOS_TASK == 1)) */
 
 /**
- * @brief 启动内核
- *
- * @return 结果
- * @retval 0 成功
+ * @brief kernel initialization function.
+ * @details
+ * this function is called to initialize the kernel.
+ * @return result code.
  */
 static __force_inline i32 kernel_start(void)
 {
@@ -42,10 +42,10 @@ static __force_inline i32 kernel_start(void)
 }
 
 /**
- * @brief 停止内核
- *
- * @return 结果
- * @retval 0 成功
+ * @brief kernel stop function.
+ * @details
+ * this function is called to stop the kernel.
+ * @return result code.
  */
 static __force_inline i32 kernel_stop(void)
 {
@@ -56,10 +56,10 @@ static __force_inline i32 kernel_stop(void)
 }
 
 /**
- * @brief 恢复内核
- *
- * @return 结果
- * @retval 0 成功
+ * @brief kernel resume function.
+ * @details
+ * this function is called to resume the kernel.
+ * @return result code.
  */
 static __force_inline i32 kernel_resume(void)
 {
@@ -70,10 +70,10 @@ static __force_inline i32 kernel_resume(void)
 }
 
 /**
- * @brief 挂起内核
- *
- * @return 结果
- * @retval 0 成功
+ * @brief kernel suspend function.
+ * @details
+ * this function is called to suspend the kernel.
+ * @return result code.
  */
 static __force_inline i32 kernel_suspend(void)
 {
