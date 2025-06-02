@@ -1,89 +1,105 @@
 /**
  * @file can.c
- * @brief can
+ * @brief CAN bus driver.
  * @author ruleline (ruleline@outlook.com)
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-04-17
+ * @date 2025-06-02
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
- *
- * @defgroup CAN-INIT CAN 设备初始化
- * @defgroup CAN-DEINIT CAN 设备反初始化
  *
  * @details
  * -----------------------------------------------------------------------------
  *    version   |    date    |     author     |             comments
  * ------------ | ---------- | -------------- | --------------------------------
- *   0.00.001   | 2025-02-18 |    ruleline    | 初版
+ *   0.00.001   | 2025-02-18 |    ruleline    | initial commit.
  * -----------------------------------------------------------------------------
  */
 
 #include "can.h"
 
 /**
- * @enum CAN_TYPE
- * @brief 定义不同类型的 CAN (Controller Area Network).
- * @details 此枚举列出了几种常见的 CAN 类型，用于区分不同的 CAN 总线协议或特性.
+ * @brief the type of CAN object.
+ * @details
+ * this enum defines the types for different CAN objects.
  */
 enum CAN_TYPE {
-        /**
-         * @brief 经典 CAN
-         * @details 代表经典 CAN 协议, 具有基本的功能和数据传输能力.
-         */
+        /** classic CAN bus. */
         CAN_COM,
-        /**
-         * @brief CANFD
-         * @details 这种类型的 CAN 具备更灵活的配置选项和更高的性能.
-         */
+        /** CAN-FD bus. */
         CANFD_COM,
-        /**
-         * @brief CANXL
-         * @details 扩展 CAN 通常支持更多的功能和更大的数据传输量.
-         */
+        /** CAN-XL bus. */
         CANXL_COM,
 };
 
+/**
+ * @brief the length of CAN name.
+ * @details
+ * this enum defines the length for different CAN names.
+ */
 enum CAN_NAME_LENGTH {
+        /** the length of CAN cockpit name. */
         CAN_COCKPIT_NAME_LENGTH = 20,
 };
 
+/**
+ * @brief the length of CAN data.
+ * @details
+ * this enum defines the length for different CAN data.
+ */
 enum CAN_DATA_LENGTH {
+        /** the length of CAN classic data. */
         CLASSIC_CAN_DATA_LENGTH = 8,
+        /** the length of CAN flexible data. */
         FLEXIBLE_CAN_DATA_LENGTH = 64,
 };
 
 /**
- * @brief 定义一个包含 1 个 CAN 对象的静态数组。
- * @details 可用于表示系统中的 1 个不同 CAN 对象.
- *          每个对象可以独立配置和操作, 以满足不同的 CAN 通信需求.
+ * @brief CAN object set.
+ * @details
+ * this struct defines the structure of a CAN object set.
  */
 static struct CAN can[CAN_MAX];
 
-static i32 open_(struct CAN *self)
+/**
+ * @brief open the CAN object.
+ * @details
+ * this function opens the CAN object for communication.
+ * @param[in,out] self the CAN object.
+ * @return the status of opening CAN object.
+ */
+static i32 open(struct CAN *self)
 {
         self->is_open = 1;
-        PRINTF("[CAN] open %s successfully", can_name_(self));
-        return (0);
-}
-
-static i32 close_(struct CAN *self)
-{
-        self->is_open = 0;
-        PRINTF("[CAN] close %s successfully", can_name_(self));
+        PRINTF("[CAN] open %s successfully", can_name(self));
         return (0);
 }
 
 /**
- * @brief 发送经典 CAN 报文
- * @param[in] self CAN 对象
- * @param[in] package 数据包
- * @return 结果
- * @retval 0 成功
+ * @brief close the CAN object.
+ * @details
+ * this function closes the CAN object for communication.
+ * @param[in,out] self the CAN object.
+ * @return the status of closing CAN object.
  */
-static i32 send_classic_(struct CAN *self, struct CAN_PACKAGE *package)
+static i32 close(struct CAN *self)
+{
+        self->is_open = 0;
+        PRINTF("[CAN] close %s successfully", can_name(self));
+        return (0);
+}
+
+/**
+ * @brief send a package through a classic CAN bus.
+ * @details
+ * this function sends a package through a classic CAN bus.
+ * @param[in,out] self the CAN object.
+ * @param[in] package the package to be sent.
+ * @return the status of sending package.
+ */
+static i32 send_classic(struct CAN *self, struct CAN_PACKAGE *package)
 {
         ASSERT(self->type == CAN_COM);
         ASSERT(package);
@@ -96,18 +112,19 @@ static i32 send_classic_(struct CAN *self, struct CAN_PACKAGE *package)
         }
 
         /* TODO */
-        PRINTF("[CAN] send %s successfully", can_name_(self));
+        PRINTF("[CAN] send %s successfully", can_name(self));
         return (0);
 }
 
 /**
- * @brief 接收经典 CAN 报文
- * @param[in] self CAN 对象
- * @param[out] package 数据包
- * @return 结果
- * @retval 0 成功
+ * @brief receive a package from a classic CAN bus.
+ * @details
+ * this function receives a package from a classic CAN bus.
+ * @param[in,out] self the CAN object.
+ * @param[out] package the package to be received.
+ * @return the status of receiving package.
  */
-static i32 receive_classic_(struct CAN *self, struct CAN_PACKAGE *package)
+static i32 receive_classic(struct CAN *self, struct CAN_PACKAGE *package)
 {
         ASSERT(self->type == CAN_COM);
         ASSERT(package);
@@ -118,18 +135,19 @@ static i32 receive_classic_(struct CAN *self, struct CAN_PACKAGE *package)
         }
 
         /* TODO */
-        PRINTF("[CAN] receive %s successfully", can_name_(self));
+        PRINTF("[CAN] receive %s successfully", can_name(self));
         return (0);
 }
 
 /**
- * @brief 发送 CANFD 报文
- * @param[in] self CAN 对象
- * @param[in] package 数据包
- * @return 结果
- * @retval 0 成功
+ * @brief send a package through a CAN-FD bus.
+ * @details
+ * this function sends a package through a CAN-FD bus.
+ * @param[in,out] self the CAN object.
+ * @param[in] package the package to be sent.
+ * @return the status of sending package.
  */
-static i32 send_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
+static i32 send_flexible(struct CAN *self, struct CAN_PACKAGE *package)
 {
         ASSERT(self->type == CANFD_COM);
         ASSERT(package);
@@ -142,18 +160,19 @@ static i32 send_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
         }
 
         /* TODO */
-        PRINTF("[CAN] send %s successfully", can_name_(self));
+        PRINTF("[CAN] send %s successfully", can_name(self));
         return (0);
 }
 
 /**
- * @brief 接收 CANFD 报文
- * @param[in] self CAN 对象
- * @param[out] package 数据包
- * @return 结果
- * @retval 0 成功
+ * @brief receive a package from a CAN-FD bus.
+ * @details
+ * this function receives a package from a CAN-FD bus.
+ * @param[in,out] self the CAN object.
+ * @param[out] package the package to be received.
+ * @return the status of receiving package.
  */
-static i32 receive_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
+static i32 receive_flexible(struct CAN *self, struct CAN_PACKAGE *package)
 {
         ASSERT(self->type == CANFD_COM);
         ASSERT(package);
@@ -164,17 +183,17 @@ static i32 receive_flexible_(struct CAN *self, struct CAN_PACKAGE *package)
         }
 
         /* TODO */
-        PRINTF("[CAN] receive %s successfully", can_name_(self));
+        PRINTF("[CAN] receive %s successfully", can_name(self));
         return (0);
 }
 
 /**
- * @brief 以 CAN1 的优先级执行初始化操作.
- * @details 使用 __ctor 机制, 会在程序启动阶段按照 CAN1_PRIORITY 指定的优先级执行初始化操作.
- *          主要用于对 CAN1 设备进行初始化, 可能包括设置波特率、配置寄存器、启用中断等操作.
- * @ingroup CAN-INIT
+ * @brief initialize the CAN1 object.
+ * @details
+ * this function initializes the CAN1 object for communication.
+ * @return void
  */
-static __ctor(CAN1_PRIORITY) void init1_(void)
+static __ctor(CAN1_PRIORITY) void init_can1(void)
 {
         struct CAN *self = &can[CAN_COCKPIT];
         static struct OBJECT super;
@@ -182,38 +201,37 @@ static __ctor(CAN1_PRIORITY) void init1_(void)
         /* TODO */
 
         super.name = "can-cockpit";
-        super.open = &open_;
-        super.close = &close_;
-        super.read = &receive_classic_;
-        super.write = &send_classic_;
+        super.open = &open;
+        super.close = &close;
+        super.read = &receive_classic;
+        super.write = &send_classic;
         self->super = &super;
         self->type = CAN_COM;
         self->is_open = 0;
-        PRINTF("[CAN] init %s successfully", can_name_(self));
+        PRINTF("[CAN] init %s successfully", can_name(self));
 }
 
 /**
- * @brief 以 CAN1 的优先级执行反初始化操作.
- * @details 利用 __dtor 机制, 会在程序结束阶段按照 CAN1_PRIORITY 指定的优先级执行反初始化操作.
- *          主要用于对 CAN1 设备进行反初始化, 可能包括停止数据传输、关闭相关中断、释放占用的资源等操作.
- * @ingroup CAN-DEINIT
+ * @brief deinitialize the CAN1 object.
+ * @details
+ * this function deinitializes the CAN1 object for communication.
+ * @return void
  */
-static __dtor(CAN1_PRIORITY) void deinit1_(void)
+static __dtor(CAN1_PRIORITY) void deinit_can1(void)
 {
         struct CAN *self = &can[CAN_COCKPIT];
 
         /* TODO */
-        PRINTF("[CAN] deinit %s successfully", can_name_(self));
+        PRINTF("[CAN] deinit %s successfully", can_name(self));
 }
 
 /**
- * @brief 创建一个 CAN 对象
- * @details 该函数用于初始化一个 CAN 对象, 并为其指定名称.
- * @param[out] self CAN 对象
- * @param[in] id 标识符
- * @return 结果
- * @retval -1 CAN 对象已满
- * @retval 0 成功
+ * @brief create a CAN object.
+ * @details
+ * this function creates a CAN object for communication.
+ * @param[in,out] self the CAN object.
+ * @param[in] id the identifier of CAN object.
+ * @return the status of creating CAN object.
  */
 i32 can_create(struct CAN *self, u8 id)
 {
@@ -221,6 +239,6 @@ i32 can_create(struct CAN *self, u8 id)
         ASSERT(id < ARRAY_SIZE(can));
 
         self = &can[id];
-        PRINTF("[CAN] create %s successfully", can_name_(self));
+        PRINTF("[CAN] create %s successfully", can_name(self));
         return (0);
 }
