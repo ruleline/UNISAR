@@ -1,11 +1,11 @@
 /**
  * @file main.c
- * @brief main
+ * @brief main function.
  * @author ruleline (ruleline@outlook.com)
  * @since 2024-04-02
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-04-20
+ * @date 2025-06-02
  * @version 0.00.001
  *
  * @copyright ©2024 UNISAR
@@ -14,17 +14,17 @@
  * -----------------------------------------------------------------------------
  *    version   |    date    |       by       |              comments
  * ------------ | ---------- | -------------- | --------------------------------
- *   0.00.001   | 2024-08-18 |    ruleline    | 初版
+ *   0.00.001   | 2024-08-18 |    ruleline    | initial commit.
  * -----------------------------------------------------------------------------
  */
 
 #include "unisis.h"
 
 /**
- * @brief 程序的入口函数.
- * @details 此函数作为程序执行的起始点.
- * @return 结果
- * @retval 0 成功
+ * @brief main function.
+ * @details
+ * this function is the entry point of the program.
+ * @return the status of the program.
  */
 i32 main(void)
 {
