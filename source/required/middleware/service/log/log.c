@@ -5,7 +5,7 @@
  * @since 2025-02-24
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-26
+ * @date 2025-06-02
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -26,7 +26,7 @@ static i32 send_(struct LOG *self, struct LOG_PACKAGE *package)
 {
         i32 state = 0;
 
-        state = queue_push_(&self->send_queue, package);
+        state = queue_push(&self->send_queue, package);
         ASSERT(state == 0);
         return (0);
 }
@@ -66,11 +66,11 @@ static void send_entry_(void *parameters)
         i32 state = 0;
 
         for (;;) {
-                if (queue_pop_(&self->send_queue, &package) == 0) {
+                if (queue_pop(&self->send_queue, &package) == 0) {
                         parse_send_(self, &package);
                         uart->data = &package.buffer[0];
                         uart->length = package.length;
-                        state = uart_send_(self->super, uart);
+                        state = uart_send(self->super, uart);
                         ASSERT(state == 0);
                 }
         }
@@ -89,18 +89,18 @@ static __ctor(LOG_PRIORITY) void init_(void)
         self->send_thread.stack_depth = 0;
         self->send_thread.parameters = self;
         self->send_thread.priority = 0;
-        state = thread_create_(&self->send_thread);
+        state = thread_create(&self->send_thread);
         ASSERT(state == 0);
 
         self->send_queue.length = 0;
         self->send_queue.item_size = sizeof(struct LOG_PACKAGE);
-        state = queue_create_(&self->send_queue);
+        state = queue_create(&self->send_queue);
         ASSERT(state == 0);
 
         self->send = &send_;
         PRINTF("[LOG] init successfully.");
 
-        state = uart_open_(self->super);
+        state = uart_open(self->super);
         ASSERT(state == 0);
 }
 
