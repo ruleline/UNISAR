@@ -1,11 +1,11 @@
 /**
  * @file log.h
- * @brief log
+ * @brief LOG module.
  * @author ruleline (ruleline@outlook.com)
  * @since 2025-02-24
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-25
+ * @date 2025-06-02
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -14,7 +14,7 @@
  * -----------------------------------------------------------------------------
  *    version   |    date    |     author     |             comments
  * ------------ | ---------- | -------------- | --------------------------------
- *   0.00.001   | 2025-02-24 |    ruleline    | 初版
+ *   0.00.001   | 2025-02-24 |    ruleline    | initial commit.
  * -----------------------------------------------------------------------------
  */
 

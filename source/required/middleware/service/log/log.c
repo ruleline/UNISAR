@@ -1,6 +1,6 @@
 /**
  * @file log.c
- * @brief log
+ * @brief LOG module.
  * @author ruleline (ruleline@outlook.com)
  * @since 2025-02-24
  *
@@ -14,15 +14,28 @@
  * -----------------------------------------------------------------------------
  *    version   |    date    |     author     |             comments
  * ------------ | ---------- | -------------- | --------------------------------
- *   0.00.001   | 2025-02-24 |    ruleline    | 初版
+ *   0.00.001   | 2025-02-24 |    ruleline    | initial commit.
  * -----------------------------------------------------------------------------
  */
 
 #include "log.h"
 
+/**
+ * @brief the LOG object.
+ * @details
+ * this struct defines the LOG object.
+ */
 struct LOG log;
 
-static i32 send_(struct LOG *self, struct LOG_PACKAGE *package)
+/**
+ * @brief send a log message.
+ * @details
+ * this function sends a log message.
+ * @param[in] self the LOG object.
+ * @param[in] package the LOG package.
+ * @return the status of sending the log message.
+ */
+static i32 send(struct LOG *self, struct LOG_PACKAGE *package)
 {
         i32 state = 0;
 
@@ -31,7 +44,15 @@ static i32 send_(struct LOG *self, struct LOG_PACKAGE *package)
         return (0);
 }
 
-static __force_inline i32 parse_send_(struct LOG *self,
+/**
+ * @brief parse a log message for sending.
+ * @details
+ * this function parses a log message for sending.
+ * @param[in] self the LOG object.
+ * @param[in] package the LOG package.
+ * @return the status of parsing the log message.
+ */
+static __force_inline i32 parse_send(struct LOG *self,
                                         struct LOG_PACKAGE *package)
 {
         usize size = 3*package->length + 1;
@@ -58,7 +79,14 @@ static __force_inline i32 parse_send_(struct LOG *self,
         return (0);
 }
 
-static void send_entry_(void *parameters)
+/**
+ * @brief the entry function for sending log messages.
+ * @details
+ * this function is the entry point for sending log messages.
+ * @param[in] parameters the parameters for the entry function.
+ * @return void
+ */
+static void send_entry(void *parameters)
 {
         struct LOG *self = (struct LOG *)parameters;
         struct LOG_PACKAGE package = {0};
@@ -67,7 +95,7 @@ static void send_entry_(void *parameters)
 
         for (;;) {
                 if (queue_pop(&self->send_queue, &package) == 0) {
-                        parse_send_(self, &package);
+                        parse_send(self, &package);
                         uart->data = &package.buffer[0];
                         uart->length = package.length;
                         state = uart_send(self->super, uart);
@@ -76,7 +104,13 @@ static void send_entry_(void *parameters)
         }
 }
 
-static __ctor(LOG_PRIORITY) void init_(void)
+/**
+ * @brief initialize the LOG module.
+ * @details
+ * this function initializes the LOG module.
+ * @return void
+ */
+static __ctor(LOG_PRIORITY) void init(void)
 {
         i32 state = 0;
         struct LOG *self = &log;
@@ -84,7 +118,7 @@ static __ctor(LOG_PRIORITY) void init_(void)
         state = uart_create(self->super, UART_LOG);
         ASSERT(state == 0);
 
-        self->send_thread.entry = &send_entry_;
+        self->send_thread.entry = &send_entry;
         self->send_thread.name = "LOG";
         self->send_thread.stack_depth = 0;
         self->send_thread.parameters = self;
@@ -104,7 +138,13 @@ static __ctor(LOG_PRIORITY) void init_(void)
         ASSERT(state == 0);
 }
 
-static __dtor(LOG_PRIORITY) void deinit_(void)
+/**
+ * @brief deinitialize the LOG module.
+ * @details
+ * this function deinitializes the LOG module.
+ * @return void
+ */
+static __dtor(LOG_PRIORITY) void deinit(void)
 {
         PRINTF("[LOG] deinit successfully.");
 }
