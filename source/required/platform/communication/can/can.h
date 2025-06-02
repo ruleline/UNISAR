@@ -1,11 +1,11 @@
 /**
  * @file can.h
- * @brief can
+ * @brief CAN bus driver.
  * @author ruleline (ruleline@outlook.com)
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-02-27
+ * @date 2025-06-02
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -14,7 +14,7 @@
  * -----------------------------------------------------------------------------
  *    version   |    date    |     author     |             comments
  * ------------ | ---------- | -------------- | --------------------------------
- *   0.00.001   | 2025-02-18 |    ruleline    | 初版
+ *   0.00.001   | 2025-02-18 |    ruleline    | initial commit.
  * -----------------------------------------------------------------------------
  */
 
@@ -23,97 +23,115 @@
 
 #include "unisis.h"
 
+/**
+ * @brief the identifier of CAN object.
+ * @details
+ * this enum defines the identifiers for different CAN objects.
+ */
 enum CAN_ID {
+        /** cockpit CAN bus. */
         CAN_COCKPIT,
+        /** the maximum number of CAN objects. */
         CAN_MAX,
 };
 
 /**
- * @struct CAN_PACKAGE
- * @brief CAN 数据包
- * @details 用于封装 CAN 数据包的数据及其长度.
+ * @brief CAN bus package.
+ * @details
+ * this struct defines the structure of a CAN bus package.
  */
 struct CAN_PACKAGE {
-        /**
-         * @var CAN_PACKAGE::data
-         * @brief 数据
-         * @details 用于存储 CAN 数据包的实际数据.
-         */
+        /** the data of CAN package. */
         u8 *data;
-
-        /**
-         * @var CAN_PACKAGE::length
-         * @brief 数据长度
-         * @details 用于存储 CAN 数据包的实际数据长度.
-         */
+        /** the length of CAN package data. */
         usize length;
 };
 
 /**
- * @struct CAN
- * @brief CAN 对象
- * @details 此结构体用于封装 CAN 对象的相关信息和操作函数,
- *          方便对 CAN 对象进行统一管理和操作.
+ * @brief CAN bus object.
+ * @details
+ * this struct defines the structure of a CAN bus object.
  */
 struct CAN {
+        /** the parent object of CAN object. */
         struct OBJECT *super;
-
-        /**
-         * @var CAN::type
-         * @brief 类型
-         * @details 用于表示 CAN 对象的类型, 不同的类型可能对应不同的 CAN 协议版本或硬件特性.
-         */
+        /** the name of CAN object. */
         u8 type;
-
+        /** the status of CAN object. */
         bool is_open;
 };
 
-static __force_inline char *can_name_(struct CAN *self)
-{
-        return (object_name_(self));
-}
-
-static __force_inline i32 can_open_(struct CAN *self)
-{
-        return (object_open_(self));
-}
-
-static __force_inline i32 can_close_(struct CAN *self)
-{
-        return (object_close_(self));
-}
-
 /**
- * @brief 发送
- * @param[in] self CAN 对象
- * @param[in] package 数据包
- * @return 结果
- * @retval 0 成功
+ * @brief get the name of CAN object.
+ * @details
+ * this function retrieves the name of the CAN object.
+ * @param[in] self the CAN object.
+ * @return the name of CAN object.
  */
-static __force_inline i32 can_send_(struct CAN *self, struct CAN_PACKAGE *package)
+static __force_inline char *can_name(struct CAN *self)
 {
-        return (object_write_(self, package));
+        return object_name(self);
 }
 
 /**
- * @brief 接收
- * @param[in] self CAN 对象
- * @param[out] package 数据包
- * @return 结果
- * @retval 0 成功
+ * @brief open the CAN object.
+ * @details
+ * this function opens the CAN object for communication.
+ * @param[in,out] self the CAN object.
+ * @return the status of opening CAN object.
  */
-static __force_inline i32 can_receive_(struct CAN *self, struct CAN_PACKAGE *package)
+static __force_inline i32 can_open(struct CAN *self)
 {
-        return (object_read_(self, package));
+        return object_open(self);
 }
 
 /**
- * @brief 创建一个 CAN 对象
- * @details 该函数用于初始化一个 CAN 对象, 并为其指定名称.
- * @param[out] self CAN 对象
- * @param[in] id 标识符
- * @return 结果
- * @retval 0 成功
+ * @brief close the CAN object.
+ * @details
+ * this function closes the CAN object for communication.
+ * @param[in,out] self the CAN object.
+ * @return the status of closing CAN object.
+ */
+static __force_inline i32 can_close(struct CAN *self)
+{
+        return object_close(self);
+}
+
+/**
+ * @brief send a package through the CAN bus.
+ * @details
+ * this function sends a package through the CAN bus.
+ * @param[in,out] self the CAN object.
+ * @param[in] package the package to be sent.
+ * @return the status of sending package.
+ */
+static __force_inline i32 can_send(struct CAN *self,
+                                        struct CAN_PACKAGE *package)
+{
+        return object_write(self, package);
+}
+
+/**
+ * @brief receive a package from the CAN bus.
+ * @details
+ * this function receives a package from the CAN bus.
+ * @param[in,out] self the CAN object.
+ * @param[in] package the package to be received.
+ * @return the status of receiving package.
+ */
+static __force_inline i32 can_receive(struct CAN *self,
+                                        struct CAN_PACKAGE *package)
+{
+        return object_read(self, package);
+}
+
+/**
+ * @brief create a CAN object.
+ * @details
+ * this function creates a CAN object.
+ * @param[in] self the CAN object.
+ * @param[in] id the identifier of CAN object.
+ * @return the status of creating CAN object.
  */
 i32 can_create(struct CAN *self, u8 id);
 
