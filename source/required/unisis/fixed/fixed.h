@@ -5,7 +5,7 @@
  * @since 2025-02-19
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-01
+ * @date 2025-06-03
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -23,8 +23,10 @@
 
 #include "fixed_library.h"
 #include "fixed_type.h"
+#include "fixed_status.h"
 #include "fixed_attribute.h"
 #include "fixed_macro.h"
 #include "fixed_preprocessor.h"
+#include "fixed_operation.h"
 
 #endif /* !defined FIXED_H */
