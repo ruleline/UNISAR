@@ -5,7 +5,7 @@
  * @since 2025-06-02
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-02
+ * @date 2025-06-03
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -27,6 +27,8 @@
  * this enumeration represents the status of an operation.
  */
 enum STATUS {
+        /** timeout. */
+        STATUS_TIMEOUT = -9,
         /** not supported */
         STATUS_NOT_SUPPORTED = -8,
         /** not implemented */
