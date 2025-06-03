@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-01
+ * @date 2025-06-03
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -20,6 +20,21 @@
 
 #if !defined CONFIG_H
 #define CONFIG_H
+
+/**
+ * @brief the identifier of debug mode.
+ * @details
+ * when the identifier is 1, debug mode will be used. when the identifier is 0,
+ * release mode will be used.
+ */
+#define DEBUG   (1)
+/**
+ * @brief the identifier of release mode.
+ * @details
+ * when the identifier is 1, release mode will be used. when the identifier is 0,
+ * debug mode will be used.
+ */
+#define RELEASE (0)
 
 /**
  * @brief the identifier of FreeRTOS.
