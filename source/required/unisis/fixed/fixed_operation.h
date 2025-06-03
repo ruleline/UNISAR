@@ -83,4 +83,86 @@ static __force_inline void bit_toggle(usize *value, u8 position)
         *value ^= (1 << position);
 }
 
+/**
+ * @brief copy data from one memory location to another.
+ * @details
+ * this function copies a specified number of bytes from the source memory
+ * location to the destination memory location. it uses a simple loop to copy
+ * each byte one at a time.
+ * @param[in,out] destination a pointer to the destination memory location.
+ * @param[in] source a pointer to the source memory location.
+ * @param[in] size the number of bytes to copy.
+ * @return void.
+ */
+static __force_inline void memory_copy(void *destination, void *source, usize size)
+{
+        char *d = (char *)destination;
+        char *s = (char *)source;
+
+        for (usize i = 0; i < size; i++) {
+                d[i] = s[i];
+        }
+}
+
+/**
+ * @brief set a specific value in a memory location.
+ * @details
+ * this function sets a specified number of bytes in the memory location to a
+ * given value. it uses a simple loop to set each byte to the specified value.
+ * @param[in,out] destination a pointer to the memory location to be set.
+ * @param[in] value the value to set each byte to.
+ * @param[in] size the number of bytes to set.
+ * @return void.
+ */
+static __force_inline void memory_set(void *destination, char value, usize size)
+{
+        char *d = (char *)destination;
+
+        for (usize i = 0; i < size; i++) {
+                d[i] = value;
+        }
+}
+
+/**
+ * @brief clear a memory location.
+ * @details
+ * this function sets a specified number of bytes in the memory location to 0.
+ * it uses a simple loop to set each byte to 0.
+ * @param[in,out] destination a pointer to the memory location to be cleared.
+ * @param[in] size the number of bytes to clear.
+ * @return void.
+ */
+static __force_inline void memory_clear(void *destination, usize size)
+{
+        char *d = (char *)destination;
+
+        for (usize i = 0; i < size; i++) {
+                d[i] = 0;
+        }
+}
+
+/**
+ * @brief compare two memory locations.
+ * @details
+ * this function compares a specified number of bytes between two memory
+ * locations. it uses a simple loop to compare each byte.
+ * @param[in] destination a pointer to the first memory location.
+ * @param[in] source a pointer to the second memory location.
+ * @param[in] size the number of bytes to compare.
+ * @return the result of the comparison.
+ */
+static __force_inline bool memory_compare(void *destination,
+                                                void *source, usize size)
+{
+        char *d = (char *)destination;
+        char *s = (char *)source;
+
+        for (usize i = 0; i < size; i++) {
+                if (d[i] != s[i]) {
+                        return (1);
+                }
+        }
+        return (0);
+}
+
 #endif /* !defined FIXED_OPERATION_H */
