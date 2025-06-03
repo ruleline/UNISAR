@@ -5,7 +5,7 @@
  * @since 2025-06-01
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-01
+ * @date 2025-06-03
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -30,7 +30,7 @@
  * integer.it uses bitwise right shift and AND operations to isolate the target bit.
  * @param[in] value the unsigned integer from which the bit value is to be extracted.
  * @param[in] position the position of the bit to extract, starting from 0 (LSB).
- * @return bool
+ * @return bool.
  */
 static __force_inline bool bit_value(usize value, u8 position)
 {
@@ -45,7 +45,7 @@ static __force_inline bool bit_value(usize value, u8 position)
  * affecting other bits in the number.
  * @param[in,out] value A pointer to the unsigned integer to be modified.
  * @param[in] position The position of the bit to set to 1, starting from 0 (LSB).
- * @return void
+ * @return void.
  */
 static __force_inline void bit_set_high(usize *value, u8 position)
 {
@@ -60,11 +60,27 @@ static __force_inline void bit_set_high(usize *value, u8 position)
  * affecting other bits in the number.
  * @param[in,out] value A pointer to the unsigned integer to be modified.
  * @param[in] position The position of the bit to set to 0, starting from 0 (LSB).
- * @return void
+ * @return void.
  */
 static __force_inline void bit_set_low(usize *value, u8 position)
 {
         *value &= ~(1 << position);
+}
+
+/**
+ * @brief toggle a specific bit in an unsigned integer.
+ * @details
+ * this function modifies the provided unsigned integer by toggling the bit at
+ * the specified position. if the bit is 1, it is set to 0, and if it is 0, it
+ * is set to 1. it uses bitwise operations to achieve this without affecting
+ * other bits in the number.
+ * @param[in,out] value a pointer to the unsigned integer to be modified.
+ * @param[in] position the position of the bit to toggle, starting from 0 (LSB).
+ * @return void.
+ */
+static __force_inline void bit_toggle(usize *value, u8 position)
+{
+        *value ^= (1 << position);
 }
 
 #endif /* !defined FIXED_OPERATION_H */
