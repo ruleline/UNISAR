@@ -87,6 +87,8 @@
  * use "\r\n" for Windows and "\n" for Linux.
  */
 #define LINE_BREAK      "\r\n"
+
+#if (DEBUG == 1)
 /**
  * @brief regular printing.
  * @details
@@ -94,6 +96,17 @@
  * to use this macro for regular information, such as debug information.
  */
 #define PRINTF          printf
+#elif (RELEASE == 1)
+/**
+ * @brief regular printing.
+ * @details
+ * this macro is used to define the regular printing function. it is recommended
+ * to use this macro for regular information, such as debug information.
+ */
+#define PRINTF
+#else /* (DEBUG != 1) && (RELEASE != 1) */
+#error "please define the printing function."
+#endif /* (DEBUG == 1) || (RELEASE == 1) */
 /**
  * @brief immediate printing.
  * @details
