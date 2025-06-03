@@ -87,6 +87,27 @@
  * use "\r\n" for Windows and "\n" for Linux.
  */
 #define LINE_BREAK      "\r\n"
+/**
+ * @brief file name.
+ * @details
+ * this macro is used to define the file name. it is recommended to use __FILE__
+ * to define the file name.
+ */
+#define FILE            __FILE__
+/**
+ * @brief line number.
+ * @details
+ * this macro is used to define the line number. it is recommended to use __LINE__
+ * to define the line number.
+ */
+#define LINE            __LINE__
+/**
+ * @brief function name.
+ * @details
+ * this macro is used to define the function name. it is recommended to use
+ * __func__ to define the function name.
+ */
+#define FUNC            __func__
 
 #if (DEBUG == 1)
 /**
