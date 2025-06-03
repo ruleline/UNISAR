@@ -95,7 +95,7 @@
  * this macro is used to define the regular printing function. it is recommended
  * to use this macro for regular information, such as debug information.
  */
-#define PRINTF          printf
+#define PRINTF(x, ...)  printf(x LINE_BREAK, ##__VA_ARGS__)
 #elif (RELEASE == 1)
 /**
  * @brief regular printing.
@@ -103,7 +103,7 @@
  * this macro is used to define the regular printing function. it is recommended
  * to use this macro for regular information, such as debug information.
  */
-#define PRINTF
+#define PRINTF(x, ...) (void)0
 #else /* (DEBUG != 1) && (RELEASE != 1) */
 #error "please define the printing function."
 #endif /* (DEBUG == 1) || (RELEASE == 1) */
@@ -113,7 +113,7 @@
  * this macro is used to define the immediate printing function. it is recommended
  * to use this macro for immediate information, such as error information.
  */
-#define PRINT           printf
+#define PRINT(x, ...)   printf(x LINE_BREAK, ##__VA_ARGS__)
 
 /**
  * @brief item priority set.
