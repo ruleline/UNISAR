@@ -37,6 +37,13 @@
 #define RELEASE (0)
 
 /**
+ * @brief the identifier of bare metal.
+ * @details
+ * when the identifier is 1, bare metal will be used. when the identifier is 0,
+ * bare metal will not be used.
+ */
+#define BARE_METAL      (0)
+/**
  * @brief the identifier of FreeRTOS.
  * @details
  * when the identifier is 1, FreeRTOS will be used. when the identifier is 0,
