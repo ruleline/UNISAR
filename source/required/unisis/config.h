@@ -136,6 +136,24 @@
  */
 #define PRINT(x, ...)   printf("%s:%s:%s" x LINE_BREAK, FILE, LINE, FUNC, ##__VA_ARGS__)
 
+#if !defined ASSERT
+/**
+ * @brief assert a condition and print an error message if the condition is false.
+ * @details
+ * this macro can be used to assert a condition and print an error message if the
+ * condition is false. the error message is formatted using the printf-style
+ * format string and arguments.
+ * @param[in] x the condition to assert.
+ */
+#define ASSERT(x)                               \
+do {                                            \
+        if (!(x)) {                             \
+                PRINT("[ASSERT] %s", #x);       \
+                for (;;);                       \
+        }                                       \
+} while (0)
+#endif /* !defined ASSERT */
+
 /**
  * @brief item priority set.
  * @details

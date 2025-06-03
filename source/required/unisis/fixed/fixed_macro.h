@@ -5,7 +5,7 @@
  * @since 2025-02-19
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-01
+ * @date 2025-06-03
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -20,24 +20,6 @@
 
 #if !defined FIXED_MACRO_H
 #define FIXED_MACRO_H
-
-#if !defined ASSERT
-/**
- * @brief assert a condition and print an error message if the condition is false.
- * @details
- * this macro can be used to assert a condition and print an error message if the
- * condition is false. the error message is formatted using the printf-style
- * format string and arguments.
- * @param[in] x the condition to assert.
- */
-#define ASSERT(x)                               \
-do {                                            \
-        if (!(x)) {                             \
-                PRINT("[ASSERT] %s", #x);       \
-                for (;;);                       \
-        }                                       \
-} while (0)
-#endif /* !defined ASSERT */
 
 #if !defined ARRAY_SIZE
 /**
