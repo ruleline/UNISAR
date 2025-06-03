@@ -116,7 +116,7 @@
  * this macro is used to define the regular printing function. it is recommended
  * to use this macro for regular information, such as debug information.
  */
-#define PRINTF(x, ...)  printf(x LINE_BREAK, ##__VA_ARGS__)
+#define PRINTF(x, ...)  printf("%s:%s:%s" x LINE_BREAK, FILE, LINE, FUNC, ##__VA_ARGS__)
 #elif (RELEASE == 1)
 /**
  * @brief regular printing.
@@ -134,7 +134,7 @@
  * this macro is used to define the immediate printing function. it is recommended
  * to use this macro for immediate information, such as error information.
  */
-#define PRINT(x, ...)   printf(x LINE_BREAK, ##__VA_ARGS__)
+#define PRINT(x, ...)   printf("%s:%s:%s" x LINE_BREAK, FILE, LINE, FUNC, ##__VA_ARGS__)
 
 /**
  * @brief item priority set.
