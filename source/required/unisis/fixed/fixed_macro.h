@@ -21,6 +21,15 @@
 #if !defined FIXED_MACRO_H
 #define FIXED_MACRO_H
 
+/**
+ * @brief define a function as unused.
+ * @details
+ * this macro can be used to define a function as unused. the function is defined
+ * as unused and will not be compiled.
+ * @param[in] x the function to define as unused.
+ */
+#define UNUSED(x) (void)(0)
+
 #if !defined ARRAY_SIZE
 /**
  * @brief get the size of an array.
