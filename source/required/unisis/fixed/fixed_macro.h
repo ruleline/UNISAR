@@ -21,6 +21,7 @@
 #if !defined FIXED_MACRO_H
 #define FIXED_MACRO_H
 
+#if !defined UNUSED
 /**
  * @brief define a function as unused.
  * @details
@@ -29,6 +30,7 @@
  * @param[in] x the function to define as unused.
  */
 #define UNUSED(x) (void)(0)
+#endif /*!defined UNUSED */
 
 #if !defined ARRAY_SIZE
 /**
