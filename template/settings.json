@@ -3,7 +3,7 @@
 
         /* 1. text editor */
 
-        "diffEditor.experimental.showMoves":true,
+        "diffEditor.experimental.showMoves": true,
         "diffEditor.experimental.useTrueInlineView": true,
         "diffEditor.hideUnchangedRegions.contextLineCount": 8,
         "diffEditor.hideUnchangedRegions.enabled": true,
@@ -126,7 +126,7 @@
         // },
         "explorer.incrementalNaming": "smart",
         "explorer.sortOrder": "mixed",
-        "extensions.autoCheckUpdates":true,
+        "extensions.autoCheckUpdates": true,
         "extensions.closeExtensionDetailsOnViewChange": true,
         "inlineChat.accessibleDiffView": "on",
         "notebook.lineNumbers": "on",
@@ -303,7 +303,7 @@
                                 "-----------------------------------------------------------------------------",
                                 "   version   |    date    |       by       |              comments",
                                 "------------ | ---------- | -------------- | --------------------------------",
-                                "  0.00.001   | <<dateformat('YYYY-MM-DD')>> |    <<author>>    | initial commit",
+                                "  0.00.001   | <<dateformat('YYYY-MM-DD')>> |    <<author>>    | initial commit.",
                                 "-----------------------------------------------------------------------------"
                         ],
                         "changeLogCaption": "@details",
