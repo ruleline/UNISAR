@@ -5,7 +5,7 @@
  * @since 2025-02-19
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-01
+ * @date 2025-06-04
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -21,6 +21,14 @@
 #if !defined FIXED_ATTRIBUTE_H
 #define FIXED_ATTRIBUTE_H
 
+/**
+ * @brief mark a symbol as weak to allow overriding it in other translation units.
+ * @details
+ * this macro can be used to mark variables or functions that are intended to be
+ * overridden in other translation units. when a symbol is marked as weak, it can
+ * be overridden by a symbol with the same name in a different translation unit.
+ */
+#define __weak          __attribute__((__weak__))
 /**
  * @brief mark a symbol as used to prevent the compiler from optimizing out unused symbols.
  * @details
