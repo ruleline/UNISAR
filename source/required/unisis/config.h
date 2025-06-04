@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-03
+ * @date 2025-06-04
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -35,6 +35,13 @@
  * debug mode will be used.
  */
 #define RELEASE (0)
+/**
+ * @brief the identifier of test mode.
+ * @details
+ * when the identifier is 1, test mode will be used. when the identifier is 0,
+ * release mode will be used.
+ */
+#define TEST    (0)
 
 /**
  * @brief the identifier of bare metal.
