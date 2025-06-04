@@ -254,6 +254,12 @@
         "git-graph.enhancedAccessibility": true,
         "git-graph.maxDepthOfRepoSearch": 10,
 
+        "Lingma.aI Chat.mcpToolsInAgentMode": true,
+        "Lingma.aI Chat.webToolsInAsk/AgentMode": "Auto-execute",
+        "Lingma.localMachineModelMaxCandidateNum": 5,
+        "Lingma.cloudModelAutoTriggerGenerateLength": "long",
+        "Lingma.cloudModelManualTriggerGenerateLength": "long",
+
         "psi-header.config": {
                 "forceToTop": true,
                 "blankLinesAfter": 1,
