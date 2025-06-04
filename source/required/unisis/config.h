@@ -190,6 +190,11 @@ enum ITEM_PRIORITY {
         /** LOG priority. */
         LOG_PRIORITY,
 
+        /** Bootloader system priority. */
+        BOOTLOADER_SYSTEM_PRIORITY,
+        /** Application system priority. */
+        APPLICATION_SYSTEM_PRIORITY,
+
         /** the maximum reachable priority. */
         ITEM_MAXIMUM_UNREACHABLE_PRIORITY = 65536,
 };
