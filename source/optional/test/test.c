@@ -19,3 +19,16 @@
  */
 
 #include "test.h"
+
+/**
+ * @brief test entry point.
+ * @details
+ * this function serves as the entry point for the test module.
+ * it is responsible for executing the test cases defined within the module.
+ * @return status of the test execution.
+ */
+i32 main(void)
+{
+        /* test cases here. */
+        return (0);
+}
