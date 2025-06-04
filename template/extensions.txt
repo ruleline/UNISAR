@@ -1,5 +1,7 @@
+adam-bender.commit-message-editor
 adpyke.codesnap
 alefragnani.project-manager
+alibaba-cloud.tongyi-lingma
 coder-xiaomo.variable-conversion
 cweijan.vscode-office
 github.copilot
@@ -10,7 +12,6 @@ huizhou.githd
 iceworks-team.iceworks-time-master
 joelcrosby.one-dark-darker
 liulongbin1314.escook-translate
-marscode.marscode-extension
 mhutchie.git-graph
 ms-vscode.cpptools
 ms-vscode.remote-repositories
