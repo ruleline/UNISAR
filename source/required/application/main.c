@@ -5,7 +5,7 @@
  * @since 2024-04-02
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-02
+ * @date 2025-06-04
  * @version 0.00.001
  *
  * @copyright ©2024 UNISAR
@@ -26,7 +26,7 @@
  * this function is the entry point of the program.
  * @return the status of the program.
  */
-i32 main(void)
+__weak i32 main(void)
 {
         kernel_start();
         return (0);
