@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-07
+ * @date 2025-06-08
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -194,6 +194,8 @@ enum ITEM_PRIORITY {
         BOOTLOADER_SYSTEM_PRIORITY,
         /** Application system priority. */
         APPLICATION_SYSTEM_PRIORITY,
+        /** XX FLASH priority. */
+        XX_FLASH_PRIORITY,
         /** XX FRAM priority. */
         XX_FRAM_PRIORITY,
 
