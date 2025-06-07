@@ -5,7 +5,7 @@
  * @since 2025-06-06
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-07
+ * @date 2025-06-08
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -66,8 +66,9 @@ static void __ctor(XX_FRAM_PRIORITY) init_fram_xx(void)
         /* TODO */
 
         self->super = &super;
-        object_create(&self->super, "XX FRAM", 0, 0, &xx_fram_read, &xx_fram_write);
-        PRINTF("%s initialized", object_name(self->super));
+        object_create(&self->super, "XX FRAM", 0, 0,
+                        &xx_fram_read, &xx_fram_write);
+        PRINTF("%s initialized", object_name(self));
 }
 
 /**
@@ -81,7 +82,7 @@ static void __dtor(XX_FRAM_PRIORITY) deinit_fram_xx(void)
 
         /* TODO */
 
-        PRINTF("%s deinitialized", object_name(self->super));
+        PRINTF("%s deinitialized", object_name(self));
         fram_destroy(self);
 }
 
