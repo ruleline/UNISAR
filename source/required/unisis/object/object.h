@@ -5,7 +5,7 @@
  * @since 2025-02-26
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-01
+ * @date 2025-06-07
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -101,6 +101,33 @@ static __force_inline i32 object_read(struct OBJECT *self, void *package)
 static __force_inline i32 object_write(struct OBJECT *self, void *package)
 {
         return self->write(self, package);
+}
+
+/**
+ * @brief create a new Object.
+ * @details
+ * this function creates a new Object and initializes its members.
+ * @param[out] self a pointer to a pointer to the Object structure to be created.
+ * @param[in] name the name of the object.
+ * @param[in] open the open function of the object.
+ * @param[in] close the close function of the object.
+ * @param[in] read the read function of the object.
+ * @param[in] write the write function of the object.
+ * @return the result of the operation.
+ */
+static __force_inline i32 object_create(struct OBJECT *self, char *name,
+                                        i32 (*open)(struct OBJECT *),
+                                        i32 (*close)(struct OBJECT *),
+                                        i32 (*read)(struct OBJECT *, void *),
+                                        i32 (*write)(struct OBJECT *, void *))
+{
+        ASSERT(self);
+        self->name = name;
+        self->open = open;
+        self->close = close;
+        self->read = read;
+        self->write = write;
+        return (0);
 }
 
 #endif /* !defined OBJECT_H */
