@@ -115,18 +115,18 @@ static __force_inline i32 object_write(struct OBJECT *self, void *package)
  * @param[in] write the write function of the object.
  * @return the result of the operation.
  */
-static __force_inline i32 object_create(struct OBJECT *self, char *name,
+static __force_inline i32 object_create(struct OBJECT **self, char *name,
                                         i32 (*open)(struct OBJECT *),
                                         i32 (*close)(struct OBJECT *),
                                         i32 (*read)(struct OBJECT *, void *),
                                         i32 (*write)(struct OBJECT *, void *))
 {
-        ASSERT(self);
-        self->name = name;
-        self->open = open;
-        self->close = close;
-        self->read = read;
-        self->write = write;
+        ASSERT(*self);
+        (*self)->name = name;
+        (*self)->open = open;
+        (*self)->close = close;
+        (*self)->read = read;
+        (*self)->write = write;
         return (0);
 }
 
