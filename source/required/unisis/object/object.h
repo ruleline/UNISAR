@@ -130,4 +130,16 @@ static __force_inline i32 object_create(struct OBJECT **self, char *name,
         return (0);
 }
 
+/**
+ * @brief destroy an Object.
+ * @param[in,out] self a pointer to a pointer to the Object structure to be destroyed.
+ * @return the result of the operation.
+ */
+static __force_inline i32 object_destroy(struct OBJECT **self)
+{
+        ASSERT(*self);
+        memory_clear(*self, sizeof(struct OBJECT));
+        return (0);
+}
+
 #endif /* !defined OBJECT_H */
