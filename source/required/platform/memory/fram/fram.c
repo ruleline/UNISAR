@@ -35,8 +35,7 @@ static struct FRAM fram[FRAM_MAX_ID];
  * @param[in] package the package containing address and buffer.
  * @return status of the operation.
  */
-static i32 xx_fram_read(struct FRAM *fram,
-                                        struct FRAM_PACKAGE *package)
+static i32 xx_fram_read(struct FRAM *fram, struct FRAM_PACKAGE *package)
 {
         return object_read(fram, package);
 }
@@ -49,8 +48,7 @@ static i32 xx_fram_read(struct FRAM *fram,
  * @param[in] package the package containing address and buffer.
  * @return status of the operation.
  */
-static i32 xx_fram_write(struct FRAM *fram,
-                                        struct FRAM_PACKAGE *package)
+static i32 xx_fram_write(struct FRAM *fram, struct FRAM_PACKAGE *package)
 {
         return object_write(fram, package);
 }
