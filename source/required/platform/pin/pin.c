@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-02
+ * @date 2025-06-09
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -72,7 +72,7 @@ static bool read(struct PIN *self, bool *state)
  * @param[in] state the state to be written.
  * @return the status of writing state.
  */
-static i32 write(struct PIN *self, bool state)
+static i32 write(struct PIN *self, bool *state)
 {
         /* TODO */
         PRINTF("[PIN] write %s successfully", pin_name(self));
@@ -120,16 +120,14 @@ static __ctor(PIN1_PRIORITY) void init_pin1(void)
 
         /* TODO */
 
-        super.name = "pin-3v3";
-        super.open = 0;
-        super.close = 0;
-        super.read = &read;
-        super.write = &write;
-        self->super = &super;
+        self->super = object_create("PIN 3V3", 0, 0,
+                                        (i32 (*)(struct OBJECT*, void*))read,
+                                        (i32 (*)(struct OBJECT*, void*))write);
+        ASSERT(self->super);
         self->type = PIN_INPUT;
         self->toggle = &toggle;
         self->highz = &highz;
-        PRINTF("[PIN] init %s successfully", pin_name(self));
+        PRINTF("%s initialized.", pin_name(self));
 }
 
 /**
@@ -143,7 +141,8 @@ static __dtor(PIN1_PRIORITY) void deinit_pin1(void)
         struct PIN *self = &pin[PIN_3V3];
 
         /* TODO */
-        PRINTF("[PIN] deinit %s successfully", pin_name(self));
+        PRINTF("%s deinitialized.", pin_name(self));
+        pin_destroy(&self);
 }
 
 /**
@@ -151,15 +150,30 @@ static __dtor(PIN1_PRIORITY) void deinit_pin1(void)
  * @details
  * this function creates a PIN object.
  * @param[in,out] self the PIN object.
- * @param[in] id the id of the PIN object.
+ * @param[in] id the ID of the PIN object.
  * @return the status of creating the PIN object.
  */
-i32 pin_create(struct PIN *self, u8 id)
+struct PIN *pin_create(enum PIN_ID id)
+{
+        ASSERT(id < PIN_MAX);
+        return (&pin[id]);
+}
+
+/**
+ * @brief destroy a PIN object.
+ * @details
+ * this function destroys a PIN object.
+ * @param[in,out] self the PIN object.
+ * @return the status of destroying the PIN object.
+ */
+i32 pin_destroy(struct PIN **self)
 {
         ASSERT(self);
-        ASSERT(id < ARRAY_SIZE(pin));
 
-        self = &pin[id];
-        PRINTF("[PIN] create %s successfully", pin_name(self));
+        if (*self) {
+                object_destroy((struct OBJECT *)*self);
+                memory_clear(*self, sizeof(struct PIN));
+                *self = 0;
+        }
         return (0);
 }

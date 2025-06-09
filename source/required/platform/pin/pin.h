@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-02
+ * @date 2025-06-09
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -62,7 +62,7 @@ struct PIN {
  */
 static __force_inline char *pin_name(struct PIN *self)
 {
-        return (object_name(self));
+        return object_name((struct OBJECT *)self);
 }
 
 /**
@@ -75,7 +75,7 @@ static __force_inline char *pin_name(struct PIN *self)
  */
 static __force_inline bool pin_read(struct PIN *self, bool *state)
 {
-        return (object_read(self, state));
+        return object_read((struct OBJECT *)self, state);
 }
 
 /**
@@ -88,7 +88,7 @@ static __force_inline bool pin_read(struct PIN *self, bool *state)
  */
 static __force_inline i32 pin_write(struct PIN *self, bool state)
 {
-        return (object_write(self, &state));
+        return object_write((struct OBJECT *)self, &state);
 }
 
 /**
@@ -123,6 +123,15 @@ static __force_inline i32 pin_highz(struct PIN *self)
  * @param[in] id the ID of the PIN object.
  * @return the status of creating the PIN object.
  */
-i32 pin_create(struct PIN *self, u8 id);
+struct PIN *pin_create(enum PIN_ID id);
+
+/**
+ * @brief destroy a PIN object.
+ * @details
+ * this function destroys a PIN object.
+ * @param[in,out] self the PIN object.
+ * @return the status of destroying the PIN object.
+ */
+i32 pin_destroy(struct PIN **self);
 
 #endif /* !defined PIN_H */
