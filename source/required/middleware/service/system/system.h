@@ -61,7 +61,7 @@ struct SYSTEM {
  */
 static __force_inline char *system_name(struct SYSTEM *self)
 {
-        return object_name(self->super);
+        return object_name((struct OBJECT *)self);
 }
 
 /**
