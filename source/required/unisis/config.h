@@ -5,7 +5,7 @@
  * @since 2025-01-28
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-08
+ * @date 2025-06-09
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -100,21 +100,21 @@
  * this macro is used to define the file name. it is recommended to use __FILE__
  * to define the file name.
  */
-#define FILE            __FILE__
+#define FILE_NAME       __FILE__
 /**
  * @brief line number.
  * @details
  * this macro is used to define the line number. it is recommended to use __LINE__
  * to define the line number.
  */
-#define LINE            __LINE__
+#define LINE_NUMBER     __LINE__
 /**
  * @brief function name.
  * @details
  * this macro is used to define the function name. it is recommended to use
  * __func__ to define the function name.
  */
-#define FUNC            __func__
+#define FUNC_NAME       __func__
 
 #if (DEBUG == 1)
 /**
@@ -123,7 +123,8 @@
  * this macro is used to define the regular printing function. it is recommended
  * to use this macro for regular information, such as debug information.
  */
-#define PRINTF(x, ...)  printf("%s:%s:%s" x LINE_BREAK, FILE, LINE, FUNC, ##__VA_ARGS__)
+#define PRINTF(x, ...)  printf("%s:%s:%s" x LINE_BREAK, \
+                                FILE_NAME, LINE_NUMBER, FUNC_NAME, ##__VA_ARGS__)
 #elif (RELEASE == 1)
 /**
  * @brief regular printing.
@@ -141,7 +142,8 @@
  * this macro is used to define the immediate printing function. it is recommended
  * to use this macro for immediate information, such as error information.
  */
-#define PRINT(x, ...)   printf("%s:%s:%s" x LINE_BREAK, FILE, LINE, FUNC, ##__VA_ARGS__)
+#define PRINT(x, ...)   printf("%s:%s:%s" x LINE_BREAK, \
+                                FILE_NAME, LINE_NUMBER, FUNC_NAME, ##__VA_ARGS__)
 
 #if !defined ASSERT
 /**
