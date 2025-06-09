@@ -5,7 +5,7 @@
  * @since 2025-02-26
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-07
+ * @date 2025-06-09
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -104,42 +104,29 @@ static __force_inline i32 object_write(struct OBJECT *self, void *package)
 }
 
 /**
- * @brief create a new Object.
+ * @brief create an object.
  * @details
- * this function creates a new Object and initializes its members.
- * @param[out] self a pointer to a pointer to the Object structure to be created.
+ * this function creates an object.
  * @param[in] name the name of the object.
- * @param[in] open the open function of the object.
- * @param[in] close the close function of the object.
- * @param[in] read the read function of the object.
- * @param[in] write the write function of the object.
- * @return the result of the operation.
+ * @param[in] open the open function.
+ * @param[in] close the close function.
+ * @param[in] read the read function.
+ * @param[in] write the write function.
+ * @return a pointer to the created object.
  */
-static __force_inline i32 object_create(struct OBJECT **self, char *name,
-                                        i32 (*open)(struct OBJECT *),
-                                        i32 (*close)(struct OBJECT *),
-                                        i32 (*read)(struct OBJECT *, void *),
-                                        i32 (*write)(struct OBJECT *, void *))
-{
-        ASSERT(*self);
-        (*self)->name = name;
-        (*self)->open = open;
-        (*self)->close = close;
-        (*self)->read = read;
-        (*self)->write = write;
-        return (0);
-}
+struct OBJECT *object_create(char *name,
+                                i32 (*open)(struct OBJECT *),
+                                i32 (*close)(struct OBJECT *),
+                                i32 (*read)(struct OBJECT *, void *),
+                                i32 (*write)(struct OBJECT *, void *));
 
 /**
- * @brief destroy an Object.
- * @param[in,out] self a pointer to a pointer to the Object structure to be destroyed.
- * @return the result of the operation.
+ * @brief destroy an object.
+ * @details
+ * this function destroys an object.
+ * @param[in,out] self the object to destroy.
+ * @return status of the operation.
  */
-static __force_inline i32 object_destroy(struct OBJECT **self)
-{
-        ASSERT(*self);
-        memory_clear(*self, sizeof(struct OBJECT));
-        return (0);
-}
+i32 object_destroy(struct OBJECT *self);
 
 #endif /* !defined OBJECT_H */
