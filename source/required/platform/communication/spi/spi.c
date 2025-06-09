@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-02
+ * @date 2025-06-09
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -163,19 +163,18 @@ static i32 receive_qspi(struct SPI *self, struct SPI_PACKAGE *package)
 static __ctor(SPI1_PRIORITY) void init_spi1(void)
 {
         struct SPI *self = &spi[SPI_FLASH];
-        static struct OBJECT super;
 
         /* TODO */
 
-        super.name = "spi-flash";
-        super.open = &open;
-        super.close = &close;
-        super.read = &receive_qspi;
-        super.write = &send_qspi;
-        self->super = &super;
+        self->super = object_create("SPI Flash",
+                                (i32 (*)(struct OBJECT *))open,
+                                (i32 (*)(struct OBJECT *))close,
+                                (i32 (*)(struct OBJECT *, void *))send_spi,
+                                (i32 (*)(struct OBJECT *, void *))receive_spi);
+        ASSERT(self->super);
         self->type = QSPI_COM;
         self->is_open = 0;
-        PRINTF("[SPI] init %s successfully", spi_name(self));
+        PRINTF("%s initialized.", spi_name(self));
 }
 
 /**
@@ -189,23 +188,39 @@ static __dtor(SPI1_PRIORITY) void deinit_spi1(void)
         struct SPI *self = &spi[SPI_FLASH];
 
         /* TODO */
-        PRINTF("[SPI] deinit %s successfully", spi_name(self));
+
+        PRINTF("%s deinitialized.", spi_name(self));
+        spi_destroy(&self);
 }
 
 /**
  * @brief create a SPI object.
  * @details
  * this function creates a SPI object.
- * @param[in,out] self pointer to SPI.
- * @param[in] id the identifier of SPI.
- * @return the result of creating a SPI object.
+ * @param[in] id identifier of SPI.
+ * @return SPI object.
  */
-i32 spi_create(struct SPI *self, u8 id)
+struct SPI *spi_create(enum SPI_ID id)
+{
+        ASSERT(id < SPI_MAX);
+        return (&spi[id]);
+}
+
+/**
+ * @brief destroy a SPI object.
+ * @details
+ * this function destroys a SPI object.
+ * @param[in,out] self pointer to SPI object.
+ * @return the result of destroying the SPI object.
+ */
+i32 spi_destroy(struct SPI **self)
 {
         ASSERT(self);
-        ASSERT(id < ARRAY_SIZE(spi));
 
-        self = &spi[id];
-        PRINTF("[SPI] create %s successfully", spi_name(self));
+        if (*self) {
+                object_destroy((struct OBJECT *)*self);
+                memory_clear(*self, sizeof(*self));
+                *self = 0;
+        }
         return (0);
 }

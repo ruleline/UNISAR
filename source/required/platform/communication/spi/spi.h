@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-02
+ * @date 2025-06-09
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -70,7 +70,7 @@ struct SPI {
  */
 static __force_inline char *spi_name(struct SPI *self)
 {
-        return object_name(self);
+        return object_name((struct OBJECT *)self);
 }
 
 /**
@@ -82,7 +82,7 @@ static __force_inline char *spi_name(struct SPI *self)
  */
 static __force_inline i32 spi_open(struct SPI *self)
 {
-        return object_open(self);
+        return object_open((struct OBJECT *)self);
 }
 
 /**
@@ -94,7 +94,7 @@ static __force_inline i32 spi_open(struct SPI *self)
  */
 static __force_inline i32 spi_close(struct SPI *self)
 {
-        return object_close(self);
+        return object_close((struct OBJECT *)self);
 }
 
 /**
@@ -107,7 +107,7 @@ static __force_inline i32 spi_close(struct SPI *self)
  */
 static __force_inline i32 spi_send(struct SPI *self, struct SPI_PACKAGE *package)
 {
-        return object_write(self, package);
+        return object_write((struct OBJECT *)self, package);
 }
 
 /**
@@ -120,17 +120,25 @@ static __force_inline i32 spi_send(struct SPI *self, struct SPI_PACKAGE *package
  */
 static __force_inline i32 spi_receive_(struct SPI *self, struct SPI_PACKAGE *package)
 {
-        return object_read(self, package);
+        return object_read((struct OBJECT *)self, package);
 }
 
 /**
  * @brief create a SPI object.
  * @details
  * this function creates a SPI object.
- * @param[in] self pointer to SPI.
  * @param[in] id identifier of SPI.
- * @return the result of creating the SPI object.
+ * @return SPI object.
  */
-i32 spi_create(struct SPI *self, u8 id);
+struct SPI *spi_create(enum SPI_ID id);
+
+/**
+ * @brief destroy a SPI object.
+ * @details
+ * this function destroys a SPI object.
+ * @param[in,out] self pointer to SPI object.
+ * @return the result of destroying the SPI object.
+ */
+i32 spi_destroy(struct SPI **self);
 
 #endif /* !defined SPI_H */
