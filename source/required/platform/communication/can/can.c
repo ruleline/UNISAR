@@ -223,7 +223,7 @@ static __dtor(CAN1_PRIORITY) void deinit_can1(void)
         /* TODO */
 
         PRINTF("%s deinitialized.", can_name(self));
-        can_destroy(self);
+        can_destroy(&self);
 }
 
 /**
@@ -243,14 +243,17 @@ struct CAN *can_create(enum CAN_ID id)
  * @brief destroy a CAN object.
  * @details
  * this function destroys a CAN object.
- * @param[in] self the pointer of CAN object.
+ * @param[in,out] self the CAN object to be destroyed.
  * @return the status of destroying CAN object.
  */
-i32 can_destroy(struct CAN *self)
+i32 can_destroy(struct CAN **self)
 {
-        if (!self) {
-                object_destroy((struct OBJECT *)self);
+        ASSERT(self);
+
+        if (*self) {
+                object_destroy((struct OBJECT *)*self);
+                memory_clear(*self, sizeof(struct CAN));
+                *self = 0;
         }
-        memory_clear(self, sizeof(struct CAN));
         return (0);
 }

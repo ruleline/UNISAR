@@ -138,9 +138,9 @@ struct CAN *can_create(enum CAN_ID id);
  * @brief destroy a CAN object.
  * @details
  * this function destroys a CAN object.
- * @param[in] self the pointer of CAN object.
+ * @param[in,out] self the CAN object to be destroyed.
  * @return the status of destroying CAN object.
  */
-i32 can_destroy(struct CAN *self);
+i32 can_destroy(struct CAN **self);
 
 #endif /* !defined CAN_H */
