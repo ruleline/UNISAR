@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-02
+ * @date 2025-06-09
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -384,23 +384,22 @@ static i32 receive_polling_usart(struct UART *self, struct UART_PACKAGE *package
 static __ctor(UART1_PRIORITY) void init_uart1(void)
 {
         struct UART *self = &uart[UART_LOG];
-        static struct OBJECT super;
 
         /* TODO */
 
-        super.name = "uart-log";
-        super.open = &open;
-        super.close = &close;
-        super.read = &receive_uart;
-        super.write = &send_uart;
-        self->super = &super;
+        self->super = object_create("UART Log",
+                        (i32 (*)(struct OBJECT *))open,
+                        (i32 (*)(struct OBJECT *))close,
+                        (i32 (*)(struct OBJECT *, void *))send_uart,
+                        (i32 (*)(struct OBJECT *, void *))receive_uart);
+        ASSERT(self->super);
         self->type = UART_COM;
         self->is_open = 0;
         self->send_blocking = &send_blocking_uart;
         self->receive_blocking = &receive_blocking_uart;
         self->send_polling = &send_polling_uart;
         self->receive_polling = &receive_polling_uart;
-        PRINTF("[UART] init %s successfully", uart_name(self));
+        PRINTF("%s initialized.", uart_name(self));
 }
 
 /**
@@ -414,23 +413,39 @@ static __dtor(UART1_PRIORITY) void deinit_uart1(void)
         struct UART *self = &uart[UART_LOG];
 
         /* TODO */
-        PRINTF("[UART] deinit %s successfully", uart_name(self));
+
+        PRINTF("%s deinitialized.", uart_name(self));
+        uart_destroy(&self);
 }
 
 /**
  * @brief create a UART object.
  * @details
  * this function creates a UART object.
- * @param[in,out] self pointer to UART.
- * @param[in] id the identifier of UART.
+ * @param[in] id identifier of UART.
  * @return the result of creating a UART object.
  */
-i32 uart_create(struct UART *self, u8 id)
+struct UART *uart_create(enum UART_ID id)
+{
+        ASSERT(id < UART_MAX);
+        return (&uart[id]);
+}
+
+/**
+ * @brief destroy a UART object.
+ * @details
+ * this function destroys a UART object.
+ * @param[in,out] self pointer to UART object.
+ * @return the result of destroying a UART object.
+ */
+i32 uart_destroy(struct UART **self)
 {
         ASSERT(self);
-        ASSERT(id < ARRAY_SIZE(uart));
 
-        self = &uart[id];
-        PRINTF("[UART] create %s successfully", uart_name(self));
+        if (*self) {
+                object_destroy((struct OBJECT *)*self);
+                memory_clear(*self, sizeof(struct UART));
+                *self = 0;
+        }
         return (0);
 }

@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-02
+ * @date 2025-06-09
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -78,7 +78,7 @@ struct UART {
  */
 static __force_inline char *uart_name(struct UART *self)
 {
-        return (object_name(self));
+        return object_name((struct OBJECT *)self);
 }
 
 /**
@@ -90,7 +90,7 @@ static __force_inline char *uart_name(struct UART *self)
  */
 static __force_inline i32 uart_open(struct UART *self)
 {
-        return (object_open(self));
+        return object_open((struct OBJECT *)self);
 }
 
 /**
@@ -102,7 +102,7 @@ static __force_inline i32 uart_open(struct UART *self)
  */
 static __force_inline i32 uart_close(struct UART *self)
 {
-        return (object_close(self));
+        return object_close((struct OBJECT *)self);
 }
 
 /**
@@ -116,7 +116,7 @@ static __force_inline i32 uart_close(struct UART *self)
 static __force_inline i32 uart_send(struct UART *self,
                                         struct UART_PACKAGE *package)
 {
-        return (object_write(self, package));
+        return object_write((struct OBJECT *)self, package);
 }
 
 /**
@@ -130,7 +130,7 @@ static __force_inline i32 uart_send(struct UART *self,
 static __force_inline i32 uart_receive(struct UART *self,
                                         struct UART_PACKAGE *package)
 {
-        return (object_read(self, package));
+        return object_read((struct OBJECT *)self, package);
 }
 
 /**
@@ -193,10 +193,18 @@ static __force_inline i32 uart_receive_polling(struct UART *self,
  * @brief create a UART object.
  * @details
  * this function creates a UART object.
- * @param[in] self pointer to UART.
  * @param[in] id identifier of UART.
  * @return the result of creating a UART object.
  */
-i32 uart_create(struct UART *self, u8 id);
+struct UART *uart_create(enum UART_ID id);
+
+/**
+ * @brief destroy a UART object.
+ * @details
+ * this function destroys a UART object.
+ * @param[in,out] self pointer to UART object.
+ * @return the result of destroying a UART object.
+ */
+i32 uart_destroy(struct UART **self);
 
 #endif /* !defined UART_H */
