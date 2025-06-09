@@ -5,7 +5,7 @@
  * @since 2025-02-19
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-08
+ * @date 2025-06-09
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -70,7 +70,7 @@ struct FLASH {
  */
 static __force_inline char *flash_name(struct FLASH *self)
 {
-        return object_name(self);
+        return object_name((struct OBJECT *)self);
 }
 
 /**
@@ -84,7 +84,7 @@ static __force_inline char *flash_name(struct FLASH *self)
 static __force_inline i32 flash_read(struct FLASH *self,
                                         struct FLASH_PACKAGE *package)
 {
-        return object_read(self, package);
+        return object_read((struct OBJECT *)self, package);
 }
 
 /**
@@ -98,7 +98,7 @@ static __force_inline i32 flash_read(struct FLASH *self,
 static __force_inline i32 flash_write(struct FLASH *self,
                                         struct FLASH_PACKAGE *package)
 {
-        return object_write(self, package);
+        return object_write((struct OBJECT *)self, package);
 }
 
 /**
@@ -117,6 +117,6 @@ struct FLASH *flash_create(enum FLASH_ID id);
  * @param self pointer to the Flash object to be destroyed.
  * @return status of the operation.
  */
-i32 flash_destroy(struct FLASH *self);
+i32 flash_destroy(struct FLASH **self);
 
 #endif /* !defined FLASH_H */

@@ -5,7 +5,7 @@
  * @since 2025-02-19
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-08
+ * @date 2025-06-09
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -65,14 +65,13 @@ static i32 xx_flash_write(struct FLASH *self, struct FLASH_PACKAGE *package)
 static __ctor(XX_FLASH_PRIORITY) void init_flash_xx(void)
 {
         struct FLASH *self = &flash[FLASH_XX];
-        static struct OBJECT super;
 
         /* TODO */
 
-        self->super = &super;
-        object_create(&self->super, "XX Flash", 0, 0,
-                        &xx_flash_read, &xx_flash_write);
-        PRINTF("%s initialized", object_name(self));
+        self->super = object_create("XX Flash", 0, 0,
+                                (i32 (*)(struct OBJECT *, void *))xx_flash_read,
+                                (i32 (*)(struct OBJECT *, void *))xx_flash_write);
+        PRINTF("%s initialized", flash_name(self));
 }
 
 /**
@@ -87,8 +86,8 @@ static __ctor(XX_FLASH_PRIORITY) void deinit_flash_xx(void)
 
         /* TODO */
 
-        PRINTF("%s deinitialized", object_name(self));
-        flash_destroy(self);
+        PRINTF("%s deinitialized", flash_name(self));
+        flash_destroy(&self);
 }
 
 /**
@@ -111,11 +110,14 @@ struct FLASH *flash_create(enum FLASH_ID id)
  * @param self pointer to the Flash object to be destroyed.
  * @return status of the operation.
  */
-i32 flash_destroy(struct FLASH *self)
+i32 flash_destroy(struct FLASH **self)
 {
-        if (self) {
-                object_destroy(&self->super);
-                memory_clear(self, sizeof(struct FLASH));
+        ASSERT(self);
+
+        if (*self) {
+                object_destroy((struct OBJECT *)*self);
+                memory_clear(*self, sizeof(struct FLASH));
+                *self = 0;
         }
         return (0);
 }
