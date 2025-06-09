@@ -124,9 +124,9 @@ struct OBJECT *object_create(char *name,
  * @brief destroy an object.
  * @details
  * this function destroys an object.
- * @param[in,out] self the object to destroy.
+ * @param[in,out] self pointer to the object to be destroyed.
  * @return status of the operation.
  */
-i32 object_destroy(struct OBJECT *self);
+i32 object_destroy(struct OBJECT **self);
 
 #endif /* !defined OBJECT_H */
