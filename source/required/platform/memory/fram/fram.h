@@ -5,7 +5,7 @@
  * @since 2025-06-06
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-07
+ * @date 2025-06-09
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -68,7 +68,7 @@ struct FRAM {
  */
 static __force_inline char *fram_name(struct FRAM *fram)
 {
-        return object_name(fram);
+        return object_name((struct OBJECT *)fram);
 }
 
 /**
@@ -82,7 +82,7 @@ static __force_inline char *fram_name(struct FRAM *fram)
 static __force_inline i32 fram_read(struct FRAM *fram,
                                         struct FRAM_PACKAGE *package)
 {
-        return object_read(fram, package);
+        return object_read((struct OBJECT *)fram, package);
 }
 
 /**
@@ -96,7 +96,7 @@ static __force_inline i32 fram_read(struct FRAM *fram,
 static __force_inline i32 fram_write(struct FRAM *fram,
                                         struct FRAM_PACKAGE *package)
 {
-        return object_write(fram, package);
+        return object_write((struct OBJECT *)fram, package);
 }
 
 /**
@@ -107,5 +107,14 @@ static __force_inline i32 fram_write(struct FRAM *fram,
  * @return the newly created FRAM object.
  */
 struct FRAM *fram_create(enum FRAM_ID id);
+
+/**
+ * @brief destroy a FRAM object.
+ * @details
+ * this function destroys a FRAM object.
+ * @param[in] fram FRAM object to destroy.
+ * @return status of the operation.
+ */
+i32 fram_destroy(struct FRAM **fram);
 
 #endif /* !defined FRAM_H */

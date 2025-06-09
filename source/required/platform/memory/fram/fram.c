@@ -5,7 +5,7 @@
  * @since 2025-06-06
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-08
+ * @date 2025-06-09
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -37,7 +37,12 @@ static struct FRAM fram[FRAM_MAX_ID];
  */
 static i32 xx_fram_read(struct FRAM *fram, struct FRAM_PACKAGE *package)
 {
-        return object_read(fram, package);
+        ASSERT(fram);
+        ASSERT(package);
+
+        /* TODO */
+
+        return (0);
 }
 
 /**
@@ -50,7 +55,12 @@ static i32 xx_fram_read(struct FRAM *fram, struct FRAM_PACKAGE *package)
  */
 static i32 xx_fram_write(struct FRAM *fram, struct FRAM_PACKAGE *package)
 {
-        return object_write(fram, package);
+        ASSERT(fram);
+        ASSERT(package);
+
+        /* TODO */
+
+        return (0);
 }
 
 /**
@@ -61,14 +71,13 @@ static i32 xx_fram_write(struct FRAM *fram, struct FRAM_PACKAGE *package)
 static void __ctor(XX_FRAM_PRIORITY) init_fram_xx(void)
 {
         struct FRAM *self = &fram[FRAM_XX];
-        static struct OBJECT super;
 
         /* TODO */
 
-        self->super = &super;
-        object_create(&self->super, "XX FRAM", 0, 0,
-                        &xx_fram_read, &xx_fram_write);
-        PRINTF("%s initialized", object_name(self));
+        self->super = object_create("XX FRAM", 0, 0,
+                                (i32 (*)(struct OBJECT *, void *))xx_fram_read,
+                                (i32 (*)(struct OBJECT *, void *))xx_fram_write);
+        PRINTF("%s initialized", fram_name(self));
 }
 
 /**
@@ -82,8 +91,8 @@ static void __dtor(XX_FRAM_PRIORITY) deinit_fram_xx(void)
 
         /* TODO */
 
-        PRINTF("%s deinitialized", object_name(self));
-        fram_destroy(self);
+        PRINTF("%s deinitialized", fram_name(self));
+        fram_destroy(&self);
 }
 
 /**
@@ -106,11 +115,14 @@ struct FRAM *fram_create(enum FRAM_ID id)
  * @param[in] self FRAM object.
  * @return status of the operation.
  */
-i32 fram_destroy(struct FRAM *self)
+i32 fram_destroy(struct FRAM **self)
 {
-        if (self) {
-                object_destroy(&self->super);
-                memory_clear(self, sizeof(struct FRAM));
+        ASSERT(self);
+
+        if (*self) {
+                object_destroy((struct OBJECT *)*self);
+                memory_clear(*self, sizeof(struct FRAM));
+                *self = 0;
         }
         return (0);
 }
