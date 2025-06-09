@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-02
+ * @date 2025-06-09
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -61,7 +61,7 @@ enum CAN_DATA_LENGTH {
  * @details
  * this struct defines the structure of a CAN object set.
  */
-static struct CAN can[CAN_MAX];
+static struct CAN can[CAN_MAX_ID];
 
 /**
  * @brief open the CAN object.
@@ -196,19 +196,18 @@ static i32 receive_flexible(struct CAN *self, struct CAN_PACKAGE *package)
 static __ctor(CAN1_PRIORITY) void init_can1(void)
 {
         struct CAN *self = &can[CAN_COCKPIT];
-        static struct OBJECT super;
 
         /* TODO */
 
-        super.name = "can-cockpit";
-        super.open = &open;
-        super.close = &close;
-        super.read = &receive_classic;
-        super.write = &send_classic;
-        self->super = &super;
+        self->super = object_create("Cockpit CAN",
+                                (i32 (*)(struct OBJECT *))open,
+                                (i32 (*)(struct OBJECT *))close,
+                                (i32 (*)(struct OBJECT *, void *))send_classic,
+                                (i32 (*)(struct OBJECT *, void *))receive_classic);
+        ASSERT(self->super);
         self->type = CAN_COM;
         self->is_open = 0;
-        PRINTF("[CAN] init %s successfully", can_name(self));
+        PRINTF("%s initialized.", can_name(self));
 }
 
 /**
@@ -222,23 +221,36 @@ static __dtor(CAN1_PRIORITY) void deinit_can1(void)
         struct CAN *self = &can[CAN_COCKPIT];
 
         /* TODO */
-        PRINTF("[CAN] deinit %s successfully", can_name(self));
+
+        PRINTF("%s deinitialized.", can_name(self));
+        can_destroy(self);
 }
 
 /**
  * @brief create a CAN object.
  * @details
- * this function creates a CAN object for communication.
- * @param[in,out] self the CAN object.
+ * this function creates a CAN object.
  * @param[in] id the identifier of CAN object.
  * @return the status of creating CAN object.
  */
-i32 can_create(struct CAN *self, u8 id)
+struct CAN *can_create(enum CAN_ID id)
 {
-        ASSERT(self);
-        ASSERT(id < ARRAY_SIZE(can));
+        ASSERT(id < CAN_MAX_ID);
+        return (&can[id]);
+}
 
-        self = &can[id];
-        PRINTF("[CAN] create %s successfully", can_name(self));
+/**
+ * @brief destroy a CAN object.
+ * @details
+ * this function destroys a CAN object.
+ * @param[in] self the pointer of CAN object.
+ * @return the status of destroying CAN object.
+ */
+i32 can_destroy(struct CAN *self)
+{
+        if (!self) {
+                object_destroy((struct OBJECT *)self);
+        }
+        memory_clear(self, sizeof(struct CAN));
         return (0);
 }

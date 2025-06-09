@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-02
+ * @date 2025-06-09
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -32,7 +32,7 @@ enum CAN_ID {
         /** cockpit CAN bus. */
         CAN_COCKPIT,
         /** the maximum number of CAN objects. */
-        CAN_MAX,
+        CAN_MAX_ID,
 };
 
 /**
@@ -70,7 +70,7 @@ struct CAN {
  */
 static __force_inline char *can_name(struct CAN *self)
 {
-        return object_name(self);
+        return object_name((struct OBJECT *)self);
 }
 
 /**
@@ -82,7 +82,7 @@ static __force_inline char *can_name(struct CAN *self)
  */
 static __force_inline i32 can_open(struct CAN *self)
 {
-        return object_open(self);
+        return object_open((struct OBJECT *)self);
 }
 
 /**
@@ -94,7 +94,7 @@ static __force_inline i32 can_open(struct CAN *self)
  */
 static __force_inline i32 can_close(struct CAN *self)
 {
-        return object_close(self);
+        return object_close((struct OBJECT *)self);
 }
 
 /**
@@ -108,7 +108,7 @@ static __force_inline i32 can_close(struct CAN *self)
 static __force_inline i32 can_send(struct CAN *self,
                                         struct CAN_PACKAGE *package)
 {
-        return object_write(self, package);
+        return object_write((struct OBJECT *)self, package);
 }
 
 /**
@@ -122,17 +122,25 @@ static __force_inline i32 can_send(struct CAN *self,
 static __force_inline i32 can_receive(struct CAN *self,
                                         struct CAN_PACKAGE *package)
 {
-        return object_read(self, package);
+        return object_read((struct OBJECT *)self, package);
 }
 
 /**
  * @brief create a CAN object.
  * @details
  * this function creates a CAN object.
- * @param[in] self the CAN object.
  * @param[in] id the identifier of CAN object.
  * @return the status of creating CAN object.
  */
-i32 can_create(struct CAN *self, u8 id);
+struct CAN *can_create(enum CAN_ID id);
+
+/**
+ * @brief destroy a CAN object.
+ * @details
+ * this function destroys a CAN object.
+ * @param[in] self the pointer of CAN object.
+ * @return the status of destroying CAN object.
+ */
+i32 can_destroy(struct CAN *self);
 
 #endif /* !defined CAN_H */
