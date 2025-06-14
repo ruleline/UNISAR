@@ -5,7 +5,7 @@
  * @since 2025-02-18
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-09
+ * @date 2025-06-14
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -251,7 +251,8 @@ i32 can_destroy(struct CAN **self)
         ASSERT(self);
 
         if (*self) {
-                object_destroy((struct OBJECT *)*self);
+                struct OBJECT *p = (*self)->super;
+                object_destroy(&p);
                 memory_clear(*self, sizeof(struct CAN));
                 *self = 0;
         }
