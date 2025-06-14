@@ -64,7 +64,7 @@ static __force_inline char *object_name(struct OBJECT *self)
  */
 static __force_inline i32 object_open(struct OBJECT *self)
 {
-        return self->open(self);
+        return self->open(self->handle);
 }
 
 /**
@@ -76,7 +76,7 @@ static __force_inline i32 object_open(struct OBJECT *self)
  */
 static __force_inline i32 object_close(struct OBJECT *self)
 {
-        return self->close(self);
+        return self->close(self->handle);
 }
 
 /**
@@ -89,7 +89,7 @@ static __force_inline i32 object_close(struct OBJECT *self)
  */
 static __force_inline i32 object_read(struct OBJECT *self, void *package)
 {
-        return self->read(self, package);
+        return self->read(self->handle, package);
 }
 
 /**
@@ -102,7 +102,7 @@ static __force_inline i32 object_read(struct OBJECT *self, void *package)
  */
 static __force_inline i32 object_write(struct OBJECT *self, void *package)
 {
-        return self->write(self, package);
+        return self->write(self->handle, package);
 }
 
 /**
