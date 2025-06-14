@@ -5,7 +5,7 @@
  * @since 2025-02-26
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-09
+ * @date 2025-06-14
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -29,6 +29,8 @@
  * this structure represents an object.
  */
 struct OBJECT {
+        /** handle of the object. */
+        void *handle;
         /** name of the object */
         char *name;
         /** open the object. */

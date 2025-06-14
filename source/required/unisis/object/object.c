@@ -5,7 +5,7 @@
  * @since 2025-06-09
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-09
+ * @date 2025-06-14
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -55,6 +55,7 @@ struct OBJECT *object_create(char *name,
 
         for (usize i = 0; i < OBJECT_MAX_COUNT; i++) {
                 if (!object[i].name) {
+                        object[i].handle = (void *)&object[i];
                         object[i].name = name;
                         object[i].open = open;
                         object[i].close = close;
