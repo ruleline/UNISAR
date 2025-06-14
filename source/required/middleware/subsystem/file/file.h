@@ -5,7 +5,7 @@
  * @since 2025-03-03
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-02
+ * @date 2025-06-14
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -68,7 +68,7 @@ struct FILE {
  */
 static __force_inline char *file_name(struct FILE *self)
 {
-        return object_name(self);
+        return object_name((struct OBJECT *)self);
 }
 
 /**
@@ -80,7 +80,7 @@ static __force_inline char *file_name(struct FILE *self)
  */
 static __force_inline i32 file_open(struct FILE *self)
 {
-        return object_open(self);
+        return object_open((struct OBJECT *)self);
 }
 
 /**
@@ -106,7 +106,7 @@ static __force_inline i32 file_close(struct FILE *self)
 static __force_inline i32 file_read(struct FILE *self,
                                         struct FILE_PACKAGE *package)
 {
-        return object_read(self, package);
+        return object_read((struct OBJECT *)self, package);
 }
 
 /**
@@ -120,7 +120,7 @@ static __force_inline i32 file_read(struct FILE *self,
 static __force_inline i32 file_write(struct FILE *self,
                                         struct FILE_PACKAGE *package)
 {
-        return object_write(self, package);
+        return object_write((struct OBJECT *)self, package);
 }
 
 /**
