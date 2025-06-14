@@ -5,7 +5,7 @@
  * @since 2025-06-06
  *
  * @authors ruleline (ruleline@outlook.com)
- * @date 2025-06-09
+ * @date 2025-06-14
  * @version 0.00.001
  *
  * @copyright ©2025 UNISAR
@@ -120,7 +120,8 @@ i32 fram_destroy(struct FRAM **self)
         ASSERT(self);
 
         if (*self) {
-                object_destroy((struct OBJECT *)*self);
+                struct OBJECT *p = (*self)->super;
+                object_destroy(&p);
                 memory_clear(*self, sizeof(struct FRAM));
                 *self = 0;
         }
